@@ -1304,24 +1304,12 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </div>
 
     <div class="slide">
-      <h1>ShEx Model: RDF Data is tested...</h1>
+      <h1>ShEx Model: RDF Data is tested</h1>
       <div style="float:left; width: 45%">
         <ul>
           <li><b>RDF Data</b> ("graph") is tested</li>
-          <li><span class="grey">against a <b>ShEx Schema</b>
-          <ul>
-            <li>which prescribes conditions that RDF graphs must meet:
-            <ul>
-              <li>which subjects, predicates, and objects may appear</li>
-              <li>...in what combinations</li>
-              <li>...with what cardinalities and datatypes</li>
-              <li>...in order to produce:</li>
-            </ul></span></li>
-          </ul></li>
-          <li><span class="grey">a <b>Validation Result</b>
-          <ul>
-              <li>...which flags parts of the data that do not "conform"</li>
-          </ul></span></li>
+          <li><span class="grey">against a <b>ShEx Schema</b></li>
+          <li><span class="grey">to produce a <b>Validation Result</b></span></li>
         </ul>
       </div>
       <div style="float:left; width: 54%">
@@ -1342,7 +1330,24 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </div>
 
     <div class="slide">
-      <h1>ShEx Model: ...against a ShEx Schema...</h1>
+      <h1>ShEx Model: ...against a ShEx Schema</h1>
+      <div style="float:left; width:54%;">
+<pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+<spanclass="keyword">AND</span>
+  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+         </div>
       <div style="float:left; width: 45%">
         <ul>
           <li><span class="grey"><b>RDF Data</b> ("graph") is tested</span></li>
@@ -1362,38 +1367,14 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
           </ul></span></li>
         </ul>
       </div>
-      <div style="float:left; width: 54%">
-       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
-  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
-  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
-  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
-  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span> ;
-  <span class="type">bf:</span><span class="constant">creator</span> [
-    <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
-    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
-  ] <span class="keyword">.</span>
-<span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
-  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
-  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
-</pre>
-      </div>
     </div>
 
     <div class="slide">
-      <h1>ShEx Model: ...to produce a Validation Result...</h1>
+      <h1>ShEx Model: ...to produce a Validation Result</h1>
       <div style="float:left; width: 45%">
         <ul>
           <li><span class="grey"><b>RDF Data</b> ("graph") is tested</span></li>
-          <li><span class="grey">against a <b>ShEx Schema</b>
-          <ul>
-            <li>which prescribes conditions that RDF graphs must meet:
-            <ul>
-              <li>which subjects, predicates, and objects may appear</li>
-              <li>...in what combinations</li>
-              <li>...with what cardinalities and datatypes</li>
-              <li>...in order to produce:</li>
-            </ul></span></li>
-          </ul></li>
+          <li><span class="grey">against a <b>ShEx Schema</b></li>
           <li>to produce a <b>Validation Result</b>
           <ul>
               <li>...which flags parts of the data that do not "conform"</li>
@@ -1401,24 +1382,19 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
         </ul>
       </div>
       <div style="float:left; width: 54%">
-       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
-  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
-  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
-  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
-  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span> ;
-  <span class="type">bf:</span><span class="constant">creator</span> [
-    <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
-    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
-  ] <span class="keyword">.</span>
-<span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
-  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
-  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
-</pre>
+<hr/>
+<div class="results">
+<pre>validating samples9298996bad as Work:
+   validating http://...oliverTwist:
+      Error validating http://...oliverTwist
+      as nodeKind literal:
+        iri found when literal expected</pre></div>
+<hr/>
       </div>
     </div>
 
     <div class="slide">
-      <h1>ShEx Model: ...on the basis of a Shape Map.</h1>
+      <h1>ShEx Model: ...on the basis of a Shape Map</h1>
       <div style="float:left; width: 45%">
         <ul>
           <li><span class="grey"><b>RDF Data</b> ("graph") is tested</span></li>
@@ -1427,24 +1403,24 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
           <li>on the basis of a <b>Shape Map</b>
           <ul>
               <li>which designates nodes in <b>RDF Data</b> to be tested against <b>ShEx Schema</b></li>
-              <li>and may be generated automatically or customized for specific needs.</li>
+              <li>and may be generated on the basis of a query.</li>
           </ul>
         </ul>
       </div>
       <div style="float:left; width: 54%">
-       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
-  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
-  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
-  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
-  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span> ;
-  <span class="type">bf:</span><span class="constant">creator</span> [
-    <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
-    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
-  ] <span class="keyword">.</span>
-<span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
-  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
-  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
-</pre>
+        <div id="example-school-enrolleeAge" class="example wrapper">
+          <pre class="nohighlight shapemap fixed" id="school-Enrollee-fixed-shapemap" style="float:left;">
+<span class="fullURL">inst:Alice</span> @ <span class="shape-name">school:Enrollee</span>,
+<span class="fullURL">inst:Bob</span> @ <span class="shape-name">school:Enrollee</span>,
+<span class="fullURL">inst:Claire</span> @ <span class="shape-name">school:Enrollee</span>,
+<span class="fullURL">inst:Don</span> @ <span class="shape-name">school:Enrollee</span>
+          </pre>
+        </div>
+        <div id="example-school-enrolleeAge" class="example wrapper" style="vertical-align: top;">
+          <pre class="nohighlight shapemap query" id="school-Enrollee-query-shapemap" style="float:left;">
+<span class="fullURL">{FOCUS, foaf:age, _}</span> @ <span class="shape-name">school:Enrollee</span>
+          </pre>
+        </div>
       </div>
     </div>
 
@@ -1484,7 +1460,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
    <div class="slide">
      <h1>A ShEx Schema prescribes the "shape" of RDF Data</h1>
      <div style="float:left; width:49%;">
-      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
   <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
   <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
   <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
@@ -1515,7 +1491,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
    <div class="slide">
      <h1>ShEx Schema is tested against RDF Data</h1>
      <div style="float:left; width:49%;">
-      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
   <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
   <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
   <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
@@ -1532,7 +1508,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
   }</pre>
      </div>
      <div style="float:left; width:50%">
-       <pre><span class="function-name">&lt;samples9298996&gt;</span>
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
   <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
   <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
   <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
