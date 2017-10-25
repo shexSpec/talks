@@ -1238,6 +1238,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
   </g>
 </svg>
      </div>
+      @@@label "RDF Data"
      <div style="float:left; width: 45%">
        <pre><span class="function-name">&lt;samples9298996&gt;</span>
   <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
@@ -1258,6 +1259,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
 
     <div class="slide">
       <h1>The ShEx Model - basics</h1>
+      @@@label "RDF Data"
       <div style="float:left; width: 45%">
         <ul>
           <li><b>RDF Data</b> ("graph") is validated against:</li>
@@ -1308,6 +1310,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
 
    <div class="slide">
      <h1>A ShEx Schema prescribes the "shape" of RDF Data</h1>
+     @@@label "ShEx Schema"
      <div style="float:left; width:49%;">
       <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
   <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
@@ -1341,6 +1344,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
 
    <div class="slide">
      <h1>A ShEx Schema prescribes the "shape" of RDF Data</h1>
+     @@@label "ShEx Schema"
      <div style="float:left; width:49%;">
       <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
   <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
@@ -1371,7 +1375,8 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
    </div>
 
    <div class="slide">
-     <h1>A ShEx Schema prescribes the "shape" of RDF Data</h1>
+     <h1>ShEx Schema is tested against RDF Data</h1>
+     @@@label "ShEx Schema"
      <div style="float:left; width:49%;">
       <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
   <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
@@ -1389,6 +1394,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
   }</pre>
      </div>
+     @@@label "RDF Data"
      <div style="float:left; width:50%">
        <pre><span class="function-name">&lt;samples9298996&gt;</span>
   <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
@@ -1405,30 +1411,6 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
   <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
 </pre>
     </div>
-  </div>
-
-   <div class="slide">
-     <h1>ShEx Schema in ShEx Compact Syntax</h1>
-     <div style="float:left; width:49%;">
-      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
-  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
-  <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
-  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
-  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
-  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
-}
-
-<span class="function-name">&lt;Classification&gt;</span>
-  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
-<span class="keyword">AND</span>
-  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
-    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
-    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
-  }</pre>
-     </div>
-     <div style="float:left; width:50%">
-         @@@ table or bullet points about syntax (punctuation, keywords IRI, LITERAL, AND, OR, EXTRA)
-     </div>
   </div>
 
    <div class="slide">
