@@ -1598,9 +1598,8 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
        <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
   <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> <span class="keyword">.</span>
 
-<span class="fail"><span class="function-name">&lt;samples9298996bad&gt;</span></span>
-<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">&lt;http://...oliverTwist&gt;</span> <span class="keyword">.</span></span>
-       </pre>
+<span class="fail"><span class="function-name">&lt;samples9298996bad&gt;</span>                 </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">&lt;http://...oliverTwist&gt;</span> <span class="keyword">.</span></span></pre>
        <a style="float:right;" class="tryit" href="http://rawgit.com/shexSpec/shex.js/master/doc/shex-simple.html?schema=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3CWork%3E%20%7B%0A%20%20bf%3Atitle%20LITERAL%20%3B%0A%7D%0A&amp;data=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3Csamples9298996%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20.%0A%0A%3Csamples9298996bad%3E%0A%20%20bf%3Atitle%20%3Chttp%3A%2F%2F...oliverTwist%3E%20.&amp;shape-map=%3Csamples9298996%3E%40%3CWork%3E%2C%0A%3Csamples9298996bad%3E%40%3CWork%3E&amp;interface=human&amp;regexpEngine=threaded-val-nerr">try it</a><span style="clear:both;"/>
        <hr style="clear:both"/>
        <div class="results">
@@ -1678,16 +1677,16 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
      <div style="float:left; width:49%">
        <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
   <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
-  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;<a href="http://id.loc.gov/authorities/classification/PZ3">http://id.loc.gov/authorities/classification/PZ3</a>&gt;</span> <span class="keyword">.</span>
-<span class="function-name">&lt;<a href="http://id.loc.gov/authorities/classification/PZ3">http://id.loc.gov/authorities/classification/PZ3</a>&gt;</span> <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">LCC</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;<a href="http://id.loc.gov/…/PZ3">http://id.loc.gov/…/PZ3</a>&gt;</span> <span class="keyword">.</span>
+<span class="function-name">&lt;<a href="http://id.loc.gov/…/PZ3">http://id.loc.gov/…/PZ3</a>&gt;</span> <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">LCC</span> ;
   <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
 
 <span class="function-name">&lt;samples9298996b&gt;</span>
   <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
   <span class="type">bf:</span><span class="constant">class</span> [ <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> ]<span class="keyword">.</span>
 
-<span class="fail"><span class="function-name">&lt;samples9298996bad&gt;</span>                                        </span>
-<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;</span>
+<span class="fail"><span class="function-name">&lt;samples9298996bad&gt;</span>                                    </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;                           </span>
 <span class="fail">  <span class="type">bf:</span><span class="constant">class</span> [ <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">LCD</span> ; <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> ]<span class="keyword">.</span></span></pre>
        <a style="float:right;" class="tryit" href="http://rawgit.com/shexSpec/shex.js/master/doc/shex-simple.html?schema=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3CWork%3E%20%7B%0A%20%20a%20%5Bbf%3AWork%5D%20%3F%20%3B%0A%20%20bf%3Atitle%20LITERAL%20%3B%0A%20%20bf%3Aclass%20%40%3CClassification%3E%20*%20%3B%0A%7D%0A%0A%3CClassification%3E%20%7B%0A%20%20a%20%5Bbf%3ALCC%5D%20%3F%20%3B%0A%20%20bf%3Alabel%20LITERAL%20%3B%0A%7D&amp;data=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3Csamples9298996%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fclassification%2FPZ3%3E%20.%0A%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fclassification%2FPZ3%3E%20a%20bf%3ALCC%20%3B%0A%20%20bf%3Alabel%20%22PZ3.D55O165PR4567%22%20.%0A%0A%3Csamples9298996b%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%5B%20bf%3Alabel%20%22PZ3.D55O165PR4567%22%20%5D.%0A%0A%3Csamples9298996bad%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%5B%20a%20bf%3ALCD%20%3B%20bf%3Alabel%20%22PZ3.D55O165PR4567%22%20%5D.%0A&amp;shape-map=%3Csamples9298996%3E%40%3CWork%3E%2C%0A%3Csamples9298996b%3E%40%3CWork%3E%2C%0A%3Csamples9298996bad%3E%40%3CWork%3E&amp;interface=human&amp;regexpEngine=threaded-val-nerr">try it</a><span style="clear:both;"/>
        <hr style="clear:both"/>
