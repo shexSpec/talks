@@ -82,16 +82,21 @@ li li, li ul li          { font-style: normal; }
     bottom: 3em;
 }
 
+pre { padding: 0; }
+pre {
+    margin-top: 0;
+    margin-right: 1em;
+    overflow: visible;
+}
+pre {
+    background-color: #fcfaee;
+    margin-left: 0;
+    line-height: 1.2;
+    display: inline-block;
+}
 pre.schema.shexc {
     background-color: #ECEBF7;
     border: thick solid #e4e3ec;
-}
-pre {
-    padding: unset;
-    background-color: unset;
-    margin-left: unset;
-    line-height: 1.2;
-    display: inline-block;
 }
 pre.schema, pre.instance {
     vertical-align: top;
@@ -100,6 +105,10 @@ pre.schema, pre.instance {
 pre.schema.shexc:before {
     content: "Schema (ShExC)";
     width: 9em;
+}
+
+pre.instance {
+    border: thick solid #f8f6ea;
 }
 
 pre.instance.turtle:before {
@@ -117,6 +126,30 @@ pre.schema:before, pre.instance:before {
     padding: 0.2em 1em;
 }
 
+.example pre.shapemap {
+    background-color: #eefcfa;
+    border: thick solid #eaf8ea;
+}
+
+.shapemap.fixed:before {
+    content: "Fixed Shape Map";
+    width: 9em;
+}
+
+.shapemap:before {
+    color: #333;
+    font-size: .6em;
+    border: 1px solid #bbb;
+    background: white;
+    display: block;
+    font-family: sans-serif;
+    padding: 0.2em 1em;
+}
+
+.shapemap.query:before {
+    content: "Query Shape Map";
+    width: 9em;
+}
 /*]]>
 */</style>
 
@@ -1303,7 +1336,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
       <div style="float:left; width: 45%">
         <ul>
           <li><b>RDF Data</b> ("graph") is tested</li>
-          <li><span class="grey">against a <b>ShEx Schema</b></li>
+          <li><span class="grey">against a <b>ShEx Schema</b></span></li>
           <li><span class="grey">to produce a <b>Validation Result</b></span></li>
         </ul>
       </div>
@@ -1337,7 +1370,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
 
 <span class="function-name">&lt;Classification&gt;</span>
   [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
-<spanclass="keyword">AND</span>
+<span class="keyword">AND</span>
   <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
     <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
     <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
@@ -1356,10 +1389,10 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
               <li>...in order to produce:</li>
             </ul></li>
           </ul></li>
-          <li><span class="grey">a <b>Validation Result</b>
-          <ul>
+          <li><span class="grey">a <b>Validation Result</b></span>
+          <ul class="grey">
               <li>...which flags parts of the data that do not "conform"</li>
-          </ul></span></li>
+          </ul></li>
         </ul>
       </div>
     </div>
@@ -1369,7 +1402,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
       <div style="float:left; width: 45%">
         <ul>
           <li><span class="grey"><b>RDF Data</b> ("graph") is tested</span></li>
-          <li><span class="grey">against a <b>ShEx Schema</b></li>
+          <li><span class="grey">against a <b>ShEx Schema</b></span></li>
           <li>to produce a <b>Validation Result</b>
           <ul>
               <li>...which flags parts of the data that do not "conform"</li>
@@ -1393,25 +1426,26 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
       <div style="float:left; width: 45%">
         <ul>
           <li><span class="grey"><b>RDF Data</b> ("graph") is tested</span></li>
-          <li><span class="grey">against a <b>ShEx Schema</b></li>
-          <li><span class="grey">to produce a <b>Validation Result</b></li>
+          <li><span class="grey">against a <b>ShEx Schema</b></span></li>
+          <li><span class="grey">to produce a <b>Validation Result</b></span></li>
           <li>on the basis of a <b>Shape Map</b>
           <ul>
               <li>which designates nodes in <b>RDF Data</b> to be tested against <b>ShEx Schema</b></li>
               <li>and may be generated on the basis of a query.</li>
-          </ul>
+          </ul></li>
         </ul>
       </div>
       <div style="float:left; width: 54%">
-        <div id="example-school-enrolleeAge" class="example wrapper">
-          <pre class="nohighlight shapemap fixed" id="school-Enrollee-fixed-shapemap" style="float:left;">
+        <div class="example wrapper">
+          <pre class="fixed shapemap">
 <span class="fullURL">inst:Alice</span> @ <span class="shape-name">school:Enrollee</span>,
 <span class="fullURL">inst:Bob</span> @ <span class="shape-name">school:Enrollee</span>,
 <span class="fullURL">inst:Claire</span> @ <span class="shape-name">school:Enrollee</span>,
-<span class="fullURL">inst:Don</span> @ <span class="shape-name">school:Enrollee</span>
-          </pre>
+<span class="fullURL">inst:Don</span> @ <span class="shape-name">school:Enrollee</span></pre>
         </div>
-      </div>
+        <div class="example wrapper">
+          <pre class="nohighlight shapemap query" id="school-Enrollee-query-shapemap" style="float:left;"><span class="fullURL">{FOCUS, foaf:age, _}</span> @ <span class="shape-name">school:Enrollee</span></pre>
+        </div>      </div>
     </div>
 
    <div class="slide">
@@ -1521,7 +1555,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
        A <span class="function-name">&lt;Work&gt;</span> must have exactly one <span class="type">bf:</span><span class="constant">title</span> with value <span class="keyword">LITERAL</span>:
      </p>
     <div style="float:left; width:50%">
-      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
   <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
 }
 </pre>
@@ -1532,7 +1566,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </ul>
     </div>
      <div style="float:left; width:49%;">
-       <pre><span class="function-name">&lt;samples9298996&gt;</span>
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
   <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> <span class="keyword">.</span>
 <span class="function-name">&lt;samples9298996bad&gt;</span>
   <span class="type">bf:</span><span class="constant">title</span> <span class="string" style="background-color: red">&lt;http://...oliverTwist&gt;</span> <span class="keyword">.</span>
@@ -1554,7 +1588,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
      <h1>Shapes can specify types</h1>
      <p>Permit some data to have a type arc identifying it as a <span class="function-name">&lt;Work&gt;</span>:</p>
      <div style="float:left; width:50%;">
-      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
   <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
   <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
 }</pre>
@@ -1565,7 +1599,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </ul>
      </div>
      <div style="float:left; width:49%">
-       <pre>some turtle</pre>
+       <pre class="instance turtle">some turtle</pre>
     </div>
   </div>
 
@@ -1575,7 +1609,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
        Add a reference to another shape:
      </p>
      <div style="float:left; width:40%;">
-      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
   <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
   <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
   <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
@@ -1591,7 +1625,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
       </ul>
      </div>
      <div style="float:left; width:49%">
-       <pre>some turtle</pre>
+       <pre class="instance turtle">some turtle</pre>
     </div>
   </div>
 
@@ -1601,7 +1635,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
        Or a reference to an authority:
      </p>
      <div style="float:left; width:50%;">
-      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
   <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
   <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
   <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
@@ -1615,7 +1649,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </ul>
      </div>
      <div style="float:left; width:49%">
-       <pre>some turtle</pre>
+       <pre class="instance turtle">some turtle</pre>
     </div>
   </div>
 
@@ -1625,7 +1659,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
        Or a reference to a structure identifed by and authority:
      </p>
      <div style="float:left; width:50%;">
-      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
   <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
   <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
   <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
@@ -1642,7 +1676,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </ul>
      </div>
      <div style="float:left; width:49%">
-       <pre>some turtle</pre>
+       <pre class="instance turtle">some turtle</pre>
     </div>
   </div>
 
@@ -1652,7 +1686,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
        You may accept multiple forms a creator.
      </p>
      <div style="float:left; width:50%;">
-      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
   <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
   <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
   <span class="grey"><span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;</span>
@@ -1660,7 +1694,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
 }</pre>
      </div>
      <div style="float:left; width:49%">
-       <pre>some turtle</pre>
+       <pre class="instance turtle">some turtle</pre>
     </div>
   </div>
 
@@ -1732,11 +1766,12 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
           <li>simple constraints on repeated properties.<br/>
           <code><span class="type">fhir:</span><span class="constant">component</span> [ <span class="type">fhir:</span><span class="constant">code</span> [<span class="type">sct:</span><span class="constant">systolic</span>]; <span class="type">fhir:</span><span class="constant">value</span> <span class="type">xsd:</span><span class="constant">integer</span> ];<br/>
 <span class="type">fhir:</span><span class="constant">component</span> [ <span class="type">fhir:</span><span class="constant">code</span> [<span class="type">sct:</span><span class="constant">systolic</span>]; <span class="type">fhir:</span><span class="constant">value</span> <span class="type">xsd:</span><span class="constant">integer</span> ];</code></li>
-        </ul>
+        </ul></li>
         <li>detailed comparison in book "Validating RDF Data" (<a href="http://a.co/fD3UbCw">http://a.co/fD3UbCw</a>)
         <ul>
             <li>See examples at <a href="https://github.com/labra/validatingRDFBookExamples/">https://github.com/labra/validatingRDFBookExamples/</a></li>
         </ul></li>
+      </ul>
     </div>
 
    <div class="slide">
@@ -1851,7 +1886,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
        </table>
      </div>
     <div style="float:left; width:60%">
-      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
   <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
   <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
   <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
