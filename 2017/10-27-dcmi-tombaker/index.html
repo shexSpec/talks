@@ -126,7 +126,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
       <h1>ShEx</h1>
       <h2>Testing data with the <a href="http://shex.io/">Shape Expressions Language</a></h2>
       <h2>DC-2017<br/>27 October 2017</h2>
-      <h2><a href="http://tombaker.github.io/shexpresent/toy">http://tombaker.github.io/shexpresent/toy</a></h2>
+      <h2><a href="http://shexspec.github.io/talks/2017/10-27-dcmi-tombaker">http://shexspec.github.io/talks/2017/10-27-dcmi-tombaker</a></h2>
 
       <ul>
 	      <li>
@@ -148,10 +148,10 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
      <h1>Shape Expressions (ShEx)</h1>
      <div style="float:left; width: 45%">
       <ul>
-        <li>a language for describing RDF data</li>
-        <li>used for:
+        <li>a language for describing RDF data ("graphs")</li>
+        <li>can be used for:
         <ul>
-            <li>validating RDF data (aka "graphs")</li>
+            <li>validating RDF data</li>
             <li>generating user interfaces</li>
             <li>transforming RDF data into other data formats</li>
             <li>formally expressing a Dublin Core application profile</li>
@@ -699,7 +699,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </div>
 
    <div class="slide">
-     <h1>RDF as text</h1>
+     <h1>RDF Data as graph and as text</h1>
      <div style="float:left; width: 54%">
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -1307,10 +1307,69 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </div>
 
    <div class="slide">
-     <h1>side-by-side</h1>
-     <p>
-       quick demo
-     </p>
+     <h1>A ShEx Schema prescribes the "shape" of RDF Data</h1>
+     <div style="float:left; width:49%;">
+      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+<span class="keyword">AND</span>
+  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+     </div>
+
+     <div style="float:left; width:50%">
+     A resource in the RDF data matching the "Work" shape:
+     <ul>
+         <li>has zero or one "rdf:type bf:Work" statements</li>
+         <li>optionally has an extra "rdf:type" statement</li>
+         <li>has exactly one "bf:title" statement with a literal value</li>
+         <li>has zero or more "bf:class" statements taking objects that match the "Classification" shape</li>
+         <li>has one or more "bf:creator" statements taking objects that match either the "Person" or the "Organization" shape</li>
+         <li>and zero or more "bf:derivedFrom" statements taking an IRI as object</li>
+     </ul>
+     </div>
+
+   <div class="slide">
+     <h1>A ShEx Schema prescribes the "shape" of RDF Data</h1>
+     <div style="float:left; width:49%;">
+      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+<span class="keyword">AND</span>
+  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+     </div>
+
+     <div style="float:left; width:50%">
+     A resource matching the "Classification" shape:
+     <ul>
+        <li>is identified with an IRI starting with "http://id.loc.gov..."</li>
+        <li>has zero or one "rdf:type bf:LOC" statements</li>
+        <li>optionally has an additional "rdf:type" statement</li>
+        <li>has exactly one "bf:label" statement with a literal value."</li>
+     </ul>
+     </div>
+
+   <div class="slide">
+     <h1>A ShEx Schema prescribes the "shape" of RDF Data</h1>
      <div style="float:left; width:49%;">
       <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
   <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
@@ -1344,6 +1403,30 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
   <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
 </pre>
     </div>
+  </div>
+
+   <div class="slide">
+     <h1>ShEx Schema in ShEx Compact Syntax</h1>
+     <div style="float:left; width:49%;">
+      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+<span class="keyword">AND</span>
+  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+     </div>
+     <div style="float:left; width:50%">
+         @@@ table or bullet points about syntax (punctuation, keywords IRI, LITERAL, AND, OR, EXTRA)
+     </div>
   </div>
 
    <div class="slide">
