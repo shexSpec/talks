@@ -1304,13 +1304,51 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </div>
 
     <div class="slide">
-      <h1>The ShEx Model - basics</h1>
+      <h1>ShEx Model: RDF Data is tested...</h1>
       <div style="float:left; width: 45%">
         <ul>
-          <li><b>RDF Data</b> ("graph") is validated against:</li>
-          <li>a <b>ShEx Schema</b>, which:
+          <li><b>RDF Data</b> ("graph") is tested</li>
+          <li><span class="grey">against a <b>ShEx Schema</b>
           <ul>
-            <li>prescribes conditions that RDF graphs must meet:
+            <li>which prescribes conditions that RDF graphs must meet:
+            <ul>
+              <li>which subjects, predicates, and objects may appear</li>
+              <li>...in what combinations</li>
+              <li>...with what cardinalities and datatypes</li>
+              <li>...in order to produce:</li>
+            </ul></span></li>
+          </ul></li>
+          <li><span class="grey">a <b>Validation Result</b>
+          <ul>
+              <li>...which flags parts of the data that do not "conform"</li>
+          </ul></span></li>
+        </ul>
+      </div>
+      <div style="float:left; width: 54%">
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> [
+    <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
+  ] <span class="keyword">.</span>
+<span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
+</pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>ShEx Model: ...against a ShEx Schema...</h1>
+      <div style="float:left; width: 45%">
+        <ul>
+          <li><span class="grey"><b>RDF Data</b> ("graph") is tested</span></li>
+          <li>against a <b>ShEx Schema</b>
+          <ul>
+            <li>which prescribes conditions that RDF graphs must meet:
             <ul>
               <li>which subjects, predicates, and objects may appear</li>
               <li>...in what combinations</li>
@@ -1318,9 +1356,47 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
               <li>...in order to produce:</li>
             </ul></li>
           </ul></li>
-          <li>a <b>Validation Result</b>
+          <li><span class="grey">a <b>Validation Result</b>
           <ul>
-            <li>...which flags parts of the data that do not "conform"</li>
+              <li>...which flags parts of the data that do not "conform"</li>
+          </ul></span></li>
+        </ul>
+      </div>
+      <div style="float:left; width: 54%">
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> [
+    <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
+  ] <span class="keyword">.</span>
+<span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
+</pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>ShEx Model: ...to produce a Validation Result...</h1>
+      <div style="float:left; width: 45%">
+        <ul>
+          <li><span class="grey"><b>RDF Data</b> ("graph") is tested</span></li>
+          <li><span class="grey">against a <b>ShEx Schema</b>
+          <ul>
+            <li>which prescribes conditions that RDF graphs must meet:
+            <ul>
+              <li>which subjects, predicates, and objects may appear</li>
+              <li>...in what combinations</li>
+              <li>...with what cardinalities and datatypes</li>
+              <li>...in order to produce:</li>
+            </ul></span></li>
+          </ul></li>
+          <li>to produce a <b>Validation Result</b>
+          <ul>
+              <li>...which flags parts of the data that do not "conform"</li>
           </ul></li>
         </ul>
       </div>
@@ -1334,7 +1410,6 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
     <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
   ] <span class="keyword">.</span>
-
 <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
   <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
   <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
@@ -1342,15 +1417,35 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
       </div>
     </div>
 
-   <div class="slide">
-      <h1>The ShEx Model - detail</h1>
-      <ul>
-        <li>A <b>Shape Map</b>:
+    <div class="slide">
+      <h1>ShEx Model: ...on the basis of a Shape Map.</h1>
+      <div style="float:left; width: 45%">
         <ul>
-            <li>designates nodes in the <b>RDF Data</b> to be tested against the <b>ShEx Schema</b></li>
-            <li>may be generated automatically or customized for specific needs</li>
-        </ul></li>
-      </ul>
+          <li><span class="grey"><b>RDF Data</b> ("graph") is tested</span></li>
+          <li><span class="grey">against a <b>ShEx Schema</b></li>
+          <li><span class="grey">to produce a <b>Validation Result</b></li>
+          <li>on the basis of a <b>Shape Map</b>
+          <ul>
+              <li>which designates nodes in <b>RDF Data</b> to be tested against <b>ShEx Schema</b></li>
+              <li>and may be generated automatically or customized for specific needs.</li>
+          </ul>
+        </ul>
+      </div>
+      <div style="float:left; width: 54%">
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> [
+    <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
+  ] <span class="keyword">.</span>
+<span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
+</pre>
+      </div>
     </div>
 
    <div class="slide">
