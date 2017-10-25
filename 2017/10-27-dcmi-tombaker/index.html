@@ -81,6 +81,47 @@ li li, li ul li          { font-style: normal; }
     position: absolute;
     bottom: 3em;
 }
+
+pre {
+    margin-top: 0;
+    margin-right: 1em;
+    overflow: visible;
+}
+
+pre.schema.shexc {
+    background-color: #ECEBF7;
+    border: thick solid #e4e3ec;
+}
+pre {
+    background-color: #fcfaee;
+    margin-left: 0;
+    line-height: 1.2;
+    display: inline-block;
+}
+pre.schema, pre.instance {
+    vertical-align: top;
+}
+
+pre.schema.shexc:before {
+    content: "Schema (ShExC)";
+    width: 9em;
+}
+
+pre.instance.turtle:before {
+    content: "Data (Turtle)";
+    width: 9em;
+}
+
+pre.schema:before, pre.instance:before {
+    color: #333;
+    font-size: .6em;
+    border: 1px solid #bbb;
+    background: white;
+    display: block;
+    font-family: sans-serif;
+    padding: 0.2em 1em;
+}
+
 /*]]>
 */</style>
 
@@ -1246,7 +1287,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
      </div>
       @@@label "RDF Data"
      <div style="float:left; width: 45%">
-       <pre><span class="function-name">&lt;samples9298996&gt;</span>
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
   <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
   <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
   <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
@@ -1286,7 +1327,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
         </ul>
       </div>
       <div style="float:left; width: 54%">
-       <pre><span class="function-name">&lt;samples9298996&gt;</span>
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
   <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
   <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
   <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
@@ -1318,7 +1359,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
      <h1>A ShEx Schema prescribes the "shape" of RDF Data</h1>
      @@@label "ShEx Schema"
      <div style="float:left; width:49%;">
-      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
   <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
   <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
   <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
