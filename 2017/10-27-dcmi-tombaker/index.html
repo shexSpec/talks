@@ -1489,7 +1489,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
    </div>
 
    <div class="slide">
-     <h1>ShEx Schema is tested against RDF Data</h1>
+     <h1>A ShEx Schema is tested against RDF Data</h1>
      <div style="float:left; width:49%;">
       <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
   <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
@@ -1526,7 +1526,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
   </div>
 
    <div class="slide">
-     <h1>Declare Property</h1>
+     <h1>Specifying use of properties</h1>
      <p>
        A <span class="function-name">&lt;Work&gt;</span> must have exactly one <span class="type">bf:</span><span class="constant">title</span> with value <span class="keyword">LITERAL</span>:
      </p>
@@ -1535,7 +1535,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
   <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
 }
 </pre>
-    <ul>
+    <ul class="footnote">
       <li><span class="function-name">&lt;Work&gt;</span> { … } defines a "shape".</li>
       <li><span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> expects an bf:title property with a literal value.</li>
       <li>The default cardinality is min: 1, max: 1.</li>
@@ -1561,7 +1561,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
    </div>
 
    <div class="slide">
-     <h1>Add a type</h1>
+     <h1>Specifying types</h1>
      <p>Permit some data to have a type arc identifying it as a <span class="function-name">&lt;Work&gt;</span>:</p>
      <div style="float:left; width:50%;">
       <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
@@ -1580,9 +1580,9 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
   </div>
 
    <div class="slide">
-     <h1>References</h1>
+     <h1>Shapes can reference other shapes</h1>
      <p>
-       Add a reference to another structure:
+       Add a reference to another shape:
      </p>
      <div style="float:left; width:40%;">
       <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
@@ -1595,7 +1595,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
   <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
   <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
 }</pre>
-      <ul>
+      <ul class="footnote">
         <li>@<span class="function-name">&lt;Classification&gt;</span> references a different shape.</li>
         <li>The '<code>*</code>' code means min: 0, max: * (like regular expressions).</li>
       </ul>
@@ -1603,29 +1603,10 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
      <div style="float:left; width:49%">
        <pre>some turtle</pre>
     </div>
-    <hr style="clear:both;"/>
-    <div style="clear:both;">
-       <table>
-         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
-         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
-         <tr class="grey"><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td></tr>
-         <tr class="grey"><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
-         <tr><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">&lt;Classification&gt;</span></td>            <td>0</td><td>*</td></tr>
-       </table>
-       <p>
-         and define that structure:
-       </p>
-       <table>
-         <caption style="text-align: left;"><span class="function-name">&lt;Classification&gt;</span></caption>
-         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
-         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">LCC</span></td>                            <td>0</td><td>1</td></tr>
-         <tr><td><span class="type">bf:</span><span class="constant">label</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
-       </table>
-    </div>
   </div>
 
    <div class="slide">
-     <h1>Value Set</h1>
+     <h1>Value sets</h1>
      <p>
        Or a reference to an authority:
      </p>
@@ -1638,23 +1619,13 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
 
 <span class="function-name">&lt;Classification&gt;</span>
   [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]</pre>
-    <ul>
+    <ul class="footnote">
       <li class="grey"><code>[]</code>s denote a value set.</li>
       <li>This value set includes every IRI starting with <span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>.</li>
     </ul>
      </div>
      <div style="float:left; width:49%">
        <pre>some turtle</pre>
-    </div>
-    <hr style="clear:both;"/>
-    <div style="clear:both;">
-       <table>
-         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
-         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
-         <tr class="grey"><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td></tr>
-         <tr class="grey"><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
-         <tr><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">an LOC classification</span></td>            <td>0</td><td>*</td></tr>
-       </table>
     </div>
   </div>
 
@@ -1676,31 +1647,12 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
     <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
   }</pre>
-    <ul>
+    <ul class="footnote">
       <li>Constraints can be combined with <span class="keyword">AND</span>, <span class="keyword">OR</span>, <span class="keyword">NOT</span> and <code>()</code>s.</li>
     </ul>
      </div>
      <div style="float:left; width:49%">
        <pre>some turtle</pre>
-    </div>
-    <hr style="clear:both;"/>
-    <div style="clear:both;">
-       <table>
-         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
-         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
-         <tr class="grey"><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td></tr>
-         <tr class="grey"><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
-         <tr><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">an LOC classification</span></td>            <td>0</td><td>*</td></tr>
-       </table>
-       <p>
-         
-       </p>
-       <table>
-         <caption style="text-align: left;"><span class="function-name">&lt;Classification&gt;</span></caption>
-         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
-         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">LCC</span></td>                            <td>0</td><td>1</td></tr>
-         <tr><td><span class="type">bf:</span><span class="constant">label</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
-       </table>
     </div>
   </div>
 
@@ -1719,56 +1671,6 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
      </div>
      <div style="float:left; width:49%">
        <pre>some turtle</pre>
-    </div>
-    <hr style="clear:both;"/>
-    <div style="clear:both;">
-       <table>
-         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
-         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
-         <tr class="grey"><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td></tr>
-         <tr class="grey"><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
-         <tr class="grey"><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">&lt;Classification&gt;</span></td>            <td>0</td><td>*</td></tr>
-         <tr><td><span class="type">bf:</span><span class="constant">creator</span></td>    <td><span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> <span class="function-name">&lt;Organization&gt;</span></td><td>1</td><td>*</td></tr>
-       </table>
-    </div>
-  </div>
-
-   <div class="slide">
-     <h1>As a whole</h1>
-     <div style="float:left; width:39%;">
-       <table>
-         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
-         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
-         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td></tr>
-         <tr><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
-         <tr><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">&lt;Classification&gt;</span></td>            <td>0</td><td>*</td></tr>
-         <tr><td><span class="type">bf:</span><span class="constant">creator</span></td>    <td><span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> <span class="function-name">&lt;Organization&gt;</span></td><td>1</td><td>*</td></tr>
-         <tr><td><span class="type">bf:</span><span class="constant">derivedFrom</span></td><td><span class="keyword">IRI</span></td>                                <td>0</td><td>*</td></tr>
-       </table>
-       <p/>
-       <table>
-         <caption style="text-align: left;"><span class="function-name">&lt;Classification&gt;</span></caption>
-         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
-         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">LCC</span></td>                            <td>0</td><td>1</td></tr>
-         <tr><td><span class="type">bf:</span><span class="constant">label</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
-       </table>
-     </div>
-    <div style="float:left; width:60%">
-      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
-  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
-  <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
-  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
-  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
-  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
-}
-
-<span class="function-name">&lt;Classification&gt;</span>
-  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
-<span class="keyword">AND</span>
-  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
-    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
-    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
-  }</pre>
     </div>
   </div>
 
@@ -1815,9 +1717,20 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </div>
 
    <div class="slide">
-     <h1>Comparison with SHACL</h1>
+     <h1>Shapes Constraint Language (SHACL)</h1>
       <ul>
-        <li>similar logical expressions (<em>AND</em>, <em>OR</em>, <em>NOT</em>).</li>
+        <li>similar to ShEx.</li>
+        <li>both have logical expressions (<em>AND</em>, <em>OR</em>, <em>NOT</em>).</li>
+        <li>uses a SPARQL rules language for constructing new tests.</li>
+        <li>implemented in a commercial IDE (TopBraid Composer).</li>
+      </ul>
+    </div>
+
+   <div class="slide">
+     <h1>ShEx and SHACL compared</h1>
+      <ul>
+        <li>ShEx is like XML Schema.</li>
+        <li>SHACL is like Schematron.</li>
         <li>SHACL evaluates expressions individually.</li>
         <li>ShEx examines shape expressions as a whole for:
         <ul>
@@ -1831,17 +1744,10 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
           <code><span class="type">fhir:</span><span class="constant">component</span> [ <span class="type">fhir:</span><span class="constant">code</span> [<span class="type">sct:</span><span class="constant">systolic</span>]; <span class="type">fhir:</span><span class="constant">value</span> <span class="type">xsd:</span><span class="constant">integer</span> ];<br/>
 <span class="type">fhir:</span><span class="constant">component</span> [ <span class="type">fhir:</span><span class="constant">code</span> [<span class="type">sct:</span><span class="constant">systolic</span>]; <span class="type">fhir:</span><span class="constant">value</span> <span class="type">xsd:</span><span class="constant">integer</span> ];</code></li>
         </ul>
-        </li>
-        <li>SHACL/SPARQL built on a SPARQL rules language for constructing new tests.</li>
-        <li>implemented in a commercial IDE (TopBraid Composer)</li>
-        <li>compared with ShEx in book "Validating RDF Data" (<a href="http://a.co/fD3UbCw">http://a.co/fD3UbCw</a>)
+        <li>detailed comparison in book "Validating RDF Data" (<a href="http://a.co/fD3UbCw">http://a.co/fD3UbCw</a>)
         <ul>
             <li>See examples at <a href="https://github.com/labra/validatingRDFBookExamples/">https://github.com/labra/validatingRDFBookExamples/</a></li>
-
         </ul></li>
-      </ul>
-     <p>ShEx is like XML Schema.<br/>
-     SHACL is like Schematron.</p>
     </div>
 
    <div class="slide">
@@ -1934,5 +1840,45 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
        <p>including <span class="function-name">&lt;Person&gt;</span>, <span class="function-name">&lt;Organization&gt;</span>, etc...</p>
      </div>
   </div>
+
+   <div class="slide">
+     <h1>[DELETED] As a whole</h1>
+     <div style="float:left; width:39%;">
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
+         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">&lt;Classification&gt;</span></td>            <td>0</td><td>*</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">creator</span></td>    <td><span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> <span class="function-name">&lt;Organization&gt;</span></td><td>1</td><td>*</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">derivedFrom</span></td><td><span class="keyword">IRI</span></td>                                <td>0</td><td>*</td></tr>
+       </table>
+       <p/>
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Classification&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
+         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">LCC</span></td>                            <td>0</td><td>1</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">label</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
+       </table>
+     </div>
+    <div style="float:left; width:60%">
+      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+<span class="keyword">AND</span>
+  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+    </div>
+  </div>
+
   </body>
 </html>
