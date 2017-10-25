@@ -150,6 +150,35 @@ pre.schema:before, pre.instance:before {
     content: "Query Shape Map";
     width: 9em;
 }
+
+.fail {
+    background-color: #fcc;
+}
+
+
+element.style {
+}
+base.css:525
+a[href]:focus, a[href]:hover {
+    background: #f8f8f8;
+    background: rgba(75%, 75%, 75%, .25);
+    border-bottom-width: 3px;
+    margin-bottom: -2px;
+}
+
+.tryit:link {
+    text-decoration: none;
+    font: menu;
+    display: inline-block;
+    padding: 2px 8px;
+    background: ButtonFace;
+    color: ButtonText;
+    border-style: solid;
+    border-width: 2px;
+    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+    padding: 0 .2em;
+}
+
 /*]]>
 */</style>
 
@@ -1568,11 +1597,15 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
      <div style="float:left; width:49%;">
        <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
   <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> <span class="keyword">.</span>
-<span class="function-name">&lt;samples9298996bad&gt;</span>
-  <span class="type">bf:</span><span class="constant">title</span> <span class="string" style="background-color: red">&lt;http://...oliverTwist&gt;</span> <span class="keyword">.</span>
-</pre>
-<hr/>
-<div class="results"><div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div><div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+
+<span class="fail"><span class="function-name">&lt;samples9298996bad&gt;</span></span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">&lt;http://...oliverTwist&gt;</span> <span class="keyword">.</span></span>
+       </pre>
+       <a style="float:right;" class="tryit" href="http://rawgit.com/shexSpec/shex.js/master/doc/shex-simple.html?schema=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3CWork%3E%20%7B%0A%20%20bf%3Atitle%20LITERAL%20%3B%0A%7D%0A&amp;data=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3Csamples9298996%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20.%0A%0A%3Csamples9298996bad%3E%0A%20%20bf%3Atitle%20%3Chttp%3A%2F%2F...oliverTwist%3E%20.&amp;shape-map=%3Csamples9298996%3E%40%3CWork%3E%2C%0A%3Csamples9298996bad%3E%40%3CWork%3E&amp;interface=human&amp;regexpEngine=threaded-val-nerr">try it</a><span style="clear:both;"/>
+       <hr style="clear:both"/>
+       <div class="results">
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
    validating http://...oliverTwist:
       Error validating http://...oliverTwist
       as nodeKind literal:
@@ -1599,7 +1632,25 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </ul>
      </div>
      <div style="float:left; width:49%">
-       <pre class="instance turtle">some turtle</pre>
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span> <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">Work</span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> <span class="keyword">.</span>
+
+<span class="function-name">&lt;samples9298996b&gt;</span> <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">Work</span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> <span class="keyword">.</span>
+
+<span class="fail"><span class="function-name">&lt;samples9298996bad&gt;</span> <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">Krow</span> ;</span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist"</span> <span class="keyword">.</span>    </span></pre>
+       <a style="float:right;" class="tryit" href="http://rawgit.com/shexSpec/shex.js/master/doc/shex-simple.html?schema=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3CWork%3E%20%7B%0A%20%20a%20%5Bbf%3AWork%5D%20%3F%20%3B%0A%20%20bf%3Atitle%20LITERAL%20%3B%0A%7D%0A&amp;data=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3Csamples9298996%3E%20a%20bf%3AWork%20%3B%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20.%0A%0A%3Csamples9298996b%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20.%0A%0A%3Csamples9298996bad%3E%20a%20bf%3AKrow%20%3B%0A%20%20bf%3Atitle%20%22Oliver%20Twist%22%20.&amp;shape-map=%3Csamples9298996%3E%40%3CWork%3E%2C%0A%3Csamples9298996b%3E%40%3CWork%3E%2C%0A%3Csamples9298996bad%3E%40%3CWork%3E&amp;interface=human&amp;regexpEngine=threaded-val-nerr">try it</a><span style="clear:both;"/>
+       <hr style="clear:both"/>
+       <div class="results">
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996b&gt;@&lt;Work&gt;</span></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+    validating http://bibframe.org/vocab/Krow:
+      Error validating http://bibframe.org/vocab/Krow
+      as values [&lt;http://bibframe.org/vocab/Work&gt;]:
+        value http://bibframe.org/vocab/Krow not found in set
+        [&lt;http://bibframe.org/vocab/Work&gt;]</pre></div></div>
     </div>
   </div>
 
@@ -1608,7 +1659,7 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
      <p>
        Add a reference to another shape:
      </p>
-     <div style="float:left; width:40%;">
+     <div style="float:left; width:50%;">
       <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
   <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
   <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
@@ -1625,7 +1676,31 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
       </ul>
      </div>
      <div style="float:left; width:49%">
-       <pre class="instance turtle">some turtle</pre>
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;<a href="http://id.loc.gov/authorities/classification/PZ3">http://id.loc.gov/authorities/classification/PZ3</a>&gt;</span> <span class="keyword">.</span>
+<span class="function-name">&lt;<a href="http://id.loc.gov/authorities/classification/PZ3">http://id.loc.gov/authorities/classification/PZ3</a>&gt;</span> <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">LCC</span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
+
+<span class="function-name">&lt;samples9298996b&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> [ <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> ]<span class="keyword">.</span>
+
+<span class="fail"><span class="function-name">&lt;samples9298996bad&gt;</span>                                        </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;</span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">class</span> [ <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">LCD</span> ; <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> ]<span class="keyword">.</span></span></pre>
+       <a style="float:right;" class="tryit" href="http://rawgit.com/shexSpec/shex.js/master/doc/shex-simple.html?schema=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3CWork%3E%20%7B%0A%20%20a%20%5Bbf%3AWork%5D%20%3F%20%3B%0A%20%20bf%3Atitle%20LITERAL%20%3B%0A%20%20bf%3Aclass%20%40%3CClassification%3E%20*%20%3B%0A%7D%0A%0A%3CClassification%3E%20%7B%0A%20%20a%20%5Bbf%3ALCC%5D%20%3F%20%3B%0A%20%20bf%3Alabel%20LITERAL%20%3B%0A%7D&amp;data=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3Csamples9298996%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fclassification%2FPZ3%3E%20.%0A%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fclassification%2FPZ3%3E%20a%20bf%3ALCC%20%3B%0A%20%20bf%3Alabel%20%22PZ3.D55O165PR4567%22%20.%0A%0A%3Csamples9298996b%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%5B%20bf%3Alabel%20%22PZ3.D55O165PR4567%22%20%5D.%0A%0A%3Csamples9298996bad%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%5B%20a%20bf%3ALCD%20%3B%20bf%3Alabel%20%22PZ3.D55O165PR4567%22%20%5D.%0A&amp;shape-map=%3Csamples9298996%3E%40%3CWork%3E%2C%0A%3Csamples9298996b%3E%40%3CWork%3E%2C%0A%3Csamples9298996bad%3E%40%3CWork%3E&amp;interface=human&amp;regexpEngine=threaded-val-nerr">try it</a><span style="clear:both;"/>
+       <hr style="clear:both"/>
+       <div class="results">
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996b&gt;@&lt;Work&gt;</span></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+    validating _:b1:
+      validating http://bibframe.org/vocab/LCD:,
+      Error validating http://bibframe.org/vocab/LCD
+      as values: [&lt;http://bibframe.org/vocab/LCC&gt;]}:
+       value &lt;http://bibframe.org/vocab/LCD&gt; not found
+       in set [&lt;http://bibframe.org/vocab/LCC&gt;]</pre></div></div>
     </div>
   </div>
 
@@ -1650,6 +1725,12 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
      </div>
      <div style="float:left; width:49%">
        <pre class="instance turtle">some turtle</pre>
+       <a style="float:right;" class="tryit" href="">try it</a><span style="clear:both;"/>
+       <hr style="clear:both"/>
+       <div class="results">
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+</pre></div></div>
     </div>
   </div>
 
@@ -1677,6 +1758,12 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
      </div>
      <div style="float:left; width:49%">
        <pre class="instance turtle">some turtle</pre>
+       <a style="float:right;" class="tryit" href="">try it</a><span style="clear:both;"/>
+       <hr style="clear:both"/>
+       <div class="results">
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+</pre></div></div>
     </div>
   </div>
 
@@ -1695,6 +1782,12 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
      </div>
      <div style="float:left; width:49%">
        <pre class="instance turtle">some turtle</pre>
+       <a style="float:right;" class="tryit" href="">try it</a><span style="clear:both;"/>
+       <hr style="clear:both"/>
+       <div class="results">
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+</pre></div></div>
     </div>
   </div>
 
