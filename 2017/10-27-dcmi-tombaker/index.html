@@ -1,0 +1,1762 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-US">
+  <head>
+    <meta name="generator" content=
+	  "HTML Tidy for Linux/x86 (vers 1st November 2003), see www.w3.org" />
+    <title>Testable Standards for Library Metadata</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="copyright" content=
+	  "Copyright &#169; 2005-2010 W3C (MIT, ERCIM, Keio)" />
+    <meta name="duration" content="5" />
+    <meta name="font-size-adjustment" content="-2" />
+    <link rel="stylesheet" href="../../Slidy2/styles/slidy.css" type="text/css" />
+    <link rel="stylesheet" href="../../Slidy2/styles/w3c-blue.css" type="text/css" />
+    <script src="../../Slidy2/scripts/slidy.js" charset="utf-8" type="text/javascript">
+    </script>
+    <script src="http://www.w3.org/2013/ShEx/demobits/jquery.min.js" type= "text/javascript"></script>
+  <!-- link rel="stylesheet" type="text/css" href="local.css"/ -->
+  <style type="text/css">
+/*<![CDATA[*/
+table                    { border-collapse: collapse; }
+table, td, th            { border: 1px solid black; }
+tbody tr:nth-child(odd)  { background-color:#eee; }
+tbody tr:nth-child(even) { background-color:#fff; }
+
+/* description column */
+td:nth-child(5)          { font-family: initial; font-size: 80%; }
+
+body                     { color: #000000; }
+.grey                    { color: #aaaaaa; }
+.rdft                    { color: #007fff; }
+      span.default       { color: #000000; }
+.grey span.default       { color: #aaaaaa; }
+.rdft span.default       { color: #007fff; }
+      span.function-name { color: #0000ff; }
+.grey span.function-name { color: #aaaaff; }
+.rdft span.function-name { color: #007fff; }
+      span.keyword       { color: #a020f0; }
+.grey span.keyword       { color: #dfb4ff; }
+.rdft span.keyword       { color: #007fff; }
+      span.string        { color: #bb8800; }
+.grey span.string        { color: #e8d7aa; }
+.rdft span.string        { color: #007fff; }
+      span.constant      { color: #008b8b; }
+.grey span.constant      { color: #aad8d8; }
+.rdft span.constant      { color: #007fff; }
+      span.type          { color: #228b22; }
+.grey span.type          { color: #b5d8b5; }
+.rdft span.type          { color: #007fff; }
+      span.comment       { color: #b22222; }
+.grey span.comment       { color: #e5b5b5; }
+.rdft span.comment       { color: #007fff; }
+
+em                       { font-weight: bold; font-style: normal; }
+li li, li ul li          { font-style: normal; }
+
+.passes {
+    padding-left: .1em;
+    border-left: thick solid #bfb;
+}
+.fails {
+    padding-left: .1em;
+    border-left: thick solid #fbb;
+}
+.results pre {
+    font-size: 80%;
+    font-weight: bold;
+    line-height: 120%;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border: none;
+    color: inherit;
+    background-color: inherit;
+}
+/*]]>
+*/</style>
+
+    <script type="text/javascript"><!--
+function prepareHighlight (highlightables, onClass, offClass, slide) {
+  if (slide === undefined)
+    slide = $("body").find("> div").last();
+  $.each( highlightables, function( index, value ){
+    var elts = slide.find( "."+value );
+    elts
+  	.mouseenter(function() {
+  	    elts.removeClass(offClass).addClass(onClass);
+  	})
+  	.mouseleave(function() {
+  	    elts.removeClass(onClass).addClass(offClass);
+  	})
+    .addClass(offClass);
+  })
+}
+--> </script>
+  </head>
+  <body>
+    <div class="background"><img alt="" id="head-icon"
+    src="../../Slidy2/graphics/icon-blue.png" /><object id="head-logo"
+    data="../../Slidy2/graphics/w3c-logo-white.svg" type="image/svg+xml"
+    title="W3C logo"><a href="http://www.w3.org/"><img
+    alt="W3C logo" id="head-logo-fallback"
+    src="../../Slidy2/graphics/w3c-logo-white.gif" /></a></object></div>
+
+    <div class="background slanty">
+      <img src="../../Slidy2/graphics/w3c-logo-slanted.jpg" alt="slanted W3C logo" />
+    </div>
+    <div class="slide cover title">
+      <!-- hidden style graphics to ensure they are saved with other content -->
+      <img class="hidden" src="../../Slidy2/graphics/bullet.png" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/fold.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/unfold.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/fold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/nofold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/unfold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-fold.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-unfold.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-fold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-nofold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-unfold-dim.gif" alt="" />
+
+      <img src="../../Slidy2/graphics/keys2.jpg" alt="Cover page images (keys)"
+	   class="cover" />
+      <h1>ShEx</h1>
+      <h2>Testing data with the <a href="http://shex.io/">Shape Expressions Language</a></h2>
+      <h2>DC-2017<br/>27 October 2017</h2>
+      <h2><a href="http://tombaker.github.io/shexpresent/toy">http://tombaker.github.io/shexpresent/toy</a></h2>
+
+      <ul>
+	      <li>
+	        <a href="https://github.com/tombaker">Tom Baker</a>, &lt;<a href="mailto:tom@tombaker.org">tom@tombaker.org</a>&gt;
+	        <ul>
+	          <li>Assistant Director, DCMI</li>
+	        </ul>
+	      </li>
+	      <li>
+	        <a href="http://www.w3.org/People/Eric/">Eric Prud'hommeaux</a>, &lt;<a href="mailto:eric@w3.org">eric@w3.org</a>&gt;
+	        <ul>
+	          <li>Sanitation Engineer, W3C</li>
+	        </ul>
+	      </li>
+      </ul>
+    </div>
+
+   <div class="slide">
+     <h1>Shape Expressions (ShEx)</h1>
+     <div style="float:left; width: 45%">
+      <ul>
+        <li>a language for describing RDF data</li>
+        <li>used for:
+        <ul>
+            <li>validating RDF data (aka "graphs")</li>
+            <li>generating user interfaces</li>
+            <li>transforming RDF data into other data formats</li>
+            <li>formally expressing a Dublin Core application profile</li>
+        </ul></li>
+      </ul>
+     </div>
+     <div style="float:left; width: 54%">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="453.15253pt"
+   height="253.5067pt"
+   viewBox="0 0 453.37996 253.5067"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="a.svg">
+  <metadata
+     id="metadata179">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs177" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1566"
+     inkscape:window-height="942"
+     id="namedview175"
+     showgrid="false"
+     inkscape:zoom="3.7589335"
+     inkscape:cx="454.84722"
+     inkscape:cy="89.011797"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="all"
+     style="display:inline">
+    <g
+       class="node"
+       id="node2"
+       transform="translate(142.21028,115.26028)">
+      <title
+         id="title25">bf:Text</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse27"
+         ry="8.966012"
+         rx="36.2938"
+         cy="-105"
+         cx="36.396801" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text29"
+         font-size="14.00"
+         y="-101.3"
+         x="36.396801">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4447">bf:Text</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge1"
+       transform="translate(-173.88897,248.86061)">
+      <title
+         id="title32">&lt;samples9298996&gt;-&gt;bf:Text</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path34"
+         d="m 263.81605,-215.65023 c 4.46537,-27.94764 61.60515,10.47643 66.87005,-3.53062"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon36"
+         points="58.9998,-119.458 65.9297,-127.473 69.4149,-121.402 69.4149,-121.402 "
+         transform="matrix(-0.79942441,0.60076669,-0.60076669,-0.79942441,309.7193,-360.08025)"
+         inkscape:transform-center-x="-6.5379342"
+         inkscape:transform-center-y="1.7240091" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text38"
+         font-size="14.00"
+         y="-210.80928"
+         x="359.84909">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5174">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="node"
+       id="node3"
+       transform="translate(135.39642,114.40855)">
+      <title
+         id="title41">bf:Work</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse43"
+         ry="8.966012"
+         rx="40.892799"
+         cy="-105"
+         cx="131.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text45"
+         font-size="14.00"
+         y="-101.3"
+         x="131.397">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4449">bf:Work</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge2"
+       transform="translate(-84.753619,212.72466)">
+      <title
+         id="title48">&lt;samples9298996&gt;-&gt;bf:Work</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path50"
+         d="m 235.74038,-168.18594 c 9.86471,-6.53452 60.27718,11.05168 84.02854,-18.09274"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon52"
+         points="159.302,-125.223 149.424,-121.391 154.757,-130.546 159.302,-125.223 "
+         transform="matrix(-0.99200761,0.12617805,-0.12617805,-0.99200761,460.03318,-333.56264)"
+         inkscape:transform-center-x="2.2576874"
+         inkscape:transform-center-y="-2.3417749" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text54"
+         font-size="14.00"
+         y="-192.82399"
+         x="206.6954">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5172">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="node"
+       id="node4"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title57">&quot;Oliver Twist.&quot;</title>
+      <polygon
+         style="fill:none;stroke:#000000"
+         id="polygon59"
+         points="284.397,-87 284.397,-123 284.397,-123 190.397,-123 190.397,-87 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text61"
+         font-size="14.00"
+         y="-101.3"
+         x="237.397">
+        <tspan
+           style="fill:#bb8800"
+           id="tspan4228">&quot;Oliver Twist.&quot;</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge3"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title64">&lt;samples9298996&gt;-&gt;&quot;Oliver Twist.&quot;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path66"
+         d="m 237.397,-179.66526 0,46.37526"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#008000;stroke:#008000"
+         id="polygon68"
+         points="237.397,-123.004 233.897,-133.004 240.897,-133.004 240.897,-133.004 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text70"
+         font-size="14.00"
+         y="-144.8"
+         x="255.897">bf:title</text>
+    </g>
+    <g
+       class="node"
+       id="node5"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title73">&lt;http://id.loc.gov/…/PZ3&gt;</title>
+      <ellipse
+         style="fill:none;stroke:#000000"
+         id="ellipse75"
+         ry="18"
+         rx="106.681"
+         cy="-105"
+         cx="409.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text77"
+         font-size="14.00"
+         y="-101.3"
+         x="409.397">
+        <tspan
+           style="fill:#0000ff"
+           id="tspan4226">&lt;http://id.loc.gov/…/PZ3&gt;</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge4"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title80">&lt;samples9298996&gt;-&gt;&lt;http://id.loc.gov/…/PZ3&gt;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path82"
+         d="m 272.65914,-178.1938 c 27.401,14.417 69.74786,36.9458 96.72686,51.1418"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#008000;stroke:#008000"
+         id="polygon84"
+         points="378.544,-122.233 368.065,-123.792 371.324,-129.987 371.324,-129.987 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text86"
+         font-size="14.00"
+         y="-144.8"
+         x="360.397">bf:class</text>
+    </g>
+    <g
+       class="node"
+       id="node6"
+       transform="translate(-202.67299,259.0814)">
+      <title
+         id="title89">_:b1</title>
+      <circle
+         style="fill:#000000;stroke:#000000"
+         r="1.8"
+         id="ellipse91"
+         cy="-105"
+         cx="577.39697" />
+    </g>
+    <g
+       class="edge"
+       id="edge5"
+       transform="translate(-173.88897,248.86061)">
+      <title
+         id="title94">&lt;samples9298996&gt;-&gt;_:b1</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path96"
+         d="m 300.079,-181.768 c 30.02596,25.13352 165.69866,-20.90714 203.17295,7.23818 15.72124,11.80754 37.86797,45.23328 43.3103,65.16642"
+         sodipodi:nodetypes="csc" />
+      <polygon
+         style="fill:#008000;stroke:#008000"
+         id="polygon98"
+         points="565.525,-106.429 567.823,-113.041 567.823,-113.041 576.12,-106.452 "
+         transform="matrix(0.4568228,0.88955772,-0.88955772,0.4568228,190.22907,-562.53285)" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text100"
+         font-size="14.00"
+         y="-189.38235"
+         x="462.26648"
+         inkscape:transform-center-x="-54.806193"
+         inkscape:transform-center-y="-4.8181269">bf:creator</text>
+    </g>
+    <g
+       class="node"
+       id="node9"
+       transform="translate(2.15352,113.55682)"
+       inkscape:transform-center-x="-0.85173255"
+       inkscape:transform-center-y="5.1103953">
+      <title
+         id="title103">bf:LCC ;</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse105"
+         ry="9.5682783"
+         rx="42.4939"
+         cy="-18"
+         cx="277.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text107"
+         font-size="14.00"
+         y="-14.3"
+         x="277.397">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4451">bf:LCC</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge9"
+       transform="translate(-241.1227,248.86061)">
+      <title
+         id="title110">&lt;http://id.loc.gov/…/PZ3&gt;-&gt;bf:LCC ;</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path112"
+         d="m 452.62234,-123.18217 c 3.66611,-29.61916 55.00737,15.02312 56.52421,-8.26245"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon114"
+         points="310.318,-36.0366 300.016,-33.5652 306.528,-41.9219 310.318,-36.0366 "
+         transform="matrix(-0.78315966,0.62182067,-0.62182067,-0.78315966,726.4844,-353.94574)" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text116"
+         font-size="14.00"
+         y="-136.90349"
+         x="470.46408">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5178">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge10"
+       transform="translate(-280.23688,253.07647)">
+      <title
+         id="title126">&lt;http://id.loc.gov/…/PZ3&gt;-&gt;&quot;PZ3.D55O165PR4567&quot;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path128"
+         d="m 422.66306,-96.184571 c -2.18591,7.06715 -4.74825,5.322757 -8.51511,11.715762 -3.76686,6.393005 -4.75095,12.619161 -4.75095,12.619161"
+         sodipodi:nodetypes="czc" />
+    </g>
+    <g
+       class="node"
+       id="node7"
+       transform="translate(-134.91001,127.99347)">
+      <title
+         id="title135">bf:Person</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse137"
+         ry="9.5682783"
+         rx="44.393002"
+         cy="-18"
+         cx="543.39697" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text139"
+         font-size="14.00"
+         y="-14.3"
+         x="543.39697">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4453">bf:Person</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge6"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title142">_:b1-&gt;bf:Person</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path144"
+         d="m 566.85244,-94.82147 c 18.13214,0.989788 30.56383,0.20497 32.78728,-21.74807"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon146"
+         points="546.013,-46.1609 546.013,-46.1609 542.186,-36.2813 539.016,-46.391 "
+         transform="matrix(-0.99973659,-0.02295094,0.02295094,-0.99973659,1143.0967,-149.76891)"
+         inkscape:transform-center-x="-1.5295302"
+         inkscape:transform-center-y="-6.6728146" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text148"
+         font-size="14.00"
+         y="-83.651703"
+         x="593.93011">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5176">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge10-3"
+       transform="translate(-55.6236,226.73323)">
+      <title
+         id="title126-6">&lt;http://id.loc.gov/…/PZ3&gt;-&gt;&quot;PZ3.D55O165PR4567&quot;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path128-7"
+         d="m 428.77392,-71.254881 c 0,0 -9.45348,8.001573 -12.77599,12.82844 -3.32251,4.826867 -6.60093,12.189641 -6.60093,12.189641"
+         sodipodi:nodetypes="czc" />
+    </g>
+    <g
+       class="node"
+       id="node5-5"
+       transform="translate(-330.64216,157.28774)">
+      <title
+         id="title73-6">&lt;http://id.loc.gov/…/PZ3&gt;</title>
+      <ellipse
+         style="fill:none;stroke:#000000"
+         id="ellipse75-2"
+         ry="18"
+         rx="78.573822"
+         cy="-105"
+         cx="409.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text77-9"
+         font-size="14.00"
+         y="-101.3"
+         x="409.397">
+        <tspan
+           style="fill:#0000ff"
+           id="tspan4224">&lt;samples9298996&gt;</tspan>
+      </text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="xport"
+     style="display:inline">
+    <text
+       style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+       id="text132-3"
+       font-size="14.00"
+       y="180.92566"
+       x="382.0434">bf:label</text>
+    <text
+       style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+       id="text132"
+       font-size="14.00"
+       y="181.6561"
+       x="157.43011">bf:label</text>
+    <g
+       class="node"
+       id="node10"
+       transform="translate(-277.22555,228.38357)">
+      <title
+         id="title119">&quot;PZ3.D55O165PR4567&quot;</title>
+      <polygon
+         style="fill:none;stroke:#000000"
+         id="polygon121"
+         points="337.397,-36 337.397,0 481.397,0 481.397,-36 481.397,-36 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text123"
+         font-size="14.00"
+         y="-14.3"
+         x="409.397">
+        <tspan
+           style="fill:#bb8800"
+           id="tspan4230">&quot;PZ3.D55O165PR4567&quot;</tspan>
+      </text>
+    </g>
+    <g
+       class="node"
+       id="node8"
+       transform="translate(-336.6339,228.38357)">
+      <title
+         id="title151">&quot;Dickens, Charles, 1812-1870.&quot;</title>
+      <polygon
+         style="fill:none;stroke:#000000"
+         id="polygon153"
+         points="605.397,-36 605.397,0 789.397,0 789.397,-36 789.397,-36 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text155"
+         font-size="14.00"
+         y="-14.3"
+         x="697.39697">
+        <tspan
+           style="fill:#bb8800"
+           id="tspan4232">&quot;Dickens, Charles, 1812-1870.&quot;</tspan>
+      </text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="t"
+     style="display:inline">
+    <polygon
+       style="display:inline;fill:#008000;stroke:#008000"
+       id="polygon130"
+       points="405.897,-46.1755 412.897,-46.1754 412.897,-46.1754 409.397,-36.1754 "
+       transform="matrix(0.90824761,0.41843312,-0.41843312,0.90824761,-262.2621,51.613282)"
+       inkscape:transform-center-x="-4.576546"
+       inkscape:transform-center-y="0.11303732" />
+    <polygon
+       style="display:inline;fill:#008000;stroke:#008000"
+       id="polygon130-5"
+       points="412.897,-46.1754 412.897,-46.1754 409.397,-36.1754 405.897,-46.1755 "
+       transform="matrix(0.90824761,0.41843312,-0.41843312,0.90824761,-37.648825,50.882842)"
+       inkscape:transform-center-x="-4.576546"
+       inkscape:transform-center-y="0.11303732" />
+  </g>
+</svg>
+     </div>
+    </div>
+
+   <div class="slide">
+     <h1>RDF as text</h1>
+     <div style="float:left; width: 54%">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="453.15253pt"
+   height="253.5067pt"
+   viewBox="0 0 453.37996 253.5067"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="a.svg">
+  <metadata
+     id="metadata179">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs177" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1566"
+     inkscape:window-height="942"
+     id="namedview175"
+     showgrid="false"
+     inkscape:zoom="3.7589335"
+     inkscape:cx="454.84722"
+     inkscape:cy="89.011797"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="all"
+     style="display:inline">
+    <g
+       class="node"
+       id="node2"
+       transform="translate(142.21028,115.26028)">
+      <title
+         id="title25">bf:Text</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse27"
+         ry="8.966012"
+         rx="36.2938"
+         cy="-105"
+         cx="36.396801" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text29"
+         font-size="14.00"
+         y="-101.3"
+         x="36.396801">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4447">bf:Text</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge1"
+       transform="translate(-173.88897,248.86061)">
+      <title
+         id="title32">&lt;samples9298996&gt;-&gt;bf:Text</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path34"
+         d="m 263.81605,-215.65023 c 4.46537,-27.94764 61.60515,10.47643 66.87005,-3.53062"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon36"
+         points="58.9998,-119.458 65.9297,-127.473 69.4149,-121.402 69.4149,-121.402 "
+         transform="matrix(-0.79942441,0.60076669,-0.60076669,-0.79942441,309.7193,-360.08025)"
+         inkscape:transform-center-x="-6.5379342"
+         inkscape:transform-center-y="1.7240091" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text38"
+         font-size="14.00"
+         y="-210.80928"
+         x="359.84909">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5174">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="node"
+       id="node3"
+       transform="translate(135.39642,114.40855)">
+      <title
+         id="title41">bf:Work</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse43"
+         ry="8.966012"
+         rx="40.892799"
+         cy="-105"
+         cx="131.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text45"
+         font-size="14.00"
+         y="-101.3"
+         x="131.397">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4449">bf:Work</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge2"
+       transform="translate(-84.753619,212.72466)">
+      <title
+         id="title48">&lt;samples9298996&gt;-&gt;bf:Work</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path50"
+         d="m 235.74038,-168.18594 c 9.86471,-6.53452 60.27718,11.05168 84.02854,-18.09274"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon52"
+         points="159.302,-125.223 149.424,-121.391 154.757,-130.546 159.302,-125.223 "
+         transform="matrix(-0.99200761,0.12617805,-0.12617805,-0.99200761,460.03318,-333.56264)"
+         inkscape:transform-center-x="2.2576874"
+         inkscape:transform-center-y="-2.3417749" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text54"
+         font-size="14.00"
+         y="-192.82399"
+         x="206.6954">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5172">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="node"
+       id="node4"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title57">&quot;Oliver Twist.&quot;</title>
+      <polygon
+         style="fill:none;stroke:#000000"
+         id="polygon59"
+         points="284.397,-87 284.397,-123 284.397,-123 190.397,-123 190.397,-87 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text61"
+         font-size="14.00"
+         y="-101.3"
+         x="237.397">
+        <tspan
+           style="fill:#bb8800"
+           id="tspan4228">&quot;Oliver Twist.&quot;</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge3"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title64">&lt;samples9298996&gt;-&gt;&quot;Oliver Twist.&quot;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path66"
+         d="m 237.397,-179.66526 0,46.37526"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#008000;stroke:#008000"
+         id="polygon68"
+         points="237.397,-123.004 233.897,-133.004 240.897,-133.004 240.897,-133.004 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text70"
+         font-size="14.00"
+         y="-144.8"
+         x="255.897">bf:title</text>
+    </g>
+    <g
+       class="node"
+       id="node5"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title73">&lt;http://id.loc.gov/…/PZ3&gt;</title>
+      <ellipse
+         style="fill:none;stroke:#000000"
+         id="ellipse75"
+         ry="18"
+         rx="106.681"
+         cy="-105"
+         cx="409.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text77"
+         font-size="14.00"
+         y="-101.3"
+         x="409.397">
+        <tspan
+           style="fill:#0000ff"
+           id="tspan4226">&lt;http://id.loc.gov/…/PZ3&gt;</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge4"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title80">&lt;samples9298996&gt;-&gt;&lt;http://id.loc.gov/…/PZ3&gt;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path82"
+         d="m 272.65914,-178.1938 c 27.401,14.417 69.74786,36.9458 96.72686,51.1418"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#008000;stroke:#008000"
+         id="polygon84"
+         points="378.544,-122.233 368.065,-123.792 371.324,-129.987 371.324,-129.987 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text86"
+         font-size="14.00"
+         y="-144.8"
+         x="360.397">bf:class</text>
+    </g>
+    <g
+       class="node"
+       id="node6"
+       transform="translate(-202.67299,259.0814)">
+      <title
+         id="title89">_:b1</title>
+      <circle
+         style="fill:#000000;stroke:#000000"
+         r="1.8"
+         id="ellipse91"
+         cy="-105"
+         cx="577.39697" />
+    </g>
+    <g
+       class="edge"
+       id="edge5"
+       transform="translate(-173.88897,248.86061)">
+      <title
+         id="title94">&lt;samples9298996&gt;-&gt;_:b1</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path96"
+         d="m 300.079,-181.768 c 30.02596,25.13352 165.69866,-20.90714 203.17295,7.23818 15.72124,11.80754 37.86797,45.23328 43.3103,65.16642"
+         sodipodi:nodetypes="csc" />
+      <polygon
+         style="fill:#008000;stroke:#008000"
+         id="polygon98"
+         points="565.525,-106.429 567.823,-113.041 567.823,-113.041 576.12,-106.452 "
+         transform="matrix(0.4568228,0.88955772,-0.88955772,0.4568228,190.22907,-562.53285)" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text100"
+         font-size="14.00"
+         y="-189.38235"
+         x="462.26648"
+         inkscape:transform-center-x="-54.806193"
+         inkscape:transform-center-y="-4.8181269">bf:creator</text>
+    </g>
+    <g
+       class="node"
+       id="node9"
+       transform="translate(2.15352,113.55682)"
+       inkscape:transform-center-x="-0.85173255"
+       inkscape:transform-center-y="5.1103953">
+      <title
+         id="title103">bf:LCC ;</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse105"
+         ry="9.5682783"
+         rx="42.4939"
+         cy="-18"
+         cx="277.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text107"
+         font-size="14.00"
+         y="-14.3"
+         x="277.397">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4451">bf:LCC</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge9"
+       transform="translate(-241.1227,248.86061)">
+      <title
+         id="title110">&lt;http://id.loc.gov/…/PZ3&gt;-&gt;bf:LCC ;</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path112"
+         d="m 452.62234,-123.18217 c 3.66611,-29.61916 55.00737,15.02312 56.52421,-8.26245"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon114"
+         points="310.318,-36.0366 300.016,-33.5652 306.528,-41.9219 310.318,-36.0366 "
+         transform="matrix(-0.78315966,0.62182067,-0.62182067,-0.78315966,726.4844,-353.94574)" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text116"
+         font-size="14.00"
+         y="-136.90349"
+         x="470.46408">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5178">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge10"
+       transform="translate(-280.23688,253.07647)">
+      <title
+         id="title126">&lt;http://id.loc.gov/…/PZ3&gt;-&gt;&quot;PZ3.D55O165PR4567&quot;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path128"
+         d="m 422.66306,-96.184571 c -2.18591,7.06715 -4.74825,5.322757 -8.51511,11.715762 -3.76686,6.393005 -4.75095,12.619161 -4.75095,12.619161"
+         sodipodi:nodetypes="czc" />
+    </g>
+    <g
+       class="node"
+       id="node7"
+       transform="translate(-134.91001,127.99347)">
+      <title
+         id="title135">bf:Person</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse137"
+         ry="9.5682783"
+         rx="44.393002"
+         cy="-18"
+         cx="543.39697" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text139"
+         font-size="14.00"
+         y="-14.3"
+         x="543.39697">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4453">bf:Person</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge6"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title142">_:b1-&gt;bf:Person</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path144"
+         d="m 566.85244,-94.82147 c 18.13214,0.989788 30.56383,0.20497 32.78728,-21.74807"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon146"
+         points="546.013,-46.1609 546.013,-46.1609 542.186,-36.2813 539.016,-46.391 "
+         transform="matrix(-0.99973659,-0.02295094,0.02295094,-0.99973659,1143.0967,-149.76891)"
+         inkscape:transform-center-x="-1.5295302"
+         inkscape:transform-center-y="-6.6728146" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text148"
+         font-size="14.00"
+         y="-83.651703"
+         x="593.93011">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5176">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge10-3"
+       transform="translate(-55.6236,226.73323)">
+      <title
+         id="title126-6">&lt;http://id.loc.gov/…/PZ3&gt;-&gt;&quot;PZ3.D55O165PR4567&quot;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path128-7"
+         d="m 428.77392,-71.254881 c 0,0 -9.45348,8.001573 -12.77599,12.82844 -3.32251,4.826867 -6.60093,12.189641 -6.60093,12.189641"
+         sodipodi:nodetypes="czc" />
+    </g>
+    <g
+       class="node"
+       id="node5-5"
+       transform="translate(-330.64216,157.28774)">
+      <title
+         id="title73-6">&lt;http://id.loc.gov/…/PZ3&gt;</title>
+      <ellipse
+         style="fill:none;stroke:#000000"
+         id="ellipse75-2"
+         ry="18"
+         rx="78.573822"
+         cy="-105"
+         cx="409.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text77-9"
+         font-size="14.00"
+         y="-101.3"
+         x="409.397">
+        <tspan
+           style="fill:#0000ff"
+           id="tspan4224">&lt;samples9298996&gt;</tspan>
+      </text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="xport"
+     style="display:inline">
+    <text
+       style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+       id="text132-3"
+       font-size="14.00"
+       y="180.92566"
+       x="382.0434">bf:label</text>
+    <text
+       style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+       id="text132"
+       font-size="14.00"
+       y="181.6561"
+       x="157.43011">bf:label</text>
+    <g
+       class="node"
+       id="node10"
+       transform="translate(-277.22555,228.38357)">
+      <title
+         id="title119">&quot;PZ3.D55O165PR4567&quot;</title>
+      <polygon
+         style="fill:none;stroke:#000000"
+         id="polygon121"
+         points="337.397,-36 337.397,0 481.397,0 481.397,-36 481.397,-36 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text123"
+         font-size="14.00"
+         y="-14.3"
+         x="409.397">
+        <tspan
+           style="fill:#bb8800"
+           id="tspan4230">&quot;PZ3.D55O165PR4567&quot;</tspan>
+      </text>
+    </g>
+    <g
+       class="node"
+       id="node8"
+       transform="translate(-336.6339,228.38357)">
+      <title
+         id="title151">&quot;Dickens, Charles, 1812-1870.&quot;</title>
+      <polygon
+         style="fill:none;stroke:#000000"
+         id="polygon153"
+         points="605.397,-36 605.397,0 789.397,0 789.397,-36 789.397,-36 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text155"
+         font-size="14.00"
+         y="-14.3"
+         x="697.39697">
+        <tspan
+           style="fill:#bb8800"
+           id="tspan4232">&quot;Dickens, Charles, 1812-1870.&quot;</tspan>
+      </text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="t"
+     style="display:inline">
+    <polygon
+       style="display:inline;fill:#008000;stroke:#008000"
+       id="polygon130"
+       points="405.897,-46.1755 412.897,-46.1754 412.897,-46.1754 409.397,-36.1754 "
+       transform="matrix(0.90824761,0.41843312,-0.41843312,0.90824761,-262.2621,51.613282)"
+       inkscape:transform-center-x="-4.576546"
+       inkscape:transform-center-y="0.11303732" />
+    <polygon
+       style="display:inline;fill:#008000;stroke:#008000"
+       id="polygon130-5"
+       points="412.897,-46.1754 412.897,-46.1754 409.397,-36.1754 405.897,-46.1755 "
+       transform="matrix(0.90824761,0.41843312,-0.41843312,0.90824761,-37.648825,50.882842)"
+       inkscape:transform-center-x="-4.576546"
+       inkscape:transform-center-y="0.11303732" />
+  </g>
+</svg>
+     </div>
+     <div style="float:left; width: 45%">
+       <pre><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> [
+    <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
+  ] <span class="keyword">.</span>
+
+<span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
+</pre>
+     </div>
+    </div>
+
+    <div class="slide">
+      <h1>The ShEx Model - basics</h1>
+      <div style="float:left; width: 45%">
+        <ul>
+          <li><b>RDF Data</b> ("graph") is validated against:</li>
+          <li>a <b>ShEx Schema</b>, which:
+          <ul>
+            <li>prescribes conditions that RDF graphs must meet:
+            <ul>
+              <li>which subjects, predicates, and objects may appear</li>
+              <li>...in what combinations</li>
+              <li>...with what cardinalities and datatypes</li>
+              <li>...in order to produce:</li>
+            </ul></li>
+          </ul></li>
+          <li>a <b>Validation Result</b>
+          <ul>
+            <li>...which flags parts of the data that do not "conform"</li>
+          </ul></li>
+        </ul>
+      </div>
+      <div style="float:left; width: 54%">
+       <pre><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> [
+    <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
+  ] <span class="keyword">.</span>
+
+<span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
+</pre>
+      </div>
+    </div>
+
+   <div class="slide">
+      <h1>The ShEx Model - detail</h1>
+      <ul>
+        <li>A <b>Shape Map</b>:
+        <ul>
+            <li>designates nodes in the <b>RDF Data</b> to be tested against the <b>ShEx Schema</b></li>
+            <li>may be generated automatically or customized for specific needs</li>
+        </ul></li>
+      </ul>
+    </div>
+
+   <div class="slide">
+     <h1>side-by-side</h1>
+     <p>
+       quick demo
+     </p>
+     <div style="float:left; width:49%;">
+      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+<span class="keyword">AND</span>
+  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+     </div>
+     <div style="float:left; width:50%">
+       <pre><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> [
+    <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
+  ] <span class="keyword">.</span>
+
+<span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
+</pre>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>Declare Property</h1>
+     <p>
+       A <span class="function-name">&lt;Work&gt;</span> must have exactly one <span class="type">bf:</span><span class="constant">title</span> with value <span class="keyword">LITERAL</span>:
+     </p>
+    <div style="float:left; width:50%">
+      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
+  <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
+}
+</pre>
+    <ul>
+      <li><span class="function-name">&lt;Work&gt;</span> { … } defines a "shape".</li>
+      <li><span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> expects an bf:title property with a literal value.</li>
+      <li>The default cardinality is min: 1, max: 1.</li>
+    </ul>
+    </div>
+     <div style="float:left; width:49%;">
+       <pre><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> <span class="keyword">.</span>
+<span class="function-name">&lt;samples9298996bad&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string" style="background-color: red">&lt;http://...oliverTwist&gt;</span> <span class="keyword">.</span>
+</pre>
+<hr/>
+<div class="results"><div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div><div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+   validating http://...oliverTwist:
+      Error validating http://...oliverTwist
+      as nodeKind literal:
+        iri found when literal expected</pre></div></div>
+<hr/>
+<ul>
+  <li>one passed, one failed.</li>
+</ul>
+     </div>
+   </div>
+
+   <div class="slide">
+     <h1>Add a type</h1>
+     <p>Permit some data to have a type arc identifying it as a <span class="function-name">&lt;Work&gt;</span>:</p>
+     <div style="float:left; width:50%;">
+      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
+}</pre>
+    <ul>
+      <li><code>[]</code>s denote a value set.</li>
+      <li>This value set as only one permissible value: <span class="type">bf:</span><span class="constant">Work</span>.</li>
+      <li>The '<code>?</code>' code means min: 0, max: 1 (like regular expressions).</li>
+    </ul>
+     </div>
+     <div style="float:left; width:49%">
+       <pre>some turtle</pre>
+    </div>
+    <hr style="clear:both;"/>
+    <div style="clear:both;">
+      <table>
+        <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
+        <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
+        <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td></tr>
+        <tr class="grey"><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
+      </table>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>References</h1>
+     <p>
+       Add a reference to another structure:
+     </p>
+     <div style="float:left; width:40%;">
+      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
+  <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
+  <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+}</pre>
+      <ul>
+        <li>@<span class="function-name">&lt;Classification&gt;</span> references a different shape.</li>
+        <li>The '<code>*</code>' code means min: 0, max: * (like regular expressions).</li>
+      </ul>
+     </div>
+     <div style="float:left; width:49%">
+       <pre>some turtle</pre>
+    </div>
+    <hr style="clear:both;"/>
+    <div style="clear:both;">
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
+         <tr class="grey"><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td></tr>
+         <tr class="grey"><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">&lt;Classification&gt;</span></td>            <td>0</td><td>*</td></tr>
+       </table>
+       <p>
+         and define that structure:
+       </p>
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Classification&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
+         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">LCC</span></td>                            <td>0</td><td>1</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">label</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
+       </table>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>Value Set</h1>
+     <p>
+       Or a reference to an authority:
+     </p>
+     <div style="float:left; width:50%;">
+      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
+  <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
+  <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]</pre>
+    <ul>
+      <li class="grey"><code>[]</code>s denote a value set.</li>
+      <li>This value set includes every IRI starting with <span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>.</li>
+    </ul>
+     </div>
+     <div style="float:left; width:49%">
+       <pre>some turtle</pre>
+    </div>
+    <hr style="clear:both;"/>
+    <div style="clear:both;">
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
+         <tr class="grey"><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td></tr>
+         <tr class="grey"><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">an LOC classification</span></td>            <td>0</td><td>*</td></tr>
+       </table>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>Combining constraints</h1>
+     <p>
+       Or a reference to a structure identifed by and authority:
+     </p>
+     <div style="float:left; width:50%;">
+      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
+  <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
+  <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+  <span class="keyword">AND</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+    <ul>
+      <li>Constraints can be combined with <span class="keyword">AND</span>, <span class="keyword">OR</span>, <span class="keyword">NOT</span> and <code>()</code>s.</li>
+    </ul>
+     </div>
+     <div style="float:left; width:49%">
+       <pre>some turtle</pre>
+    </div>
+    <hr style="clear:both;"/>
+    <div style="clear:both;">
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
+         <tr class="grey"><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td></tr>
+         <tr class="grey"><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">an LOC classification</span></td>            <td>0</td><td>*</td></tr>
+       </table>
+       <p>
+         
+       </p>
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Classification&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
+         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">LCC</span></td>                            <td>0</td><td>1</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">label</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
+       </table>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>Choices</h1>
+     <p>
+       You may accept multiple forms a creator.
+     </p>
+     <div style="float:left; width:50%;">
+      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> {
+  <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
+  <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
+  <span class="grey"><span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;</span>
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+}</pre>
+     </div>
+     <div style="float:left; width:49%">
+       <pre>some turtle</pre>
+    </div>
+    <hr style="clear:both;"/>
+    <div style="clear:both;">
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
+         <tr class="grey"><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td></tr>
+         <tr class="grey"><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
+         <tr class="grey"><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">&lt;Classification&gt;</span></td>            <td>0</td><td>*</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">creator</span></td>    <td><span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> <span class="function-name">&lt;Organization&gt;</span></td><td>1</td><td>*</td></tr>
+       </table>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>As a whole</h1>
+     <div style="float:left; width:39%;">
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
+         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">&lt;Classification&gt;</span></td>            <td>0</td><td>*</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">creator</span></td>    <td><span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> <span class="function-name">&lt;Organization&gt;</span></td><td>1</td><td>*</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">derivedFrom</span></td><td><span class="keyword">IRI</span></td>                                <td>0</td><td>*</td></tr>
+       </table>
+       <p/>
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Classification&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th></tr>
+         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">LCC</span></td>                            <td>0</td><td>1</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">label</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td></tr>
+       </table>
+     </div>
+    <div style="float:left; width:60%">
+      <pre class="turtle"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+<span class="keyword">AND</span>
+  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+    </div>
+  </div>
+
+   <div class="slide">
+      <h1>A complex example</h1>
+      <ul>
+        <li>something from FHIR</li>
+      </ul>
+    </div>
+
+   <div class="slide">
+      <h1>Three interchangeable concrete syntaxes</h1>
+      <ul>
+        <li><b>ShExC</b> (used in this talk)</li>
+            <ul>
+                <li>a compact syntax meant for human eyes and fingers</li>
+            </ul>
+        <li><b>ShExJ</b></li>
+            <ul>
+                <li>a JSON-LD Javascript syntax meant for machine processing</li>
+            </ul>
+        <li><b>ShExR</b></li>
+            <ul>
+                <li>the RDF interpretation of ShExJ expressed in RDF Turtle syntax</li>
+            </ul>
+      </ul>
+    </div>
+
+   <div class="slide">
+      <h1>Open-source implementations</h1>
+      <ul>
+        <li>Javascript (mature)</li>
+        <li>Ruby (mature)</li>
+        <li>Scala (mature)</li>
+        <li>Java</li>
+        <li>Python</li>
+        <li>Also:
+        <ul>
+            <li>Extensive test suite (2000+)</li>
+            <li>Sublime Text plugin</li>
+            <li>Jupyter Notebook kernel (in the pipeline)</li>
+        </ul></li>
+      </ul>
+    </div>
+
+   <div class="slide">
+     <h1>Comparison with SHACL</h1>
+      <ul>
+        <li>similar logical expressions (<em>AND</em>, <em>OR</em>, <em>NOT</em>).</li>
+        <li>SHACL evaluates expressions individually.</li>
+        <li>ShEx examines shape expressions as a whole for:
+        <ul>
+          <li>increased expressivity - cardinality on groups.<br/>
+          <code>(<span class="type">data:</span><span class="constant">sourceURL</span> <span class="keyword">IRI</span>; <span class="type">data:</span><span class="constant">contentType</span> <span class="type">xsd:</span><span class="constant">string</span>)<span class="keyword">?</span></code></li>
+          <li>consistent interpretation of <em>OR</em>, <em>CLOSED</em>.<br/>
+          <code><span class="type">foaf:</span><span class="constant">name</span> <span class="keyword">LITERAL</span> | <span class="type">foaf:</span><span class="constant">givenName</span> <span class="keyword">LITERAL</span>; <span class="type">foaf:</span><span class="constant">familyName</span> <span class="keyword">LITERAL</span></code></li>
+          <li>support for recursive shapes and data.<br/>
+          <code><span class="variable-name">&lt;Person&gt;</span> { <span class="type">foaf:</span><span class="constant">knows</span> <span class="variable-name">@&lt;Person&gt;</span> }</code></li>
+          <li>simple constraints on repeated properties.<br/>
+          <code><span class="type">fhir:</span><span class="constant">component</span> [ <span class="type">fhir:</span><span class="constant">code</span> [<span class="type">sct:</span><span class="constant">systolic</span>]; <span class="type">fhir:</span><span class="constant">value</span> <span class="type">xsd:</span><span class="constant">integer</span> ];<br/>
+<span class="type">fhir:</span><span class="constant">component</span> [ <span class="type">fhir:</span><span class="constant">code</span> [<span class="type">sct:</span><span class="constant">systolic</span>]; <span class="type">fhir:</span><span class="constant">value</span> <span class="type">xsd:</span><span class="constant">integer</span> ];</code></li>
+        </ul>
+        </li>
+        <li>SHACL/SPARQL built on a SPARQL rules language for constructing new tests.</li>
+        <li>implemented in a commercial IDE (TopBraid Composer)</li>
+        <li>compared with ShEx in book "Validating RDF Data" (<a href="http://a.co/fD3UbCw">http://a.co/fD3UbCw</a>)
+        <ul>
+            <li>See examples at <a href="https://github.com/labra/validatingRDFBookExamples/">https://github.com/labra/validatingRDFBookExamples/</a></li>
+
+        </ul></li>
+      </ul>
+     <p>ShEx is like XML Schema.<br/>
+     SHACL is like Schematron.</p>
+    </div>
+
+   <div class="slide">
+      <h1>Revisiting an example from this morning</h1>
+      <ul>
+        <li>the question of user-friendly documentation and visualization</li>
+      </ul>
+    </div>
+
+   <div class="slide">
+     <h1>Our Goal</h1>
+     <p>
+       Machine-testable specifications
+     </p>
+  </div>
+
+   <div class="slide">
+     <h1>Our Goal</h1>
+     <p>
+       Machine-testable specifications
+     </p>
+     <div>
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th><th>description</th></tr>
+         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td><td>a type identifier for the work <em>description</em>.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td><td>a human-readable label for the work.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">&lt;Classification&gt;</span></td>            <td>0</td><td>*</td><td>a Classification structure describing the work.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">creator</span></td>    <td><span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> <span class="function-name">&lt;Organization&gt;</span></td><td>1</td><td>*</td><td>a Person or Organization that created the work.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">derivedFrom</span></td><td><span class="keyword">IRI</span></td>                                <td>0</td><td>*</td><td>an entity from which the work was derived.</td></tr>
+       </table>
+       <p>for a constellation of data structures</p>
+     </div>
+  </div>
+
+   <div class="slide">
+     <h1>Our Goal</h1>
+     <p>
+       Machine-testable specifications
+     </p>
+     <div>
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th><th>description</th></tr>
+         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td><td>a type identifier for the work <em>description</em>.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td><td>a human-readable label for the work.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">&lt;Classification&gt;</span></td>            <td>0</td><td>*</td><td>a Classification structure describing the work.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">creator</span></td>    <td><span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> <span class="function-name">&lt;Organization&gt;</span></td><td>1</td><td>*</td><td>a Person or Organization that created the work.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">derivedFrom</span></td><td><span class="keyword">IRI</span></td>                                <td>0</td><td>*</td><td>an entity from which the work was derived.</td></tr>
+       </table>
+       <p>for a constellation of data structures</p>
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Classification&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th><th>description</th></tr>
+         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">LCC</span></td>                            <td>0</td><td>1</td><td>a type identifier for the classification.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">label</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td><td>a human-readable label for the classification.</td></tr>
+       </table>
+     </div>
+  </div>
+
+   <div class="slide">
+     <h1>Our Goal</h1>
+     <p>
+       Machine-testable specifications
+     </p>
+     <div>
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Work&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th><th>description</th></tr>
+         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">Work</span></td>                            <td>0</td><td>1</td><td>a type identifier for the work <em>description</em>.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">title</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td><td>a human-readable label for the work.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">class</span></td>      <td><span class="function-name">&lt;Classification&gt;</span></td>            <td>0</td><td>*</td><td>a Classification structure describing the work.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">creator</span></td>    <td><span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> <span class="function-name">&lt;Organization&gt;</span></td><td>1</td><td>*</td><td>a Person or Organization that created the work.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">derivedFrom</span></td><td><span class="keyword">IRI</span></td>                                <td>0</td><td>*</td><td>an entity from which the work was derived.</td></tr>
+       </table>
+       <p>for a constellation of data structures</p>
+       <table>
+         <caption style="text-align: left;"><span class="function-name">&lt;Classification&gt;</span></caption>
+         <tr><th>property</th>      <th>type</th>                               <th>min</th><th>max</th><th>description</th></tr>
+         <tr><td><span class="type">rdf:</span><span class="constant">type</span></td>      <td><span class="type">bf:</span><span class="constant">LCC</span></td>                            <td>0</td><td>1</td><td>a type identifier for the classification.</td></tr>
+         <tr><td><span class="type">bf:</span><span class="constant">label</span></td>    <td><span class="keyword">LITERAL</span></td>                            <td>1</td><td>1</td><td>a human-readable label for the classification.</td></tr>
+       </table>
+       <p>including <span class="function-name">&lt;Person&gt;</span>, <span class="function-name">&lt;Organization&gt;</span>, etc...</p>
+     </div>
+  </div>
+
+  </body>
+</html>
