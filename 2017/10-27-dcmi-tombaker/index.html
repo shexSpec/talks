@@ -1804,24 +1804,50 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
    <div class="slide">
      <h1>Shapes can specify choices</h1>
      <p>
-       You may accept multiple forms a creator.
+       You may accept multiple forms of creator.
      </p>
      <div style="float:left; width:50%;">
       <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
   <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
   <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
-  <span class="grey"><span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;</span>
+  <span class="grey"><span class="type">bf:</span><span class="constant">class</span> <span class="keyword">.</span> * ;</span>
   <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+}
+
+<span class="function-name">&lt;Person&gt;</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Person</span>] ? ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+}
+
+<span class="function-name">&lt;Organization&gt;</span> { <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span>
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Organization</span>] ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">org:</span><span class="constant">member</span> <span class="function-name">@&lt;Person&gt;</span> <span class="keyword">OR</span> <span class="function-name">@&lt;Organization&gt;</span> *
 }</pre>
      </div>
      <div style="float:left; width:49%">
-       <pre class="instance turtle">some turtle</pre>
-       <a style="float:right;" class="tryit" href="">try it</a><span style="clear:both;"/>
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> [ <span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span> ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span>
+  ] <span class="keyword">.</span>
+
+<span class="function-name">&lt;wp-55-45-1&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Nixon blasts 'false charges'"</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> <span class="function-name">&lt;WP&gt;</span> <span class="keyword">.</span>
+
+<span class="function-name">&lt;WP&gt;</span> <span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Organization</span> , <span class="type">bf:</span><span class="constant">Newpaper</span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Washington Post"</span> ;
+  <span class="type">org:</span><span class="constant">member</span> <span class="function-name">&lt;BobWoodward&gt;</span>, <span class="function-name">&lt;CarlBernstein&gt;</span> <span class="keyword">.</span>
+
+<span class="function-name">&lt;BobWoodward&gt;</span> <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Bob Woodward"</span> <span class="keyword">.</span>
+<span class="function-name">&lt;CarlBernstein&gt;</span> <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Carl Bernstein"</span> <span class="keyword">.</span></pre>
+       <a style="float:right;" class="tryit" href="http://rawgit.com/shexSpec/shex.js/master/doc/shex-simple.html?schema=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0APREFIX%20org%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2Fns%2Forg%23%3E%0A%0A%3CWork%3E%20%7B%0A%20%20a%20%5Bbf%3AWork%5D%20%3F%20%3B%0A%20%20bf%3Atitle%20LITERAL%20%3B%0A%20%20bf%3Aclass%20.%20*%20%3B%0A%20%20bf%3Acreator%20%40%3CPerson%3E%20OR%20%40%3COrganization%3E%20%2B%20%3B%0A%7D%0A%0A%3CPerson%3E%20%7B%0A%20%20a%20%5Bbf%3APerson%5D%20%3F%20%3B%0A%20%20bf%3Alabel%20LITERAL%20%3B%0A%7D%0A%0A%3COrganization%3E%20EXTRA%20a%20%7B%0A%20%20a%20%5Bbf%3AOrganization%5D%20%3B%0A%20%20bf%3Alabel%20LITERAL%20%3B%0A%20%20org%3Amember%20%40%3CPerson%3E%20OR%20%40%3COrganization%3E%20*%0A%7D%0A&amp;data=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0APREFIX%20org%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2Fns%2Forg%23%3E%0A%0A%3Csamples9298996%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Acreator%20%5B%20a%20bf%3APerson%20%3B%0A%20%20%20%20bf%3Alabel%20%22Dickens%2C%20Charles%2C%201812-1870.%22%0A%20%20%5D%20.%0A%0A%3Cwp-55-45-1%3E%0A%20%20bf%3Atitle%20%22Nixon%20blasts%20%27false%20charges%27%22%20%3B%0A%20%20bf%3Acreator%20%3CWP%3E%20.%0A%0A%3CWP%3E%20a%20bf%3AOrganization%20%2C%20bf%3ANewpaper%20%3B%0A%20%20bf%3Alabel%20%22Washington%20Post%22%20%3B%0A%20%20org%3Amember%20%3CBobWoodward%3E%2C%20%3CCarlBernstein%3E%20.%0A%0A%3CBobWoodward%3E%20bf%3Alabel%20%22Bob%20Woodward%22%20.%0A%3CCarlBernstein%3E%20bf%3Alabel%20%22Carl%20Bernstein%22%20.&amp;shape-map=%3Csamples9298996%3E%40%3CWork%3E%2C%0A%3Cwp-55-45-1%3E%40%3CWork%3E&amp;interface=human&amp;regexpEngine=threaded-val-nerr">try it</a><span style="clear:both;"/>
        <hr style="clear:both"/>
        <div class="results">
          <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
-         <div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
-</pre></div></div>
+         <div class="human passes"><span>✓</span><span>&lt;wp-55-45-1&gt;@&lt;Work&gt;</span></div>
+       </div>
     </div>
   </div>
 
@@ -1889,10 +1915,10 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
           <li>consistent interpretation of <em>OR</em>, <em>CLOSED</em>.<br/>
           <code><span class="type">foaf:</span><span class="constant">name</span> <span class="keyword">LITERAL</span> | <span class="type">foaf:</span><span class="constant">givenName</span> <span class="keyword">LITERAL</span>; <span class="type">foaf:</span><span class="constant">familyName</span> <span class="keyword">LITERAL</span></code></li>
           <li>support for recursive shapes and data.<br/>
-          <code><span class="variable-name">&lt;Person&gt;</span> { <span class="type">foaf:</span><span class="constant">knows</span> <span class="variable-name">@&lt;Person&gt;</span> }</code></li>
+          <code><span class="function-name">&lt;Person&gt;</span> { <span class="type">foaf:</span><span class="constant">knows</span> <span class="function-name">@&lt;Person&gt;</span> }</code></li>
           <li>simple constraints on repeated properties.<br/>
-          <code><span class="type">fhir:</span><span class="constant">component</span> [ <span class="type">fhir:</span><span class="constant">code</span> [<span class="type">sct:</span><span class="constant">systolic</span>]; <span class="type">fhir:</span><span class="constant">value</span> <span class="type">xsd:</span><span class="constant">integer</span> ];<br/>
-<span class="type">fhir:</span><span class="constant">component</span> [ <span class="type">fhir:</span><span class="constant">code</span> [<span class="type">sct:</span><span class="constant">systolic</span>]; <span class="type">fhir:</span><span class="constant">value</span> <span class="type">xsd:</span><span class="constant">integer</span> ];</code></li>
+          <code><span class="type">fhir:</span><span class="constant">component</span> { <span class="type">fhir:</span><span class="constant">code</span> [<span class="type">sct:</span><span class="constant">systolic</span>]; <span class="type">fhir:</span><span class="constant">value</span> <span class="type">xsd:</span><span class="constant">integer</span> };<br/>
+<span class="type">fhir:</span><span class="constant">component</span> { <span class="type">fhir:</span><span class="constant">code</span> [<span class="type">sct:</span><span class="constant">diastolic</span>]; <span class="type">fhir:</span><span class="constant">value</span> <span class="type">xsd:</span><span class="constant">integer</span> };</code></li>
         </ul></li>
         <li>detailed comparison in book "Validating RDF Data" (<a href="http://a.co/fD3UbCw">http://a.co/fD3UbCw</a>)
         <ul>
