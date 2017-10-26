@@ -1852,11 +1852,58 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
   </div>
 
    <div class="slide">
-      <h1>A complex example</h1>
-      <ul>
-        <li>something from FHIR</li>
-      </ul>
-    </div>
+     <h1>FHIR MedicationRequest</h1>
+     <pre class="schema shexc"><span class="variable-name">&lt;MedicationRequest&gt;</span> {
+    <span class="type">:</span><span class="constant">status</span> <span class="variable-name">@&lt;code&gt;</span> <span class="keyword">AND</span>
+        {<span class="type">fhir:</span><span class="constant">value</span> [<span class="string">"active"</span> <span class="string">"on-hold"</span> <span class="string">"cancelled"</span> <span class="string">"completed"</span>]}<span class="keyword">?</span>;
+    <span class="type">:</span><span class="constant">intent</span> <span class="variable-name">@&lt;code&gt;</span> <span class="keyword">AND</span>
+        {<span class="type">fhir:</span><span class="constant">value</span> [<span class="string">"proposal"</span> <span class="string">"plan"</span> <span class="string">"order"</span> <span class="string">"instance-order"</span>]};
+    ( <span class="type">:</span><span class="constant">medicationCodeableConcept</span> <span class="variable-name">@&lt;CodeableConcept&gt;</span>  |
+      <span class="type">:</span><span class="constant">medicationReference</span> <span class="variable-name">@&lt;MedicationReference&gt;</span> );
+    <span class="type">:</span><span class="constant">subject</span> ( <span class="variable-name">@&lt;PatientReference&gt;</span> <span class="keyword">OR</span> <span class="variable-name">@&lt;GroupReference&gt;</span> );
+    <span class="type">:</span><span class="constant">requester</span> <span class="variable-name">@&lt;MedicationRequest.requester&gt;</span>;
+    <span class="type">:</span><span class="constant">reasonCode</span> <span class="variable-name">@&lt;CodeableConcept&gt;</span><span class="keyword">*</span>;
+    <span class="type">:</span><span class="constant">reasonReference</span>
+    ( { <span class="type">fhir:</span><span class="constant">link</span> <span class="variable-name">@&lt;Condition&gt;</span> } <span class="keyword">OR</span>
+      { <span class="type">fhir:</span><span class="constant">link</span> <span class="variable-name">@&lt;Observation&gt;</span> } )<span class="keyword">*</span>;
+    <span class="variable-name">:dispenseRequest</span> {
+        <span class="type">:</span><span class="constant">dispenseRequest.numberOfRepeatsAllowed</span> <span class="variable-name">@&lt;positiveInt&gt;</span><span class="keyword">?</span>;
+        <span class="type">:</span><span class="constant">dispenseRequest.quantity</span> <span class="variable-name">@&lt;SimpleQuantity&gt;</span><span class="keyword">?</span>;
+        <span class="type">:</span><span class="constant">dispenseRequest.performer</span> <span class="variable-name">@&lt;Reference&gt;</span><span class="keyword">?</span> }
+    <span class="type">:</span><span class="constant">substitution</span> <span class="variable-name">@&lt;MedicationRequest.substitution&gt;</span><span class="keyword">?</span>;
+}
+
+<span class="comment"># Any restrictions on medication substitution
+</span><span class="function-name">&lt;MedicationRequest.substitution&gt;</span> <span class="keyword">CLOSED</span> {
+    <span class="type">fhir:</span><span class="constant">Element.id</span> <span class="variable-name">@&lt;string&gt;</span><span class="keyword">?</span>;             <span class="comment"># </span><span class="type">xml:</span><span class="constant">id</span><span class="comment"> (</span><span class="keyword">or</span><span class="comment"> equivalent in JSON)
+</span>    <span class="type">fhir:</span><span class="constant">Element.extension</span> <span class="variable-name">@&lt;Extension&gt;</span><span class="keyword">*</span>;   <span class="comment"># Additional Content defined by 
+</span>                                            <span class="comment"># implementations 
+</span>    <span class="type">fhir:</span><span class="constant">BackboneElement.modifierExtension</span> <span class="variable-name">@&lt;Extension&gt;</span><span class="keyword">*</span>;  <span class="comment"># Extensions that cannot be ignored
+</span>    <span class="type">:</span><span class="constant">substitution.allowed</span> <span class="variable-name">@&lt;boolean&gt;</span>;  <span class="comment"># Whether substitution is allowed </span><span class="keyword">or</span><span class="comment"> 
+</span>                                            <span class="comment"># not 
+</span>    <span class="type">:</span><span class="constant">substitution.reason</span> <span class="variable-name">@&lt;CodeableConcept&gt;</span><span class="keyword">?</span>;  <span class="comment"># Why should (not) substitution be 
+</span>                                            <span class="comment"># made 
+</span>    <span class="type">fhir:</span><span class="constant">index</span> <span class="type">xsd:</span><span class="constant">integer</span><span class="keyword">?</span>                 <span class="comment"># Relative position in </span><span class="keyword">a</span><span class="comment"> list
+</span>}
+
+<span class="comment"># Who/What requested the Request
+</span><span class="function-name">&lt;MedicationRequest.requester&gt;</span> <span class="keyword">CLOSED</span> {
+    <span class="type">fhir:</span><span class="constant">Element.id</span> <span class="variable-name">@&lt;string&gt;</span><span class="keyword">?</span>;             <span class="comment"># </span><span class="type">xml:</span><span class="constant">id</span><span class="comment"> (</span><span class="keyword">or</span><span class="comment"> equivalent in JSON)
+</span>    <span class="type">fhir:</span><span class="constant">Element.extension</span> <span class="variable-name">@&lt;Extension&gt;</span><span class="keyword">*</span>;   <span class="comment"># Additional Content defined by 
+</span>                                            <span class="comment"># implementations 
+</span>    <span class="type">fhir:</span><span class="constant">BackboneElement.modifierExtension</span> <span class="variable-name">@&lt;Extension&gt;</span><span class="keyword">*</span>;  <span class="comment"># Extensions that cannot be ignored
+</span>    <span class="type">:</span><span class="constant">requester.agent</span>  <span class="comment"># Who ordered the initial 
+</span>                                            <span class="comment"># medication(s) 
+</span>    (   <span class="variable-name">@&lt;PractitionerReference&gt;</span> <span class="keyword">OR</span>
+        <span class="variable-name">@&lt;OrganizationReference&gt;</span> <span class="keyword">OR</span>
+        <span class="variable-name">@&lt;PatientReference&gt;</span> <span class="keyword">OR</span>
+        <span class="variable-name">@&lt;RelatedPersonReference&gt;</span> <span class="keyword">OR</span>
+        <span class="variable-name">@&lt;DeviceReference&gt;</span>
+    );
+    <span class="type">:</span><span class="constant">requester.onBehalfOf</span> <span class="variable-name">@&lt;Reference&gt;</span><span class="keyword">?</span>;  <span class="comment"># Organization agent is acting for
+</span>    <span class="type">fhir:</span><span class="constant">index</span> <span class="type">xsd:</span><span class="constant">integer</span><span class="keyword">?</span>                 <span class="comment"># Relative position in </span><span class="keyword">a</span><span class="comment"> list
+</span>}</pre>
+   </div>
 
    <div class="slide">
       <h1>Three interchangeable concrete syntaxes</h1>
@@ -1928,18 +1975,21 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </div>
 
    <div class="slide">
-      <h1>User-oriented views of ShEx schemas?</h1>
-      <ul>
-        <li>@@@ insert table, or table-like columns, from morning talk @@@</li>
-      </ul>
-    </div>
+     <h1>User-oriented views of ShEx schemas?</h1>
+     <img src="build%20-%20MedicationRequest%20-%20FHIR%20v3.0.0-large.png" alt="FHIR MedicationRequest logical table"/>
+   </div>
 
    <div class="slide">
       <h1>Join the ShEx Community!</h1>
 
       W3C Shape Expressions Community Group
       <ul>
-        <li><a href="https://www.w3.org/community/shex">https://www.w3.org/community/shex</a></li>
+        <li>ShEx homepage — <a href="http://shex.io">http://shex.io</a></li>
+        <li>community group page — <a href="https://www.w3.org/community/shex">https://www.w3.org/community/shex</a></li>
+        <li>ShEx Primer — <a href="http://shex.io/shex-primer/">http://shex.io/shex-primer/</a></li>
+        <li>ShEx Specification — <a href="http://shex.io/shex-semantics/">http://shex.io/shex-semantics/</a></li>
+        <li>ShapeMap Specification — <a href="shex.io/shape-map/">shex.io/shape-map/</a></li>
+        <li>Gitter discussions — <a href="https://gitter.im/shapeExpressions/Lobby">https://gitter.im/shapeExpressions/Lobby</a></li>
       </ul>
     </div>
 
