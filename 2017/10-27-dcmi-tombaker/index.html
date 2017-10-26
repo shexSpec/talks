@@ -182,6 +182,19 @@ a[href]:focus, a[href]:hover {
     padding: 0 .2em;
 }
 
+pre.schema.shexc.nobefore {
+    line-height: 2.1em;
+    font-size: 100%;
+    margin-top: 2ex;
+    background-color: white;
+}
+
+pre.schema.nobefore:before {
+    display: none;
+}
+
+.fhirGlyph { background-color: #ffffe6; border: medium solid #efefd6; font-size: 80%; }
+.fhirProperty { color: #428bca; }
 /*]]>
 */</style>
 
@@ -1980,6 +1993,27 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
    <div class="slide">
      <h1>User-oriented views of ShEx schemas?</h1>
      <img src="build%20-%20MedicationRequest%20-%20FHIR%20v3.0.0-large.png" alt="FHIR MedicationRequest logical table"/>
+   </div>
+
+   <div class="slide">
+     <h1>FHIR MedicationRequest (massaged)</h1>
+     <pre class="schema shexc nobefore"> <span class="variable-name">&lt;MedicationRequest&gt;</span> {
+    <span class="fhirGlyph">:</span><span class="fhirProperty">status</span>                               <span class="variable-name">@&lt;code&gt;</span>;
+    <span class="fhirGlyph">:</span><span class="fhirProperty">intent</span>                               <span class="variable-name">@&lt;code&gt;</span>;
+    (
+      <span class="fhirGlyph">:</span><span class="fhirProperty">medicationCodeableConcept</span>          <span class="variable-name">@&lt;CodeableConcept&gt;</span>  |
+      <span class="fhirGlyph">:</span><span class="fhirProperty">medicationReference</span>                <span class="variable-name">@&lt;MedicationRef&gt;</span> );
+    <span class="fhirGlyph">:</span><span class="fhirProperty">subject</span>                              ( <span class="variable-name">@&lt;PatientRef&gt;</span> <span class="keyword">OR</span> <span class="variable-name">@&lt;GroupRef&gt;</span> );
+    <span class="fhirGlyph">:</span><span class="fhirProperty">requester</span> {
+        <span class="fhirGlyph">:</span><span class="fhirProperty">requester.agent</span>                  ( <span class="variable-name">@&lt;PractitionerRef&gt;</span> <span class="keyword">OR</span> <span class="variable-name">@&lt;PatientRef&gt;</span> );
+        <span class="fhirGlyph">:</span><span class="fhirProperty">requester.onBehalfOf</span>             <span class="variable-name">@&lt;Ref&gt;</span><span class="keyword">?</span>;
+    <span class="fhirGlyph">:</span><span class="fhirProperty">reasonCode</span>                           <span class="variable-name">@&lt;CodeableConcept&gt;</span><span class="keyword">*</span>;
+    <span class="fhirGlyph">:</span><span class="fhirProperty">reasonReference</span>                      ( { <span class="type">fhir:</span><span class="fhirProperty">link</span> <span class="variable-name">@&lt;Condition&gt;</span> } <span class="keyword">OR</span> { <span class="type">fhir:</span><span class="fhirProperty">link</span> <span class="variable-name">@&lt;Observation&gt;</span> } )<span class="keyword">*</span>;
+    <span class="fhirGlyph">:</span><span class="fhirProperty">dispenseRequest</span> {
+        <span class="fhirGlyph">:</span><span class="fhirProperty">dispenseRequest.numberOfRepeatsAllowed</span> <span class="variable-name">@&lt;positiveInt&gt;</span><span class="keyword">?</span>;
+        <span class="fhirGlyph">:</span><span class="fhirProperty">dispenseRequest.quantity</span>        <span class="variable-name">@&lt;SimpleQuantity&gt;</span><span class="keyword">?</span>;
+        <span class="fhirGlyph">:</span><span class="fhirProperty">dispenseRequest.performer</span>       <span class="variable-name">@&lt;Reference&gt;</span><span class="keyword">?</span> };
+}</pre>
    </div>
 
    <div class="slide">
