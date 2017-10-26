@@ -1,2 +1,2 @@
 # shexpresent
-Presentation on ShEx for DC-2017
+Presentation on ShEx Wikidatacon-2017
