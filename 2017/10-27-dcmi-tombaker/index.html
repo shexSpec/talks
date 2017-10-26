@@ -63,9 +63,11 @@ li li, li ul li          { font-style: normal; }
     padding-left: .1em;
     border-left: thick solid #fbb;
 }
+.results { font-family: initial; }
+.results div { margin: 1ex 0; }
 .results pre {
     font-size: 80%;
-    font-weight: bold;
+    font-weight: normal;
     line-height: 120%;
     padding-top: 0.2em;
     padding-bottom: 0.2em;
@@ -100,6 +102,7 @@ pre.schema.shexc {
 }
 pre.schema, pre.instance {
     vertical-align: top;
+    margin-left: 1em;
 }
 
 pre.schema.shexc:before {
@@ -1362,14 +1365,14 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
 
     <div class="slide">
       <h1>ShEx Model: RDF Data is tested</h1>
-      <div style="float:left; width: 45%">
+      <div style="float:left; width: 54%">
         <ul>
           <li><b>RDF Data</b> ("graph") is tested</li>
           <li><span class="grey">against a <b>ShEx Schema</b></span></li>
           <li><span class="grey">to produce a <b>Validation Result</b></span></li>
         </ul>
       </div>
-      <div style="float:left; width: 54%">
+      <div style="float:left; width: 45%">
        <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
   <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
   <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
