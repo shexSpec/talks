@@ -1936,6 +1936,43 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
    </div>
 
    <div class="slide">
+     <h1>Wikidata items on Cancer should have an NCI Thesaurus ID</h1>
+     <pre class="schema shexc" style="float: left; width: 40%;">
+<span class="keyword">PREFIX</span> xsd: <span class="function-name">&lt;<a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a>&gt;</span><span class="comment">
+</span><span class="keyword">PREFIX</span> prov: <span class="function-name">&lt;<a href="http://www.w3.org/ns/prov#">http://www.w3.org/ns/prov#</a>&gt;</span><span class="comment">
+</span><span class="keyword">PREFIX</span> p: <span class="function-name">&lt;<a href="http://www.wikidata.org/prop/">http://www.wikidata.org/prop/</a>&gt;</span>
+<span class="keyword">PREFIX</span> pr: <span class="function-name">&lt;<a href="http://www.wikidata.org/prop/reference/">http://www.wikidata.org/prop/reference/</a>&gt;</span>
+<span class="keyword">PREFIX</span> ps: <span class="function-name">&lt;<a href="http://www.wikidata.org/prop/statement/">http://www.wikidata.org/prop/statement/</a>&gt;</span>
+
+<span class="keyword">start</span> = <span class="variable-name">@&lt;wikidata_item&gt;</span>
+
+<span class="variable-name">&lt;wikidata_item&gt;</span> {
+  <span class="variable-name">p:P1748</span> {
+    <span class="type">ps:</span><span class="constant">P1748</span> <span class="keyword">LITERAL</span> ;
+    <span class="type">prov:</span><span class="constant">wasDerivedFrom</span> <span class="variable-name">@&lt;reference&gt;</span>
+  }<span class="keyword">+</span>
+}
+
+<span class="variable-name">&lt;reference&gt;</span> {
+  <span class="type">pr:</span><span class="constant">P248</span>  <span class="keyword">IRI</span> ;
+  <span class="type">pr:</span><span class="constant">P813</span>  <span class="type">xsd:</span><span class="constant">dateTime</span> ;
+  <span class="type">pr:</span><span class="constant">P699</span>  <span class="keyword">LITERAL</span>
+}
+     </pre>
+     <pre class="sparql" style="float: right; width: 50%;">
+Endpoint: https://query.wikidata.org/bigdata/namespace/wdq/sparql
+
+Query: <span class="keyword">SELECT</span> <span class="variable-name">?item</span> <span class="variable-name">?itemLabel</span>
+<span class="keyword">WHERE</span>
+{ <span class="variable-name">?item</span> wdt:P279* wd:Q12078 .
+  <span class="keyword">SERVICE</span> wikibase:label { bd:serviceParam wikibase:language <span class="string">"en"</span> }
+} <span class="keyword">LIMIT</span> 10
+     </pre>
+
+     <center style="clear: both"><b><a href="http://rawgit.com/shexSpec/shex.js/genewiki/doc/shex-simple.html">Try it!</a></b><br>Click “Wikidata item on Cancer should have a NCI Thesaurus ID” on the left,<br>then “Get all Wikidata items on Cancers (SPARQL)” on the right.</center>
+   </div>
+
+   <div class="slide">
       <h1>Three interchangeable concrete syntaxes</h1>
       <ul>
         <li><b>ShExC</b> (used in this talk)
