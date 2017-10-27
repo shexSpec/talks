@@ -1998,32 +1998,6 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
     </div>
 
    <div class="slide">
-     <h1>User-oriented views of ShEx schemas?</h1>
-     <img src="build%20-%20MedicationRequest%20-%20FHIR%20v3.0.0-large.png" alt="FHIR MedicationRequest logical table"/>
-   </div>
-
-   <div class="slide">
-     <h1>FHIR MedicationRequest (massaged)</h1>
-     <pre class="schema shexc nobefore"> <span class="variable-name">&lt;MedicationRequest&gt;</span> {
-   <span class="type">:</span><span class="constant">status</span>                                <span class="variable-name">@&lt;code&gt;</span>;
-   <span class="type">:</span><span class="constant">intent</span>                                <span class="variable-name">@&lt;code&gt;</span>;
-   (
-     <span class="type">:</span><span class="constant">medicationCodeableConcept</span>           <span class="variable-name">@&lt;CodeableConcept&gt;</span>  |
-     <span class="type">:</span><span class="constant">medicationReference</span>                 <span class="variable-name">@&lt;MedicationRef&gt;</span> );
-   <span class="type">:</span><span class="constant">subject</span>                               ( <span class="variable-name">@&lt;PatientRef&gt;</span> <span class="keyword">OR</span> <span class="variable-name">@&lt;GroupRef&gt;</span> );
-   <span class="type">:</span><span class="constant">requester</span> {
-     <span class="type">:</span><span class="constant">requester.agent</span>                     ( <span class="variable-name">@&lt;PractitionerRef&gt;</span> <span class="keyword">OR</span> <span class="variable-name">@&lt;PatientRef&gt;</span> );
-     <span class="type">:</span><span class="constant">requester.onBehalfOf</span>                <span class="variable-name">@&lt;Ref&gt;</span><span class="keyword">?</span>;
-   <span class="type">:</span><span class="constant">reasonCode</span>                            <span class="variable-name">@&lt;CodeableConcept&gt;</span><span class="keyword">*</span>;
-   <span class="type">:</span><span class="constant">reasonReference</span>                       ( { <span class="type999">fhir:</span><span class="constant">link</span> <span class="variable-name">@&lt;Condition&gt;</span> } <span class="keyword">OR</span> { <span class="type999">fhir:</span><span class="constant">link</span> <span class="variable-name">@&lt;Observation&gt;</span> } )<span class="keyword">*</span>;
-   <span class="type">:</span><span class="constant">dispenseRequest</span> {                    <span class="comment"># backbone element</span>
-     <span class="type">:</span><span class="constant">dispenseRequest.numberOfRepeatsAllowed</span> <span class="variable-name">@&lt;positiveInt&gt;</span><span class="keyword">?</span>;
-     <span class="type">:</span><span class="constant">dispenseRequest.quantity</span>           <span class="variable-name">@&lt;SimpleQuantity&gt;</span><span class="keyword">?</span>;
-     <span class="type">:</span><span class="constant">dispenseRequest.performer</span>          <span class="variable-name">@&lt;Reference&gt;</span><span class="keyword">?</span> };
-}</pre>
-   </div>
-
-   <div class="slide">
       <h1>Join the ShEx Community!</h1>
 
       W3C Shape Expressions Community Group
