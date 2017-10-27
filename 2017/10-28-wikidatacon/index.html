@@ -297,10 +297,14 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
         <li>a language for describing RDF data ("graphs")</li>
         <li>can be used for:
         <ul>
-            <li>validating RDF data</li>
-            <li>generating user interfaces</li>
-		<li>transforming RDF data into other data formats</li>
-		<li>testing Wikidata entity data for items against schemas describing sets of expected properties</li>
+          <li>Model development – parallel development of a schema and examples/test cases makes the proposal | testing | refinement process much more concrete.
+            This applies both to initial development and subsequent model refinement</li>
+          <li>Documentation – terse, human-readable representation helping contributors and maintainers quickly grok the model</li>
+          <li>Legacy review – develop punch lists for existing data issues that need fixing</li>
+          <li>Client pre-submission – submitters test their data before submission to make sure they’re saying what they want to say and that the receiving schema can accommodate all of their data</li>
+          <li>Server pre-ingestion – submission process checks data as it comes in and either rejects or warns about non-conformant data</li>
+          <li>Generating user interfaces</li>
+	  <li>Transforming RDF data into other data formats</li>
         </ul></li>
       </ul>
      </div>
