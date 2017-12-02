@@ -1,0 +1,2409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-US">
+  <head>
+    <meta name="generator" content=
+	  "HTML Tidy for Linux/x86 (vers 1st November 2003), see www.w3.org" />
+    <title>Testing data with the Shape Expressions Language</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="copyright" content=
+	  "Copyright &#169; 2005-2010 W3C (MIT, ERCIM, Keio)" />
+    <meta name="duration" content="5" />
+    <meta name="font-size-adjustment" content="-2" />
+    <link rel="stylesheet" href="../../Slidy2/styles/slidy.css" type="text/css" />
+    <link rel="stylesheet" href="../../Slidy2/styles/w3c-blue.css" type="text/css" />
+    <script src="../../Slidy2/scripts/slidy.js" charset="utf-8" type="text/javascript">
+    </script>
+    <script src="http://www.w3.org/2013/ShEx/demobits/jquery.min.js" type= "text/javascript"></script>
+  <!-- link rel="stylesheet" type="text/css" href="local.css"/ -->
+  <style type="text/css">
+/*<![CDATA[*/
+table                    { border-collapse: collapse; }
+table, td, th            { border: 1px solid black; }
+tbody tr:nth-child(odd)  { background-color:#eee; }
+tbody tr:nth-child(even) { background-color:#fff; }
+
+/* description column */
+td:nth-child(5)          { font-family: initial; font-size: 80%; }
+
+body                     { color: #000000; }
+.grey                    { color: #aaaaaa; }
+.rdft                    { color: #007fff; }
+      span.default       { color: #000000; }
+.grey span.default       { color: #aaaaaa; }
+.rdft span.default       { color: #007fff; }
+      span.function-name { color: #0000ff; }
+.grey span.function-name { color: #aaaaff; }
+.rdft span.function-name { color: #007fff; }
+      span.keyword       { color: #a020f0; }
+.grey span.keyword       { color: #dfb4ff; }
+.rdft span.keyword       { color: #007fff; }
+      span.string        { color: #bb8800; }
+.grey span.string        { color: #e8d7aa; }
+.rdft span.string        { color: #007fff; }
+      span.constant      { color: #008b8b; }
+.grey span.constant      { color: #aad8d8; }
+.rdft span.constant      { color: #007fff; }
+      span.type          { color: #228b22; }
+.grey span.type          { color: #b5d8b5; }
+.rdft span.type          { color: #007fff; }
+      span.comment       { color: #b22222; }
+.grey span.comment       { color: #e5b5b5; }
+.rdft span.comment       { color: #007fff; }
+
+em                       { font-weight: bold; font-style: normal; }
+li li, li ul li          { font-style: normal; }
+
+.passes {
+    padding-left: .1em;
+    border-left: thick solid #bfb;
+}
+.fails {
+    padding-left: .1em;
+    border-left: thick solid #fbb;
+}
+.results { font-family: initial; }
+.results div { margin: 1ex 0; }
+.results pre {
+    font-size: 80%;
+    font-weight: normal;
+    line-height: 120%;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border: none;
+    color: inherit;
+    background-color: inherit;
+}
+
+.footnote {
+    font-size: small;
+    position: absolute;
+    bottom: 3em;
+}
+
+pre { padding: 0; }
+pre {
+    margin-top: 0;
+    margin-right: 1em;
+    overflow: visible;
+}
+pre {
+    background-color: #fcfaee;
+    margin-left: 0;
+    line-height: 1.2;
+    display: inline-block;
+}
+pre.schema.shexc {
+    background-color: #ECEBF7;
+    border: thick solid #e4e3ec;
+}
+pre.schema, pre.instance {
+    vertical-align: top;
+    margin-left: 1em;
+}
+
+pre.schema.shexc:before {
+    content: "Schema (ShExC)";
+    width: 9em;
+}
+
+pre.instance {
+    border: thick solid #f8f6ea;
+}
+
+pre.instance.turtle:before {
+    content: "Data (Turtle)";
+    width: 9em;
+}
+
+pre.schema:before, pre.instance:before {
+    color: #333;
+    font-size: .6em;
+    border: 1px solid #bbb;
+    background: white;
+    display: block;
+    font-family: sans-serif;
+    padding: 0.2em 1em;
+}
+
+.example pre.shapemap {
+    background-color: #eefcfa;
+    border: thick solid #eaf8ea;
+}
+
+.shapemap.fixed:before {
+    content: "Fixed Shape Map";
+    width: 9em;
+}
+
+.shapemap:before {
+    color: #333;
+    font-size: .6em;
+    border: 1px solid #bbb;
+    background: white;
+    display: block;
+    font-family: sans-serif;
+    padding: 0.2em 1em;
+}
+
+.shapemap.query:before {
+    content: "Query Shape Map";
+    width: 9em;
+}
+
+.fail {
+    background-color: #fcc;
+}
+
+
+element.style {
+}
+base.css:525
+a[href]:focus, a[href]:hover {
+    background: #f8f8f8;
+    background: rgba(75%, 75%, 75%, .25);
+    border-bottom-width: 3px;
+    margin-bottom: -2px;
+}
+
+.tryit:link {
+    text-decoration: none;
+    font: menu;
+    display: inline-block;
+    padding: 2px 8px;
+    background: ButtonFace;
+    color: ButtonText;
+    border-style: solid;
+    border-width: 2px;
+    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+    padding: 0 .2em;
+}
+
+pre.schema.shexc.nobefore {
+    line-height: 2.07em;
+    font-size: 100%;
+    margin-top: 2ex;
+    background-color: white;
+    font-weight: normal;
+}
+
+pre.schema.nobefore:before {
+    display: none;
+}
+
+pre.schema.nobefore .type {
+    background-color: #ffffe6;
+    border: medium solid #efefd6;
+    font-size: 80%;
+}
+pre.schema.nobefore .constant,
+pre.schema.nobefore .variable-name {
+    color: #428bca;
+}
+
+.sparql { color:#58a; }
+.error { background-color: #f77; }
+
+.highlight1    { border: 5px solid #bb0; font-weight: bold; }
+.lowlight1     { border: 5px solid transparent; font-weight: normal; }
+.highlight2    { color: #b00; border: 5px solid #f00; font-weight: bold; }
+.lowlight2     { border: 5px solid transparent; font-weight: normal; }
+
+.retext       { float:left; border: thin solid #95D0AB; padding-left: .2em; padding-right: .2em; margin-left: .2em; margin-right: .2em; }
+
+/*]]>
+*/</style>
+
+    <script type="text/javascript"><!--
+function prepareHighlight (highlightables, onClass, offClass, slide) {
+  if (slide === undefined)
+    slide = $("body").find("> div").last();
+  $.each( highlightables, function( index, value ){
+    var elts = slide.find( "."+value );
+    elts
+  	.mouseenter(function() {
+  	    elts.removeClass(offClass).addClass(onClass);
+  	})
+  	.mouseleave(function() {
+  	    elts.removeClass(onClass).addClass(offClass);
+  	})
+    .addClass(offClass);
+  })
+}
+--> </script>
+  </head>
+  <body>
+    <div class="background"><img alt="" id="head-icon"
+    src="../../Slidy2/graphics/icon-blue.png" /><object id="head-logo"
+    data="../../Slidy2/graphics/w3c-logo-white.svg" type="image/svg+xml"
+    title="W3C logo"><a href="http://www.w3.org/"><img
+    alt="W3C logo" id="head-logo-fallback"
+    src="../../Slidy2/graphics/w3c-logo-white.gif" /></a></object></div>
+
+    <div class="background slanty">
+      <img src="../../Slidy2/graphics/w3c-logo-slanted.jpg" alt="slanted W3C logo" />
+    </div>
+    <div class="slide cover title">
+      <!-- hidden style graphics to ensure they are saved with other content -->
+      <img class="hidden" src="../../Slidy2/graphics/bullet.png" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/fold.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/unfold.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/fold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/nofold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/unfold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-fold.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-unfold.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-fold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-nofold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-unfold-dim.gif" alt="" />
+
+      <img src="../../Slidy2/graphics/keys2.jpg" alt="Cover page images (keys)"
+	   class="cover" />
+      <h1>ShEx</h1>
+      <h2>Testing data with the <a href="http://shex.io/">Shape Expressions Language</a></h2>
+      <h2>SWAT4HCLS-2017<br/>28 October 2017</h2>
+      <h2><a href="http://shexspec.github.io/talks/2017/12-04-swat4hcls-ericp/">http://shexspec.github.io/talks/2017/12-04-swat4hcls-ericp/</a></h2>
+
+      <ul>
+	      <li>
+	        <a href="http://www.w3.org/People/Eric/">Eric Prud'hommeaux</a>, &lt;<a href="mailto:eric@w3.org">eric@w3.org</a>&gt;
+	        <ul>
+	          <li>Sanitation Engineer, W3C</li>
+	        </ul>
+	      </li>
+	      <li>
+	        <a href="http://di002.edv.uniovi.es/~labra/">Jose Emilio Labra Gayo</a>, &lt;<a href="mailto:jelabra@gmail.com">jelabra@gmail.com</a>&gt;
+	        <ul>
+	          <li>Associate Professor, <a href="http://www.uniovi.es">University of Oviedo</a></li>
+	        </ul>
+	      </li>
+	      <li>
+	        <a href="https://github.com/tombaker">Tom Baker</a>, &lt;<a href="mailto:tom@tombaker.org">tom@tombaker.org</a>&gt;
+	        <ul>
+	          <li>Assistant Director, DCMI</li>
+	        </ul>
+	      </li>
+	      <li>
+	        <a href="http://github.com/andrawaag">Andra Waagmeester</a>, &lt;<a href="mailto:andra@micelio.be">andra@micelio.be</a>&gt;
+	        <ul>
+	          <li>GeneWiki and Micelio</li>
+	        </ul>
+	      </li>
+	      <li>
+		<a href="http://github.com/emulatingkat">Kat Thornton</a>, &lt;<a href="mailto:katherine.thornton@yale.edu">katherine.thornton@yale.edu</a>&gt;
+		<ul>
+		  <li>Yale University</li>
+		</ul>
+              </li>
+              <li>
+                <a href="https://github.com/lucaswerkmeister">Lucas Werkmeister</a>, &lt;<a href="mailto:lucas.werkmeister@wikimedia.de">lucas.werkmeister@wikimedia.de</a>&gt;
+                <ul>
+                  <li>Wikimedia Deutschland e.&nbsp;V.</li>
+                </ul>
+              </li>
+              <li>
+                <a href="https://github.com/stuppie">Greg Stupp</a>, &lt;<a href="mailto:gstupp@scripps.edu">gstupp@scripps.edu</a>&gt;
+                <ul>
+                  <li>The Scripps Research Institute</li>
+                </ul>
+              </li>
+      </ul>
+    </div>
+
+   <div class="slide">
+     <h1>Shape Expressions (ShEx)</h1>
+     <div style="float:left; width: 45%">
+      <ul>
+        <li>a language for describing RDF data ("graphs")</li>
+        <li>can be used for:
+        <ul>
+          <li>Model development – parallel development of a schema and examples/test cases makes the proposal | testing | refinement process much more concrete.
+            This applies both to initial development and subsequent model refinement</li>
+          <li>Documentation – terse, human-readable representation helping contributors and maintainers quickly grok the model</li>
+          <li>Legacy review – develop punch lists for existing data issues that need fixing</li>
+          <li>Client pre-submission – submitters test their data before submission to make sure they’re saying what they want to say and that the receiving schema can accommodate all of their data</li>
+          <li>Server pre-ingestion – submission process checks data as it comes in and either rejects or warns about non-conformant data</li>
+          <li>Generating user interfaces</li>
+	  <li>Transforming RDF data into other data formats</li>
+        </ul></li>
+      </ul>
+     </div>
+     <div style="float:left; width: 54%">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="453.15253pt"
+   height="253.5067pt"
+   viewBox="0 0 453.37996 253.5067"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="a.svg">
+  <metadata
+     id="metadata179">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs177" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1566"
+     inkscape:window-height="942"
+     id="namedview175"
+     showgrid="false"
+     inkscape:zoom="3.7589335"
+     inkscape:cx="454.84722"
+     inkscape:cy="89.011797"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="all"
+     style="display:inline">
+    <g
+       class="node"
+       id="node2"
+       transform="translate(142.21028,115.26028)">
+      <title
+         id="title25">bf:Text</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse27"
+         ry="8.966012"
+         rx="36.2938"
+         cy="-105"
+         cx="36.396801" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text29"
+         font-size="14.00"
+         y="-101.3"
+         x="36.396801">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4447">bf:Text</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge1"
+       transform="translate(-173.88897,248.86061)">
+      <title
+         id="title32">&lt;samples9298996&gt;-&gt;bf:Text</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path34"
+         d="m 263.81605,-215.65023 c 4.46537,-27.94764 61.60515,10.47643 66.87005,-3.53062"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon36"
+         points="58.9998,-119.458 65.9297,-127.473 69.4149,-121.402 69.4149,-121.402 "
+         transform="matrix(-0.79942441,0.60076669,-0.60076669,-0.79942441,309.7193,-360.08025)"
+         inkscape:transform-center-x="-6.5379342"
+         inkscape:transform-center-y="1.7240091" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text38"
+         font-size="14.00"
+         y="-210.80928"
+         x="359.84909">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5174">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="node"
+       id="node3"
+       transform="translate(135.39642,114.40855)">
+      <title
+         id="title41">bf:Work</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse43"
+         ry="8.966012"
+         rx="40.892799"
+         cy="-105"
+         cx="131.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text45"
+         font-size="14.00"
+         y="-101.3"
+         x="131.397">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4449">bf:Work</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge2"
+       transform="translate(-84.753619,212.72466)">
+      <title
+         id="title48">&lt;samples9298996&gt;-&gt;bf:Work</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path50"
+         d="m 235.74038,-168.18594 c 9.86471,-6.53452 60.27718,11.05168 84.02854,-18.09274"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon52"
+         points="159.302,-125.223 149.424,-121.391 154.757,-130.546 159.302,-125.223 "
+         transform="matrix(-0.99200761,0.12617805,-0.12617805,-0.99200761,460.03318,-333.56264)"
+         inkscape:transform-center-x="2.2576874"
+         inkscape:transform-center-y="-2.3417749" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text54"
+         font-size="14.00"
+         y="-192.82399"
+         x="206.6954">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5172">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="node"
+       id="node4"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title57">&quot;Oliver Twist.&quot;</title>
+      <polygon
+         style="fill:none;stroke:#000000"
+         id="polygon59"
+         points="284.397,-87 284.397,-123 284.397,-123 190.397,-123 190.397,-87 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text61"
+         font-size="14.00"
+         y="-101.3"
+         x="237.397">
+        <tspan
+           style="fill:#bb8800"
+           id="tspan4228">&quot;Oliver Twist.&quot;</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge3"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title64">&lt;samples9298996&gt;-&gt;&quot;Oliver Twist.&quot;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path66"
+         d="m 237.397,-179.66526 0,46.37526"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#008000;stroke:#008000"
+         id="polygon68"
+         points="237.397,-123.004 233.897,-133.004 240.897,-133.004 240.897,-133.004 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text70"
+         font-size="14.00"
+         y="-144.8"
+         x="255.897">bf:title</text>
+    </g>
+    <g
+       class="node"
+       id="node5"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title73">&lt;http://id.loc.gov/…/PZ3&gt;</title>
+      <ellipse
+         style="fill:none;stroke:#000000"
+         id="ellipse75"
+         ry="18"
+         rx="106.681"
+         cy="-105"
+         cx="409.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text77"
+         font-size="14.00"
+         y="-101.3"
+         x="409.397">
+        <tspan
+           style="fill:#0000ff"
+           id="tspan4226">&lt;http://id.loc.gov/…/PZ3&gt;</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge4"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title80">&lt;samples9298996&gt;-&gt;&lt;http://id.loc.gov/…/PZ3&gt;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path82"
+         d="m 272.65914,-178.1938 c 27.401,14.417 69.74786,36.9458 96.72686,51.1418"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#008000;stroke:#008000"
+         id="polygon84"
+         points="378.544,-122.233 368.065,-123.792 371.324,-129.987 371.324,-129.987 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text86"
+         font-size="14.00"
+         y="-144.8"
+         x="360.397">bf:class</text>
+    </g>
+    <g
+       class="node"
+       id="node6"
+       transform="translate(-202.67299,259.0814)">
+      <title
+         id="title89">_:b1</title>
+      <circle
+         style="fill:#000000;stroke:#000000"
+         r="1.8"
+         id="ellipse91"
+         cy="-105"
+         cx="577.39697" />
+    </g>
+    <g
+       class="edge"
+       id="edge5"
+       transform="translate(-173.88897,248.86061)">
+      <title
+         id="title94">&lt;samples9298996&gt;-&gt;_:b1</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path96"
+         d="m 300.079,-181.768 c 30.02596,25.13352 165.69866,-20.90714 203.17295,7.23818 15.72124,11.80754 37.86797,45.23328 43.3103,65.16642"
+         sodipodi:nodetypes="csc" />
+      <polygon
+         style="fill:#008000;stroke:#008000"
+         id="polygon98"
+         points="565.525,-106.429 567.823,-113.041 567.823,-113.041 576.12,-106.452 "
+         transform="matrix(0.4568228,0.88955772,-0.88955772,0.4568228,190.22907,-562.53285)" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text100"
+         font-size="14.00"
+         y="-189.38235"
+         x="462.26648"
+         inkscape:transform-center-x="-54.806193"
+         inkscape:transform-center-y="-4.8181269">bf:creator</text>
+    </g>
+    <g
+       class="node"
+       id="node9"
+       transform="translate(2.15352,113.55682)"
+       inkscape:transform-center-x="-0.85173255"
+       inkscape:transform-center-y="5.1103953">
+      <title
+         id="title103">bf:LCC ;</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse105"
+         ry="9.5682783"
+         rx="42.4939"
+         cy="-18"
+         cx="277.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text107"
+         font-size="14.00"
+         y="-14.3"
+         x="277.397">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4451">bf:LCC</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge9"
+       transform="translate(-241.1227,248.86061)">
+      <title
+         id="title110">&lt;http://id.loc.gov/…/PZ3&gt;-&gt;bf:LCC ;</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path112"
+         d="m 452.62234,-123.18217 c 3.66611,-29.61916 55.00737,15.02312 56.52421,-8.26245"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon114"
+         points="310.318,-36.0366 300.016,-33.5652 306.528,-41.9219 310.318,-36.0366 "
+         transform="matrix(-0.78315966,0.62182067,-0.62182067,-0.78315966,726.4844,-353.94574)" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text116"
+         font-size="14.00"
+         y="-136.90349"
+         x="470.46408">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5178">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge10"
+       transform="translate(-280.23688,253.07647)">
+      <title
+         id="title126">&lt;http://id.loc.gov/…/PZ3&gt;-&gt;&quot;PZ3.D55O165PR4567&quot;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path128"
+         d="m 422.66306,-96.184571 c -2.18591,7.06715 -4.74825,5.322757 -8.51511,11.715762 -3.76686,6.393005 -4.75095,12.619161 -4.75095,12.619161"
+         sodipodi:nodetypes="czc" />
+    </g>
+    <g
+       class="node"
+       id="node7"
+       transform="translate(-134.91001,127.99347)">
+      <title
+         id="title135">bf:Person</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse137"
+         ry="9.5682783"
+         rx="44.393002"
+         cy="-18"
+         cx="543.39697" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text139"
+         font-size="14.00"
+         y="-14.3"
+         x="543.39697">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4453">bf:Person</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge6"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title142">_:b1-&gt;bf:Person</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path144"
+         d="m 566.85244,-94.82147 c 18.13214,0.989788 30.56383,0.20497 32.78728,-21.74807"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon146"
+         points="546.013,-46.1609 546.013,-46.1609 542.186,-36.2813 539.016,-46.391 "
+         transform="matrix(-0.99973659,-0.02295094,0.02295094,-0.99973659,1143.0967,-149.76891)"
+         inkscape:transform-center-x="-1.5295302"
+         inkscape:transform-center-y="-6.6728146" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text148"
+         font-size="14.00"
+         y="-83.651703"
+         x="593.93011">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5176">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge10-3"
+       transform="translate(-55.6236,226.73323)">
+      <title
+         id="title126-6">&lt;http://id.loc.gov/…/PZ3&gt;-&gt;&quot;PZ3.D55O165PR4567&quot;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path128-7"
+         d="m 428.77392,-71.254881 c 0,0 -9.45348,8.001573 -12.77599,12.82844 -3.32251,4.826867 -6.60093,12.189641 -6.60093,12.189641"
+         sodipodi:nodetypes="czc" />
+    </g>
+    <g
+       class="node"
+       id="node5-5"
+       transform="translate(-330.64216,157.28774)">
+      <title
+         id="title73-6">&lt;http://id.loc.gov/…/PZ3&gt;</title>
+      <ellipse
+         style="fill:none;stroke:#000000"
+         id="ellipse75-2"
+         ry="18"
+         rx="78.573822"
+         cy="-105"
+         cx="409.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text77-9"
+         font-size="14.00"
+         y="-101.3"
+         x="409.397">
+        <tspan
+           style="fill:#0000ff"
+           id="tspan4224">&lt;samples9298996&gt;</tspan>
+      </text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="xport"
+     style="display:inline">
+    <text
+       style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+       id="text132-3"
+       font-size="14.00"
+       y="180.92566"
+       x="382.0434">bf:label</text>
+    <text
+       style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+       id="text132"
+       font-size="14.00"
+       y="181.6561"
+       x="157.43011">bf:label</text>
+    <g
+       class="node"
+       id="node10"
+       transform="translate(-277.22555,228.38357)">
+      <title
+         id="title119">&quot;PZ3.D55O165PR4567&quot;</title>
+      <polygon
+         style="fill:none;stroke:#000000"
+         id="polygon121"
+         points="337.397,-36 337.397,0 481.397,0 481.397,-36 481.397,-36 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text123"
+         font-size="14.00"
+         y="-14.3"
+         x="409.397">
+        <tspan
+           style="fill:#bb8800"
+           id="tspan4230">&quot;PZ3.D55O165PR4567&quot;</tspan>
+      </text>
+    </g>
+    <g
+       class="node"
+       id="node8"
+       transform="translate(-336.6339,228.38357)">
+      <title
+         id="title151">&quot;Dickens, Charles, 1812-1870.&quot;</title>
+      <polygon
+         style="fill:none;stroke:#000000"
+         id="polygon153"
+         points="605.397,-36 605.397,0 789.397,0 789.397,-36 789.397,-36 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text155"
+         font-size="14.00"
+         y="-14.3"
+         x="697.39697">
+        <tspan
+           style="fill:#bb8800"
+           id="tspan4232">&quot;Dickens, Charles, 1812-1870.&quot;</tspan>
+      </text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="t"
+     style="display:inline">
+    <polygon
+       style="display:inline;fill:#008000;stroke:#008000"
+       id="polygon130"
+       points="405.897,-46.1755 412.897,-46.1754 412.897,-46.1754 409.397,-36.1754 "
+       transform="matrix(0.90824761,0.41843312,-0.41843312,0.90824761,-262.2621,51.613282)"
+       inkscape:transform-center-x="-4.576546"
+       inkscape:transform-center-y="0.11303732" />
+    <polygon
+       style="display:inline;fill:#008000;stroke:#008000"
+       id="polygon130-5"
+       points="412.897,-46.1754 412.897,-46.1754 409.397,-36.1754 405.897,-46.1755 "
+       transform="matrix(0.90824761,0.41843312,-0.41843312,0.90824761,-37.648825,50.882842)"
+       inkscape:transform-center-x="-4.576546"
+       inkscape:transform-center-y="0.11303732" />
+  </g>
+</svg>
+     </div>
+    </div>
+
+   <div class="slide">
+     <h1>RDF Data as graph and as text</h1>
+     <div style="float:left; width: 54%">
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="453.15253pt"
+   height="253.5067pt"
+   viewBox="0 0 453.37996 253.5067"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="a.svg">
+  <metadata
+     id="metadata179">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs177" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1566"
+     inkscape:window-height="942"
+     id="namedview175"
+     showgrid="false"
+     inkscape:zoom="3.7589335"
+     inkscape:cx="454.84722"
+     inkscape:cy="89.011797"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="all"
+     style="display:inline">
+    <g
+       class="node"
+       id="node2"
+       transform="translate(142.21028,115.26028)">
+      <title
+         id="title25">bf:Text</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse27"
+         ry="8.966012"
+         rx="36.2938"
+         cy="-105"
+         cx="36.396801" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text29"
+         font-size="14.00"
+         y="-101.3"
+         x="36.396801">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4447">bf:Text</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge1"
+       transform="translate(-173.88897,248.86061)">
+      <title
+         id="title32">&lt;samples9298996&gt;-&gt;bf:Text</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path34"
+         d="m 263.81605,-215.65023 c 4.46537,-27.94764 61.60515,10.47643 66.87005,-3.53062"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon36"
+         points="58.9998,-119.458 65.9297,-127.473 69.4149,-121.402 69.4149,-121.402 "
+         transform="matrix(-0.79942441,0.60076669,-0.60076669,-0.79942441,309.7193,-360.08025)"
+         inkscape:transform-center-x="-6.5379342"
+         inkscape:transform-center-y="1.7240091" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text38"
+         font-size="14.00"
+         y="-210.80928"
+         x="359.84909">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5174">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="node"
+       id="node3"
+       transform="translate(135.39642,114.40855)">
+      <title
+         id="title41">bf:Work</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse43"
+         ry="8.966012"
+         rx="40.892799"
+         cy="-105"
+         cx="131.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text45"
+         font-size="14.00"
+         y="-101.3"
+         x="131.397">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4449">bf:Work</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge2"
+       transform="translate(-84.753619,212.72466)">
+      <title
+         id="title48">&lt;samples9298996&gt;-&gt;bf:Work</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path50"
+         d="m 235.74038,-168.18594 c 9.86471,-6.53452 60.27718,11.05168 84.02854,-18.09274"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon52"
+         points="159.302,-125.223 149.424,-121.391 154.757,-130.546 159.302,-125.223 "
+         transform="matrix(-0.99200761,0.12617805,-0.12617805,-0.99200761,460.03318,-333.56264)"
+         inkscape:transform-center-x="2.2576874"
+         inkscape:transform-center-y="-2.3417749" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text54"
+         font-size="14.00"
+         y="-192.82399"
+         x="206.6954">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5172">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="node"
+       id="node4"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title57">&quot;Oliver Twist.&quot;</title>
+      <polygon
+         style="fill:none;stroke:#000000"
+         id="polygon59"
+         points="284.397,-87 284.397,-123 284.397,-123 190.397,-123 190.397,-87 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text61"
+         font-size="14.00"
+         y="-101.3"
+         x="237.397">
+        <tspan
+           style="fill:#bb8800"
+           id="tspan4228">&quot;Oliver Twist.&quot;</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge3"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title64">&lt;samples9298996&gt;-&gt;&quot;Oliver Twist.&quot;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path66"
+         d="m 237.397,-179.66526 0,46.37526"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#008000;stroke:#008000"
+         id="polygon68"
+         points="237.397,-123.004 233.897,-133.004 240.897,-133.004 240.897,-133.004 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text70"
+         font-size="14.00"
+         y="-144.8"
+         x="255.897">bf:title</text>
+    </g>
+    <g
+       class="node"
+       id="node5"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title73">&lt;http://id.loc.gov/…/PZ3&gt;</title>
+      <ellipse
+         style="fill:none;stroke:#000000"
+         id="ellipse75"
+         ry="18"
+         rx="106.681"
+         cy="-105"
+         cx="409.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text77"
+         font-size="14.00"
+         y="-101.3"
+         x="409.397">
+        <tspan
+           style="fill:#0000ff"
+           id="tspan4226">&lt;http://id.loc.gov/…/PZ3&gt;</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge4"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title80">&lt;samples9298996&gt;-&gt;&lt;http://id.loc.gov/…/PZ3&gt;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path82"
+         d="m 272.65914,-178.1938 c 27.401,14.417 69.74786,36.9458 96.72686,51.1418"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#008000;stroke:#008000"
+         id="polygon84"
+         points="378.544,-122.233 368.065,-123.792 371.324,-129.987 371.324,-129.987 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text86"
+         font-size="14.00"
+         y="-144.8"
+         x="360.397">bf:class</text>
+    </g>
+    <g
+       class="node"
+       id="node6"
+       transform="translate(-202.67299,259.0814)">
+      <title
+         id="title89">_:b1</title>
+      <circle
+         style="fill:#000000;stroke:#000000"
+         r="1.8"
+         id="ellipse91"
+         cy="-105"
+         cx="577.39697" />
+    </g>
+    <g
+       class="edge"
+       id="edge5"
+       transform="translate(-173.88897,248.86061)">
+      <title
+         id="title94">&lt;samples9298996&gt;-&gt;_:b1</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path96"
+         d="m 300.079,-181.768 c 30.02596,25.13352 165.69866,-20.90714 203.17295,7.23818 15.72124,11.80754 37.86797,45.23328 43.3103,65.16642"
+         sodipodi:nodetypes="csc" />
+      <polygon
+         style="fill:#008000;stroke:#008000"
+         id="polygon98"
+         points="565.525,-106.429 567.823,-113.041 567.823,-113.041 576.12,-106.452 "
+         transform="matrix(0.4568228,0.88955772,-0.88955772,0.4568228,190.22907,-562.53285)" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text100"
+         font-size="14.00"
+         y="-189.38235"
+         x="462.26648"
+         inkscape:transform-center-x="-54.806193"
+         inkscape:transform-center-y="-4.8181269">bf:creator</text>
+    </g>
+    <g
+       class="node"
+       id="node9"
+       transform="translate(2.15352,113.55682)"
+       inkscape:transform-center-x="-0.85173255"
+       inkscape:transform-center-y="5.1103953">
+      <title
+         id="title103">bf:LCC ;</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse105"
+         ry="9.5682783"
+         rx="42.4939"
+         cy="-18"
+         cx="277.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text107"
+         font-size="14.00"
+         y="-14.3"
+         x="277.397">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4451">bf:LCC</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge9"
+       transform="translate(-241.1227,248.86061)">
+      <title
+         id="title110">&lt;http://id.loc.gov/…/PZ3&gt;-&gt;bf:LCC ;</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path112"
+         d="m 452.62234,-123.18217 c 3.66611,-29.61916 55.00737,15.02312 56.52421,-8.26245"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon114"
+         points="310.318,-36.0366 300.016,-33.5652 306.528,-41.9219 310.318,-36.0366 "
+         transform="matrix(-0.78315966,0.62182067,-0.62182067,-0.78315966,726.4844,-353.94574)" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text116"
+         font-size="14.00"
+         y="-136.90349"
+         x="470.46408">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5178">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge10"
+       transform="translate(-280.23688,253.07647)">
+      <title
+         id="title126">&lt;http://id.loc.gov/…/PZ3&gt;-&gt;&quot;PZ3.D55O165PR4567&quot;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path128"
+         d="m 422.66306,-96.184571 c -2.18591,7.06715 -4.74825,5.322757 -8.51511,11.715762 -3.76686,6.393005 -4.75095,12.619161 -4.75095,12.619161"
+         sodipodi:nodetypes="czc" />
+    </g>
+    <g
+       class="node"
+       id="node7"
+       transform="translate(-134.91001,127.99347)">
+      <title
+         id="title135">bf:Person</title>
+      <ellipse
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         id="ellipse137"
+         ry="9.5682783"
+         rx="44.393002"
+         cy="-18"
+         cx="543.39697" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text139"
+         font-size="14.00"
+         y="-14.3"
+         x="543.39697">
+        <tspan
+           style="fill:#007fff"
+           id="tspan4453">bf:Person</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge6"
+       transform="translate(-189.897,248.86061)">
+      <title
+         id="title142">_:b1-&gt;bf:Person</title>
+      <path
+         style="fill:none;stroke:#0080ff;stroke-opacity:1"
+         inkscape:connector-curvature="0"
+         id="path144"
+         d="m 566.85244,-94.82147 c 18.13214,0.989788 30.56383,0.20497 32.78728,-21.74807"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         style="fill:#0080ff;fill-opacity:1;stroke:#0080ff;stroke-opacity:1"
+         id="polygon146"
+         points="546.013,-46.1609 546.013,-46.1609 542.186,-36.2813 539.016,-46.391 "
+         transform="matrix(-0.99973659,-0.02295094,0.02295094,-0.99973659,1143.0967,-149.76891)"
+         inkscape:transform-center-x="-1.5295302"
+         inkscape:transform-center-y="-6.6728146" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text148"
+         font-size="14.00"
+         y="-83.651703"
+         x="593.93011">
+        <tspan
+           style="fill:#007fff"
+           id="tspan5176">rdf:type</tspan>
+      </text>
+    </g>
+    <g
+       class="edge"
+       id="edge10-3"
+       transform="translate(-55.6236,226.73323)">
+      <title
+         id="title126-6">&lt;http://id.loc.gov/…/PZ3&gt;-&gt;&quot;PZ3.D55O165PR4567&quot;</title>
+      <path
+         style="fill:none;stroke:#008000"
+         inkscape:connector-curvature="0"
+         id="path128-7"
+         d="m 428.77392,-71.254881 c 0,0 -9.45348,8.001573 -12.77599,12.82844 -3.32251,4.826867 -6.60093,12.189641 -6.60093,12.189641"
+         sodipodi:nodetypes="czc" />
+    </g>
+    <g
+       class="node"
+       id="node5-5"
+       transform="translate(-330.64216,157.28774)">
+      <title
+         id="title73-6">&lt;http://id.loc.gov/…/PZ3&gt;</title>
+      <ellipse
+         style="fill:none;stroke:#000000"
+         id="ellipse75-2"
+         ry="18"
+         rx="78.573822"
+         cy="-105"
+         cx="409.397" />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text77-9"
+         font-size="14.00"
+         y="-101.3"
+         x="409.397">
+        <tspan
+           style="fill:#0000ff"
+           id="tspan4224">&lt;samples9298996&gt;</tspan>
+      </text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="xport"
+     style="display:inline">
+    <text
+       style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+       id="text132-3"
+       font-size="14.00"
+       y="180.92566"
+       x="382.0434">bf:label</text>
+    <text
+       style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+       id="text132"
+       font-size="14.00"
+       y="181.6561"
+       x="157.43011">bf:label</text>
+    <g
+       class="node"
+       id="node10"
+       transform="translate(-277.22555,228.38357)">
+      <title
+         id="title119">&quot;PZ3.D55O165PR4567&quot;</title>
+      <polygon
+         style="fill:none;stroke:#000000"
+         id="polygon121"
+         points="337.397,-36 337.397,0 481.397,0 481.397,-36 481.397,-36 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text123"
+         font-size="14.00"
+         y="-14.3"
+         x="409.397">
+        <tspan
+           style="fill:#bb8800"
+           id="tspan4230">&quot;PZ3.D55O165PR4567&quot;</tspan>
+      </text>
+    </g>
+    <g
+       class="node"
+       id="node8"
+       transform="translate(-336.6339,228.38357)">
+      <title
+         id="title151">&quot;Dickens, Charles, 1812-1870.&quot;</title>
+      <polygon
+         style="fill:none;stroke:#000000"
+         id="polygon153"
+         points="605.397,-36 605.397,0 789.397,0 789.397,-36 789.397,-36 " />
+      <text
+         style="font-size:14px;font-family:Times, serif;text-anchor:middle"
+         id="text155"
+         font-size="14.00"
+         y="-14.3"
+         x="697.39697">
+        <tspan
+           style="fill:#bb8800"
+           id="tspan4232">&quot;Dickens, Charles, 1812-1870.&quot;</tspan>
+      </text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="t"
+     style="display:inline">
+    <polygon
+       style="display:inline;fill:#008000;stroke:#008000"
+       id="polygon130"
+       points="405.897,-46.1755 412.897,-46.1754 412.897,-46.1754 409.397,-36.1754 "
+       transform="matrix(0.90824761,0.41843312,-0.41843312,0.90824761,-262.2621,51.613282)"
+       inkscape:transform-center-x="-4.576546"
+       inkscape:transform-center-y="0.11303732" />
+    <polygon
+       style="display:inline;fill:#008000;stroke:#008000"
+       id="polygon130-5"
+       points="412.897,-46.1754 412.897,-46.1754 409.397,-36.1754 405.897,-46.1755 "
+       transform="matrix(0.90824761,0.41843312,-0.41843312,0.90824761,-37.648825,50.882842)"
+       inkscape:transform-center-x="-4.576546"
+       inkscape:transform-center-y="0.11303732" />
+  </g>
+</svg>
+     </div>
+     <div style="float:left; width: 45%">
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> [
+    <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
+  ] <span class="keyword">.</span>
+
+<span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
+</pre>
+     </div>
+    </div>
+
+    <div class="slide">
+      <h1>ShEx Model: RDF Data is tested</h1>
+      <div style="float:left; width: 54%">
+        <ul>
+          <li><b>RDF Data</b> ("graph") is tested</li>
+          <li><span class="grey">against a <b>ShEx Schema</b></span></li>
+          <li><span class="grey">to produce a <b>Validation Result</b></span></li>
+        </ul>
+      </div>
+      <div style="float:left; width: 45%">
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> [
+    <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
+  ] <span class="keyword">.</span>
+<span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
+</pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>ShEx Model: ...against a ShEx Schema</h1>
+      <div style="float:left; width:54%;">
+<pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+<span class="keyword">AND</span>
+  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+         </div>
+      <div style="float:left; width: 45%">
+        <ul>
+          <li><span class="grey"><b>RDF Data</b> ("graph") is tested</span></li>
+          <li>against a <b>ShEx Schema</b>
+          <ul>
+            <li>which prescribes conditions that RDF graphs must meet:
+            <ul>
+              <li>which subjects, predicates, and objects may appear</li>
+              <li>...in what combinations</li>
+              <li>...with what cardinalities and datatypes</li>
+              <li>...in order to produce:</li>
+            </ul></li>
+          </ul></li>
+          <li><span class="grey">a <b>Validation Result</b></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>ShEx Model: ...to produce a Validation Result</h1>
+      <div style="float:left; width: 45%">
+        <ul>
+          <li><span class="grey"><b>RDF Data</b> ("graph") is tested</span></li>
+          <li><span class="grey">against a <b>ShEx Schema</b></span></li>
+          <li>to produce a <b>Validation Result</b>
+          <ul>
+              <li>...which flags parts of the data that do not "conform"</li>
+          </ul></li>
+        </ul>
+      </div>
+      <div style="float:left; width: 54%">
+<hr/>
+<div class="results">
+<pre>validating samples9298996bad as Work:
+   validating http://...oliverTwist:
+      Error validating http://...oliverTwist
+      as nodeKind literal:
+        iri found when literal expected</pre></div>
+<hr/>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>ShEx Model: ...on the basis of a Shape Map</h1>
+      <div style="float:left; width: 45%">
+        <ul>
+          <li><span class="grey"><b>RDF Data</b> ("graph") is tested</span></li>
+          <li><span class="grey">against a <b>ShEx Schema</b></span></li>
+          <li><span class="grey">to produce a <b>Validation Result</b></span></li>
+          <li>on the basis of a <b>Shape Map</b>
+          <ul>
+              <li>which designates nodes in <b>RDF Data</b> to be tested against <b>ShEx Schema</b></li>
+              <li>and may be generated on the basis of a query.</li>
+          </ul></li>
+        </ul>
+      </div>
+      <div style="float:left; width: 54%">
+        <div class="example wrapper">
+          <pre class="fixed shapemap">
+<span class="fullURL">inst:Alice</span> @ <span class="shape-name">school:Enrollee</span>,
+<span class="fullURL">inst:Bob</span> @ <span class="shape-name">school:Enrollee</span>,
+<span class="fullURL">inst:Claire</span> @ <span class="shape-name">school:Enrollee</span>,
+<span class="fullURL">inst:Don</span> @ <span class="shape-name">school:Enrollee</span></pre>
+        </div>
+        <div class="example wrapper">
+          <pre class="nohighlight shapemap query" id="school-Enrollee-query-shapemap" style="float:left;"><span class="fullURL">{FOCUS, foaf:age, _}</span> @ <span class="shape-name">school:Enrollee</span></pre>
+        </div>      </div>
+    </div>
+
+   <div class="slide">
+      <h1>Problem Statement</h1>
+    <div style="float:left; width:39%;">
+      <p>Useful data needs consistent structure:</p>
+      <ul>
+            <li>What's there?</li>
+            <li>How's it spelled?</li>
+            <li>How's it linked?</li>
+      </ul>
+      <p>Detect and correct errors:</p>
+      <ul>
+        <li>missing properties,</li>
+        <li>missing/bad type arcs,</li>
+        <li>missing referents,</li>
+        <li>inconsistent state (e.g. dates),</li>
+        <li>value set violations.</li>
+      </ul>
+    </div>
+    <div style="float:left; width:60%">
+      <pre class="turtle">@prefix : &lt;http://www.w3.org/2012/12/rdf-val/SOTA-ex#&gt; .
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/'&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+&lt;issue7&gt; a :Issue , :SecurityIssue ;
+    :state :unassigned ;
+    :reportedBy &lt;user6&gt; , <span id="one_reportedBy" class="error">&lt;user2&gt;</span> ; <span class="comment"># cardinality 1</span>
+    :reportedOn "2012-12-31T23:57:00"^^xsd:dateTime ;
+    :assignedTo &lt;user2&gt;, &lt;user1&gt; ;
+    :assignedOn "<span class="error">2012-11-31T23:57:00</span>"^^xsd:dateTime ;
+                       <span class="comment"># reproduced before being reported</span>
+    :related &lt;issue4&gt;, <span class="error">&lt;issue3&gt;</span>, <span class="error">&lt;issue2&gt;</span> .
+                       <span id="missing_issue2" class="comment"># referenced issues not included</span>
+
+&lt;issue4&gt; <span class="comment"># a <span class="error">???</span>         missing type arc</span>
+    :state <span id="unknown_unsinged" class="error">:unsinged</span> ; <span class="comment"># misspelled</span>
+    <span id="missing_reportedBy" class="comment"># :reportedBy <span class="error">???</span> -  missing</span>
+    :reportedOn "2012-12-31T23:57:00"^^xsd:dateTime .
+
+&lt;user2&gt; a foaf:Person ;
+    foaf:givenName "Alice" ;
+    foaf:familyName "Smith" ;
+    foaf:phone &lt;tel:+1.555.222.2222&gt; ;
+    foaf:mbox &lt;mailto:alice@example.com&gt; .
+
+&lt;user6&gt; a foaf:<span id="missing_Agent" class="error">Agent</span> ; <span class="comment"># should be foaf:Person</span>
+    foaf:givenName "Bob" ; <span id="missing_familyName" class="comment"># foaf:familyName "<span class="error">???</span>" - missing</span>
+    foaf:phone &lt;tel:+<span class="error">.</span>555.222.2222&gt; ; <span class="comment"># malformed tel: URL</span>
+    foaf:mbox &lt;mailto:alice@example.com&gt; .</pre>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>A ShEx Schema prescribes the "shape" of RDF Data</h1>
+     <div style="float:left; width:49%;">
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+<span class="keyword">AND</span>
+  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+     </div>
+
+     <div style="float:left; width:50%">
+     A resource in the RDF data matching the "Work" shape:
+     <ul>
+         <li>has zero or one "rdf:type bf:Work" statements</li>
+         <li>optionally has an extra "rdf:type" statement</li>
+         <li>has exactly one "bf:title" statement with a literal value</li>
+         <li>has zero or more "bf:class" statements taking objects that match the "Classification" shape</li>
+         <li>has one or more "bf:creator" statements taking objects that match either the "Person" or the "Organization" shape</li>
+         <li>and zero or more "bf:derivedFrom" statements taking an IRI as object</li>
+     </ul>
+     </div>
+   </div>
+
+   <div class="slide">
+     <h1>A ShEx Schema prescribes the "shape" of RDF Data</h1>
+     <div style="float:left; width:49%;">
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+<span class="keyword">AND</span>
+  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+     </div>
+
+     <div style="float:left; width:50%">
+     A resource matching the "Classification" shape:
+     <ul>
+        <li>is identified with an IRI starting with "http://id.loc.gov..."</li>
+        <li>has zero or one "rdf:type bf:LOC" statements</li>
+        <li>optionally has an additional "rdf:type" statement</li>
+        <li>has exactly one "bf:label" statement with a literal value."</li>
+     </ul>
+     </div>
+   </div>
+
+   <div class="slide">
+     <h1>A ShEx Schema is tested against RDF Data</h1>
+     <div style="float:left; width:49%;">
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+  <span class="type">bf:</span><span class="constant">derivedFrom</span> <span class="keyword">IRI</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+<span class="keyword">AND</span>
+  <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+     </div>
+     <div style="float:left; width:50%">
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Text</span></span> ;
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Work</span></span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> [
+    <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span></span> ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span> ;
+  ] <span class="keyword">.</span>
+
+<span class="function-name">&lt;id.loc.gov/…/PZ3&gt;</span>
+  <span class="rdft"><span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">LCC</span></span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
+</pre>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>Shapes can specify use of properties</h1>
+     <p>
+       A <span class="function-name">&lt;Work&gt;</span> must have exactly one <span class="type">bf:</span><span class="constant">title</span> with value <span class="keyword">LITERAL</span>:
+     </p>
+    <div style="float:left; width:50%">
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
+  <span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> ;
+}
+</pre>
+    <ul class="footnote">
+      <li><span class="function-name">&lt;Work&gt;</span> { … } defines a "shape".</li>
+      <li><span class="type">bf:</span><span class="constant">title</span> <span class="keyword">LITERAL</span> expects an bf:title property with a literal value.</li>
+      <li>The default cardinality is min: 1, max: 1.</li>
+    </ul>
+    </div>
+     <div style="float:left; width:49%;">
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> <span class="keyword">.</span>
+
+<span class="fail"><span class="function-name">&lt;samples9298996bad&gt;</span>                 </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">&lt;http://...oliverTwist&gt;</span> <span class="keyword">.</span></span></pre>
+       <a style="float:right;" class="tryit" href="http://rawgit.com/shexSpec/shex.js/master/doc/shex-simple.html?schema=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3CWork%3E%20%7B%0A%20%20bf%3Atitle%20LITERAL%20%3B%0A%7D%0A&amp;data=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3Csamples9298996%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20.%0A%0A%3Csamples9298996bad%3E%0A%20%20bf%3Atitle%20%3Chttp%3A%2F%2F...oliverTwist%3E%20.&amp;shape-map=%3Csamples9298996%3E%40%3CWork%3E%2C%0A%3Csamples9298996bad%3E%40%3CWork%3E&amp;interface=human&amp;regexpEngine=threaded-val-nerr">try it</a><span style="clear:both;"/>
+       <hr style="clear:both"/>
+       <div class="results">
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+   validating http://...oliverTwist:
+      Error validating http://...oliverTwist
+      as nodeKind literal:
+        iri found when literal expected</pre></div></div>
+<hr/>
+<ul>
+  <li>one passed, one failed.</li>
+</ul>
+     </div>
+   </div>
+
+   <div class="slide">
+     <h1>Shapes can specify types</h1>
+     <p>Permit some data to have a type arc identifying it as a <span class="function-name">&lt;Work&gt;</span>:</p>
+     <div style="float:left; width:50%;">
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;
+  <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
+}</pre>
+    <ul class="footnote">
+      <li><code>[]</code>s denote a value set.</li>
+      <li>This value set as only one permissible value: <span class="type">bf:</span><span class="constant">Work</span>.</li>
+      <li>The '<code>?</code>' code means min: 0, max: 1 (like regular expressions).</li>
+    </ul>
+     </div>
+     <div style="float:left; width:49%">
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span> <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">Work</span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> <span class="keyword">.</span>
+
+<span class="function-name">&lt;samples9298996b&gt;</span> <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">Work</span> ;
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> <span class="keyword">.</span>
+
+<span class="fail"><span class="function-name">&lt;samples9298996bad&gt;</span> <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">Krow</span> ;</span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist"</span> <span class="keyword">.</span>    </span></pre>
+       <a style="float:right;" class="tryit" href="http://rawgit.com/shexSpec/shex.js/master/doc/shex-simple.html?schema=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3CWork%3E%20%7B%0A%20%20a%20%5Bbf%3AWork%5D%20%3F%20%3B%0A%20%20bf%3Atitle%20LITERAL%20%3B%0A%7D%0A&amp;data=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3Csamples9298996%3E%20a%20bf%3AWork%20%3B%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20.%0A%0A%3Csamples9298996b%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20.%0A%0A%3Csamples9298996bad%3E%20a%20bf%3AKrow%20%3B%0A%20%20bf%3Atitle%20%22Oliver%20Twist%22%20.&amp;shape-map=%3Csamples9298996%3E%40%3CWork%3E%2C%0A%3Csamples9298996b%3E%40%3CWork%3E%2C%0A%3Csamples9298996bad%3E%40%3CWork%3E&amp;interface=human&amp;regexpEngine=threaded-val-nerr">try it</a><span style="clear:both;"/>
+       <hr style="clear:both"/>
+       <div class="results">
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996b&gt;@&lt;Work&gt;</span></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+    validating http://bibframe.org/vocab/Krow:
+      Error validating http://bibframe.org/vocab/Krow
+      as values [&lt;http://bibframe.org/vocab/Work&gt;]:
+        value http://bibframe.org/vocab/Krow not found in set
+        [&lt;http://bibframe.org/vocab/Work&gt;]</pre></div></div>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>Shapes can reference other shapes</h1>
+     <p>
+       Add a reference to another shape:
+     </p>
+     <div style="float:left; width:50%;">
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
+  <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
+  <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+}</pre>
+      <ul class="footnote">
+        <li>@<span class="function-name">&lt;Classification&gt;</span> references a different shape.</li>
+        <li>The '<code>*</code>' code means min: 0, max: * (like regular expressions).</li>
+      </ul>
+     </div>
+     <div style="float:left; width:49%">
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;<a href="http://id.loc.gov/…/PZ3">http://id.loc.gov/…/PZ3</a>&gt;</span> <span class="keyword">.</span>
+<span class="function-name">&lt;<a href="http://id.loc.gov/…/PZ3">http://id.loc.gov/…/PZ3</a>&gt;</span> <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">LCC</span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
+
+<span class="function-name">&lt;samples9298996b&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> [ <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> ]<span class="keyword">.</span>
+
+<span class="fail"><span class="function-name">&lt;samples9298996bad&gt;</span>                                    </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;                           </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">class</span> [ <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">LCD</span> ; <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> ]<span class="keyword">.</span></span></pre>
+       <a style="float:right;" class="tryit" href="http://rawgit.com/shexSpec/shex.js/master/doc/shex-simple.html?schema=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3CWork%3E%20%7B%0A%20%20a%20%5Bbf%3AWork%5D%20%3F%20%3B%0A%20%20bf%3Atitle%20LITERAL%20%3B%0A%20%20bf%3Aclass%20%40%3CClassification%3E%20*%20%3B%0A%7D%0A%0A%3CClassification%3E%20%7B%0A%20%20a%20%5Bbf%3ALCC%5D%20%3F%20%3B%0A%20%20bf%3Alabel%20LITERAL%20%3B%0A%7D&amp;data=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3Csamples9298996%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fclassification%2FPZ3%3E%20.%0A%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fclassification%2FPZ3%3E%20a%20bf%3ALCC%20%3B%0A%20%20bf%3Alabel%20%22PZ3.D55O165PR4567%22%20.%0A%0A%3Csamples9298996b%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%5B%20bf%3Alabel%20%22PZ3.D55O165PR4567%22%20%5D.%0A%0A%3Csamples9298996bad%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%5B%20a%20bf%3ALCD%20%3B%20bf%3Alabel%20%22PZ3.D55O165PR4567%22%20%5D.%0A&amp;shape-map=%3Csamples9298996%3E%40%3CWork%3E%2C%0A%3Csamples9298996b%3E%40%3CWork%3E%2C%0A%3Csamples9298996bad%3E%40%3CWork%3E&amp;interface=human&amp;regexpEngine=threaded-val-nerr">try it</a><span style="clear:both;"/>
+       <hr style="clear:both"/>
+       <div class="results">
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996b&gt;@&lt;Work&gt;</span></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+    validating _:b1:
+      validating http://bibframe.org/vocab/LCD:,
+      Error validating http://bibframe.org/vocab/LCD
+      as values: [&lt;http://bibframe.org/vocab/LCC&gt;]}:
+       value &lt;http://bibframe.org/vocab/LCD&gt; not found
+       in set [&lt;http://bibframe.org/vocab/LCC&gt;]</pre></div></div>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>Shapes can specify value sets</h1>
+     <p>
+       Or a reference to an authority:
+     </p>
+     <div style="float:left; width:50%;">
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
+  <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
+  <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]</pre>
+    <ul class="footnote">
+      <li class="grey"><code>[]</code>s denote a value set.</li>
+      <li>This value set includes every IRI starting with <span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>.</li>
+    </ul>
+     </div>
+     <div style="float:left; width:49%">
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;<a href="http://id.loc.gov/…/PZ3">http://id.loc.gov/…/PZ3</a>&gt;</span> <span class="keyword">.</span>
+
+<span class="fail"><span class="function-name">&lt;samples9298996bad&gt;</span>                             </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;                    </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;<a href="http://id.loc.gov/authorities/PZ3">http://id.loc.gov/authorities/PZ3</a>&gt;</span> <span class="keyword">.</span></span>
+<span class="fail">                                                </span>
+<span class="fail"><span class="function-name">&lt;samples9298996badb&gt;</span>                            </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;                    </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">class</span> [ <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> ]<span class="keyword">.</span>    </span></pre>
+       <a style="float:right;" class="tryit" href="http://rawgit.com/shexSpec/shex.js/master/doc/shex-simple.html?schema=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3CWork%3E%20%7B%0A%20%20a%20%5Bbf%3AWork%5D%20%3F%20%3B%0A%20%20bf%3Atitle%20LITERAL%20%3B%0A%20%20bf%3Aclass%20%40%3CClassification%3E%20*%20%3B%0A%7D%0A%0A%3CClassification%3E%0A%20%20%5B%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fclassification%2F%3E~%5D%0A&amp;data=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3Csamples9298996%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fclassification%2FPZ3%3E%20.%0A%0A%3Csamples9298996bad%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2FPZ3%3E%20.%0A%0A%3Csamples9298996badb%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%5B%20bf%3Alabel%20%22PZ3.D55O165PR4567%22%20%5D.%0A%0A&amp;shape-map=%3Csamples9298996%3E%40%3CWork%3E%2C%0A%3Csamples9298996bad%3E%40%3CWork%3E%2C%0A%3Csamples9298996badb%3E%40%3CWork%3E&amp;interface=human&amp;regexpEngine=threaded-val-nerr">try it</a><span style="clear:both;"/>
+       <hr style="clear:both"/>
+       <div class="results">
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+    validating &lt;http://id.loc.gov/authorities/PZ3&gt;:
+      NodeConstraintError: expected to match
+      [&lt;http://id.loc.gov/authorities/classification/&gt;~]</pre></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996badb&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+    validating _:b0:
+      NodeConstraintError: expected to match
+      [&lt;http://id.loc.gov/authorities/classification/&gt;~]</pre></div>
+       </div>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>Shapes can combine constraints</h1>
+     <p>
+       Or a reference to a structure identifed by and authority:
+     </p>
+     <div style="float:left; width:50%;">
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
+  <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
+  <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
+  <span class="type">bf:</span><span class="constant">class</span> @<span class="function-name">&lt;Classification&gt;</span> * ;
+}
+
+<span class="function-name">&lt;Classification&gt;</span>
+  [<span class="function-name">&lt;http://id.loc.gov/…/&gt;</span>~]
+  <span class="keyword">AND</span> {
+    <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">LCC</span>] ? ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  }</pre>
+    <ul class="footnote">
+      <li>Constraints can be combined with <span class="keyword">AND</span>, <span class="keyword">OR</span>, <span class="keyword">NOT</span> and <code>()</code>s.</li>
+    </ul>
+     </div>
+     <div style="float:left; width:49%">
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;<a href="http://id.loc.gov/…/PZ3">http://id.loc.gov/…/PZ3</a>&gt;</span> <span class="keyword">.</span>
+<span class="function-name">&lt;<a href="http://id.loc.gov/…/PZ3">http://id.loc.gov/…/PZ3</a>&gt;</span> <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">LCC</span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>
+
+<span class="fail"><span class="function-name">&lt;samples9298996bad&gt;</span>                             </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;                    </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;<a href="http://id.loc.gov/authorities/PZ3">http://id.loc.gov/authorities/PZ3</a>&gt;</span> <span class="keyword">.</span></span>
+<span class="fail"><span class="function-name">&lt;<a href="http://id.loc.gov/authorities/PZ3">http://id.loc.gov/authorities/PZ3</a>&gt;</span> <span class="keyword">a</span> <span class="type">bf:</span><span class="constant">LCC</span> ;  </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"PZ3.D55O165PR4567"</span> <span class="keyword">.</span>                </span>
+<span class="fail">                                                </span>
+<span class="fail"><span class="function-name">&lt;samples9298996badb&gt;</span>                            </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;                    </span>
+<span class="fail">  <span class="type">bf:</span><span class="constant">class</span> <span class="function-name">&lt;<a href="http://id.loc.gov/…/PZ3999">http://id.loc.gov/…/PZ3999</a>&gt;</span> <span class="keyword">.</span>       </span></pre>
+       <a style="float:right;" class="tryit" href="http://rawgit.com/shexSpec/shex.js/master/doc/shex-simple.html?schema=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3CWork%3E%20%7B%0A%20%20a%20%5Bbf%3AWork%5D%20%3F%20%3B%0A%20%20bf%3Atitle%20LITERAL%20%3B%0A%20%20bf%3Aclass%20%40%3CClassification%3E%20*%20%3B%0A%7D%0A%0A%3CClassification%3E%0A%20%20%5B%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fclassification%2F%3E~%5D%0A%20%20AND%20%7B%0A%20%20%20%20a%20%5Bbf%3ALCC%5D%20%3F%20%3B%0A%20%20%20%20bf%3Alabel%20LITERAL%20%3B%0A%20%20%7D&amp;data=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0A%0A%3Csamples9298996%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fclassification%2FPZ3%3E%20.%0A%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fclassification%2FPZ3%3E%20a%20bf%3ALCC%20%3B%0A%20%20bf%3Alabel%20%22PZ3.D55O165PR4567%22%20.%0A%0A%3Csamples9298996bad%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2FPZ3%3E%20.%0A%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2FPZ3%3E%20a%20bf%3ALCC%20%3B%0A%20%20bf%3Alabel%20%22PZ3.D55O165PR4567%22%20.%0A%0A%3Csamples9298996badb%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Aclass%20%3Chttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fclassification%2FPZ3999%3E%20.%0A&amp;shape-map=%3Csamples9298996%3E%40%3CWork%3E%2C%0A%3Csamples9298996bad%3E%40%3CWork%3E%2C%0A%3Csamples9298996badb%3E%40%3CWork%3E&amp;interface=human&amp;regexpEngine=threaded-val-nerr">try it</a><span style="clear:both;"/>
+       <hr style="clear:both"/>
+       <div class="results">
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996bad&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+    validating &gt;http://id.loc.gov/authorities/PZ3&gt;:
+      validating &lt;http://id.loc.gov/authorities/PZ3&gt; as Classification:
+      NodeConstraintError: expected to match [&lt;http://id.loc.gov/…/&gt;~]</pre></div>
+         <div class="human fails"><span>✗</span><span>&lt;samples9298996badb&gt;@!&lt;Work&gt;</span><pre>validating samples9298996bad as Work:
+    validating &lt;http://id.loc.gov/…/PZ3999&gt;:
+      validating &lt;http://id.loc.gov/…/PZ3999&gt; as Classification:
+      Missing property: &lt;http://bibframe.org/vocab/label&gt;</pre></div>
+       </div>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>Shapes can specify choices</h1>
+     <p>
+       You may accept multiple forms of creator.
+     </p>
+     <div style="float:left; width:50%;">
+      <pre class="schema shexc"><span class="function-name">&lt;Work&gt;</span> {
+  <span class="grey"><span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Work</span>] ? ;</span>
+  <span class="grey"><span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;</span>
+  <span class="grey"><span class="type">bf:</span><span class="constant">class</span> <span class="keyword">.</span> * ;</span>
+  <span class="type">bf:</span><span class="constant">creator</span> @<span class="function-name">&lt;Person&gt;</span> <span class="keyword">OR</span> @<span class="function-name">&lt;Organization&gt;</span> + ;
+}
+
+<span class="function-name">&lt;Person&gt;</span> {
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Person</span>] ? ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+}
+
+<span class="function-name">&lt;Organization&gt;</span> { <span class="keyword">EXTRA</span> <span class="type">rdf:</span><span class="constant">type</span>
+  <span class="type">rdf:</span><span class="constant">type</span> [<span class="type">bf:</span><span class="constant">Organization</span>] ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="keyword">LITERAL</span> ;
+  <span class="type">org:</span><span class="constant">member</span> <span class="function-name">@&lt;Person&gt;</span> <span class="keyword">OR</span> <span class="function-name">@&lt;Organization&gt;</span> *
+}</pre>
+     </div>
+     <div style="float:left; width:49%">
+       <pre class="instance turtle"><span class="function-name">&lt;samples9298996&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Oliver Twist."</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> [ <span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Person</span> ;
+    <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Dickens, Charles, 1812-1870."</span>
+  ] <span class="keyword">.</span>
+
+<span class="function-name">&lt;wp-55-45-1&gt;</span>
+  <span class="type">bf:</span><span class="constant">title</span> <span class="string">"Nixon blasts 'false charges'"</span> ;
+  <span class="type">bf:</span><span class="constant">creator</span> <span class="function-name">&lt;WP&gt;</span> <span class="keyword">.</span>
+
+<span class="function-name">&lt;WP&gt;</span> <span class="type">rdf:</span><span class="constant">type</span> <span class="type">bf:</span><span class="constant">Organization</span> , <span class="type">bf:</span><span class="constant">Newpaper</span> ;
+  <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Washington Post"</span> ;
+  <span class="type">org:</span><span class="constant">member</span> <span class="function-name">&lt;BobWoodward&gt;</span>, <span class="function-name">&lt;CarlBernstein&gt;</span> <span class="keyword">.</span>
+
+<span class="function-name">&lt;BobWoodward&gt;</span> <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Bob Woodward"</span> <span class="keyword">.</span>
+<span class="function-name">&lt;CarlBernstein&gt;</span> <span class="type">bf:</span><span class="constant">label</span> <span class="string">"Carl Bernstein"</span> <span class="keyword">.</span></pre>
+       <a style="float:right;" class="tryit" href="http://rawgit.com/shexSpec/shex.js/master/doc/shex-simple.html?schema=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0APREFIX%20org%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2Fns%2Forg%23%3E%0A%0A%3CWork%3E%20%7B%0A%20%20a%20%5Bbf%3AWork%5D%20%3F%20%3B%0A%20%20bf%3Atitle%20LITERAL%20%3B%0A%20%20bf%3Aclass%20.%20*%20%3B%0A%20%20bf%3Acreator%20%40%3CPerson%3E%20OR%20%40%3COrganization%3E%20%2B%20%3B%0A%7D%0A%0A%3CPerson%3E%20%7B%0A%20%20a%20%5Bbf%3APerson%5D%20%3F%20%3B%0A%20%20bf%3Alabel%20LITERAL%20%3B%0A%7D%0A%0A%3COrganization%3E%20EXTRA%20a%20%7B%0A%20%20a%20%5Bbf%3AOrganization%5D%20%3B%0A%20%20bf%3Alabel%20LITERAL%20%3B%0A%20%20org%3Amember%20%40%3CPerson%3E%20OR%20%40%3COrganization%3E%20*%0A%7D%0A&amp;data=PREFIX%20bf%3A%20%3Chttp%3A%2F%2Fbibframe.org%2Fvocab%2F%3E%0APREFIX%20org%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2Fns%2Forg%23%3E%0A%0A%3Csamples9298996%3E%0A%20%20bf%3Atitle%20%22Oliver%20Twist.%22%20%3B%0A%20%20bf%3Acreator%20%5B%20a%20bf%3APerson%20%3B%0A%20%20%20%20bf%3Alabel%20%22Dickens%2C%20Charles%2C%201812-1870.%22%0A%20%20%5D%20.%0A%0A%3Cwp-55-45-1%3E%0A%20%20bf%3Atitle%20%22Nixon%20blasts%20%27false%20charges%27%22%20%3B%0A%20%20bf%3Acreator%20%3CWP%3E%20.%0A%0A%3CWP%3E%20a%20bf%3AOrganization%20%2C%20bf%3ANewpaper%20%3B%0A%20%20bf%3Alabel%20%22Washington%20Post%22%20%3B%0A%20%20org%3Amember%20%3CBobWoodward%3E%2C%20%3CCarlBernstein%3E%20.%0A%0A%3CBobWoodward%3E%20bf%3Alabel%20%22Bob%20Woodward%22%20.%0A%3CCarlBernstein%3E%20bf%3Alabel%20%22Carl%20Bernstein%22%20.&amp;shape-map=%3Csamples9298996%3E%40%3CWork%3E%2C%0A%3Cwp-55-45-1%3E%40%3CWork%3E&amp;interface=human&amp;regexpEngine=threaded-val-nerr">try it</a><span style="clear:both;"/>
+       <hr style="clear:both"/>
+       <div class="results">
+         <div class="human passes"><span>✓</span><span>&lt;samples9298996&gt;@&lt;Work&gt;</span></div>
+         <div class="human passes"><span>✓</span><span>&lt;wp-55-45-1&gt;@&lt;Work&gt;</span></div>
+       </div>
+    </div>
+  </div>
+
+   <div class="slide">
+     <h1>Diseases in Wikidata</h1>
+     <pre class="schema shexc">
+<span class="comment"># Shape Expression for Diseases in Wikidata
+</span><span class="keyword">PREFIX</span> wd: <span class="function-name">&lt;<a href="http://www.wikidata.org/entity/">http://www.wikidata.org/entity/</a>&gt;</span>
+<span class="keyword">PREFIX</span> p: <span class="function-name">&lt;<a href="http://www.wikidata.org/prop/">http://www.wikidata.org/prop/</a>&gt;</span>
+<span class="keyword">PREFIX</span> ps: <span class="function-name">&lt;<a href="http://www.wikidata.org/prop/statement/">http://www.wikidata.org/prop/statement/</a>&gt;</span>
+<span class="keyword">PREFIX</span> pq: <span class="function-name">&lt;<a href="http://www.wikidata.org/prop/qualifier/">http://www.wikidata.org/prop/qualifier/</a>&gt;</span>
+<span class="keyword">PREFIX</span> pr:  <span class="function-name">&lt;<a href="http://www.wikidata.org/prop/reference/">http://www.wikidata.org/prop/reference/</a>&gt;</span>
+<span class="keyword">PREFIX</span> prov: <span class="function-name">&lt;<a href="http://www.w3.org/ns/prov#">http://www.w3.org/ns/prov#</a>&gt;</span><span class="comment">
+</span><span class="keyword">PREFIX</span> xsd: <span class="function-name">&lt;<a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a>&gt;</span><span class="comment">
+</span><span class="keyword">PREFIX</span> do: <span class="function-name">&lt;<a href="http://purl.obolibrary.org/obo/DOID_">http://purl.obolibrary.org/obo/DOID_</a>&gt;</span>
+
+<span class="keyword">start</span> = <span class="function-name">@&lt;wikidata-disease&gt;</span>
+
+<span class="function-name">&lt;wikidata-disease&gt;</span> {
+  <span class="function-name">p:P31</span> { <span class="comment"># instance of disease
+</span>    <span class="type">ps:</span><span class="constant">P31</span> [ <span class="type">wd:</span><span class="constant">Q12136</span> ]; <span class="comment"># instance of disease
+</span>    <span class="constant">$&lt;has-do-reference&gt;</span> <span class="type">prov:</span><span class="constant">wasDerivedFrom</span> <span class="function-name">@&lt;do-reference&gt;</span>;
+  } ;
+  <span class="function-name">p:P279</span> { <span class="comment"># subclass of
+</span>    <span class="type">ps:</span><span class="constant">P279</span> <span class="function-name">@&lt;wikidata-disease&gt;</span>;
+    <span class="function-name">&amp;&lt;has-do-reference&gt;</span>
+  } <span class="keyword">*</span> ;
+  <span class="type">p:</span><span class="constant">P2888</span> <span class="keyword">EXTRA</span> <span class="function-name">prov:wasDerivedFrom</span> { <span class="comment"># exact match
+</span>    <span class="type">ps:</span><span class="constant">P2888</span> [ do:~ ];
+    <span class="type">prov:</span><span class="constant">wasDerivedFrom</span> <span class="function-name">@&lt;do-reference&gt;</span> <span class="keyword">?</span>
+  } <span class="keyword">+</span> ;
+}
+
+<span class="function-name">&lt;do-reference&gt;</span> {
+  <span class="comment"># stated in
+</span>  <span class="type">pr:</span><span class="constant">P248</span> <span class="function-name">@&lt;version-disease-ontology&gt;</span> ;
+  <span class="comment"># retrieved
+</span>  <span class="type">pr:</span><span class="constant">P813</span> <span class="type">xsd:</span><span class="constant">dateTime</span> ;
+  <span class="comment"># Disease ontology ID
+</span>  <span class="type">pr:</span><span class="constant">P699</span> <span class="function-name">@&lt;disease-ontology-id&gt;</span> ;
+}
+
+<span class="function-name">&lt;disease-ontology-id&gt;</span> <span class="keyword">LITERAL</span> /^DOID:[0-9]<span class="keyword">+</span>$/
+
+<span class="function-name">&lt;version-disease-ontology&gt;</span> {
+  <span class="comment"># edition </span><span class="keyword">or</span><span class="comment"> translation of Disease Ontology
+</span>  <span class="function-name">p:P629</span> { <span class="type">ps:</span><span class="constant">P629</span> [ <span class="type">wd:</span><span class="constant">Q5282129</span> ] } ;
+}
+     </pre>
+   </div>
+
+   <div class="slide">
+     <h1>Wikidata items on Cancer should have an NCI Thesaurus ID</h1>
+     <pre class="schema shexc" style="float: left; width: 40%;">
+<span class="keyword">PREFIX</span> xsd: <span class="function-name">&lt;<a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a>&gt;</span><span class="comment">
+</span><span class="keyword">PREFIX</span> prov: <span class="function-name">&lt;<a href="http://www.w3.org/ns/prov#">http://www.w3.org/ns/prov#</a>&gt;</span><span class="comment">
+</span><span class="keyword">PREFIX</span> p: <span class="function-name">&lt;<a href="http://www.wikidata.org/prop/">http://www.wikidata.org/prop/</a>&gt;</span>
+<span class="keyword">PREFIX</span> pr: <span class="function-name">&lt;<a href="http://www.wikidata.org/prop/reference/">http://www.wikidata.org/prop/reference/</a>&gt;</span>
+<span class="keyword">PREFIX</span> ps: <span class="function-name">&lt;<a href="http://www.wikidata.org/prop/statement/">http://www.wikidata.org/prop/statement/</a>&gt;</span>
+
+<span class="keyword">start</span> = <span class="variable-name">@&lt;wikidata_item&gt;</span>
+
+<span class="variable-name">&lt;wikidata_item&gt;</span> {
+  <span class="variable-name">p:P1748</span> {
+    <span class="type">ps:</span><span class="constant">P1748</span> <span class="keyword">LITERAL</span> ;
+    <span class="type">prov:</span><span class="constant">wasDerivedFrom</span> <span class="variable-name">@&lt;reference&gt;</span>
+  }<span class="keyword">+</span>
+}
+
+<span class="variable-name">&lt;reference&gt;</span> {
+  <span class="type">pr:</span><span class="constant">P248</span>  <span class="keyword">IRI</span> ;
+  <span class="type">pr:</span><span class="constant">P813</span>  <span class="type">xsd:</span><span class="constant">dateTime</span> ;
+  <span class="type">pr:</span><span class="constant">P699</span>  <span class="keyword">LITERAL</span>
+}
+     </pre>
+     <pre class="sparql" style="float: right; width: 50%;">
+Endpoint: https://query.wikidata.org/bigdata/namespace/wdq/sparql
+
+Query: <span class="keyword">SELECT</span> <span class="variable-name">?item</span> <span class="variable-name">?itemLabel</span>
+<span class="keyword">WHERE</span>
+{ <span class="variable-name">?item</span> wdt:P279* wd:Q12078 .
+  <span class="keyword">SERVICE</span> wikibase:label { bd:serviceParam wikibase:language <span class="string">"en"</span> }
+} <span class="keyword">LIMIT</span> 10
+     </pre>
+
+     <center style="clear: both"><b><a href="http://rawgit.com/shexSpec/shex.js/wikidata/doc/shex-simple.html?schema=PREFIX%20xsd%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E%0APREFIX%20prov%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2Fns%2Fprov%23%3E%0APREFIX%20p%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2F%3E%0APREFIX%20pr%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Freference%2F%3E%0APREFIX%20ps%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fstatement%2F%3E%0A%0Astart%20%3D%20%40%3Cwikidata_item%3E%0A%0A%3Cwikidata_item%3E%20%7B%0A%20%20p%3AP1748%20%7B%0A%20%20%20%20ps%3AP1748%20LITERAL%20%3B%0A%20%20%20%20prov%3AwasDerivedFrom%20%40%3Creference%3E%0A%20%20%7D%2B%0A%7D%0A%0A%3Creference%3E%20%7B%0A%20%20pr%3AP248%20%20IRI%20%3B%0A%20%20pr%3AP813%20%20xsd%3AdateTime%20%3B%0A%20%20pr%3AP699%20%20LITERAL%0A%7D%0Aamp;data=%0AEndpoint%3A%20https%3A%2F%2Fquery.wikidata.org%2Fsparql%0Aamp;shape-map=SPARQL%20%60SELECT%20%3Fitem%20%20%3FitemLabelWHERE%7B%20%3Fitem%20wdt%3AP279*%20wd%3AQ12078%20.%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20%7D%7D%20LIMIT%2010%60%40STARTamp;interface=humanamp;regexpEngine=threaded-val-nerr">Try it!</a></b><br/>Click “Wikidata item on Cancer should have a NCI Thesaurus ID” on the left,<br/>then “Get all Wikidata items on Cancers (SPARQL)” on the right.</center>
+   </div>
+
+   <div class="slide">
+     <h1>FHIR MedicationRequest</h1>
+     <pre class="schema shexc"><span class="variable-name">&lt;MedicationRequest&gt;</span> {
+    <span class="type">:</span><span class="constant">status</span> <span class="variable-name">@&lt;code&gt;</span> <span class="keyword">AND</span>
+        {<span class="type">fhir:</span><span class="constant">value</span> [<span class="string">"active"</span> <span class="string">"on-hold"</span> <span class="string">"cancelled"</span> <span class="string">"completed"</span>]}<span class="keyword">?</span>;
+    <span class="type">:</span><span class="constant">intent</span> <span class="variable-name">@&lt;code&gt;</span> <span class="keyword">AND</span>
+        {<span class="type">fhir:</span><span class="constant">value</span> [<span class="string">"proposal"</span> <span class="string">"plan"</span> <span class="string">"order"</span> <span class="string">"instance-order"</span>]};
+    ( <span class="type">:</span><span class="constant">medicationCodeableConcept</span> <span class="variable-name">@&lt;CodeableConcept&gt;</span>  |
+      <span class="type">:</span><span class="constant">medicationReference</span> <span class="variable-name">@&lt;MedicationReference&gt;</span> );
+    <span class="type">:</span><span class="constant">subject</span> ( <span class="variable-name">@&lt;PatientReference&gt;</span> <span class="keyword">OR</span> <span class="variable-name">@&lt;GroupReference&gt;</span> );
+    <span class="type">:</span><span class="constant">requester</span> <span class="variable-name">@&lt;MedicationRequest.requester&gt;</span>;
+    <span class="type">:</span><span class="constant">reasonCode</span> <span class="variable-name">@&lt;CodeableConcept&gt;</span><span class="keyword">*</span>;
+    <span class="type">:</span><span class="constant">reasonReference</span>
+    ( { <span class="type">fhir:</span><span class="constant">link</span> <span class="variable-name">@&lt;Condition&gt;</span> } <span class="keyword">OR</span>
+      { <span class="type">fhir:</span><span class="constant">link</span> <span class="variable-name">@&lt;Observation&gt;</span> } )<span class="keyword">*</span>;
+    <span class="variable-name">:dispenseRequest</span> {
+        <span class="type">:</span><span class="constant">dispenseRequest.numberOfRepeatsAllowed</span> <span class="variable-name">@&lt;positiveInt&gt;</span><span class="keyword">?</span>;
+        <span class="type">:</span><span class="constant">dispenseRequest.quantity</span> <span class="variable-name">@&lt;SimpleQuantity&gt;</span><span class="keyword">?</span>;
+        <span class="type">:</span><span class="constant">dispenseRequest.performer</span> <span class="variable-name">@&lt;Reference&gt;</span><span class="keyword">?</span> }
+    <span class="type">:</span><span class="constant">substitution</span> <span class="variable-name">@&lt;MedicationRequest.substitution&gt;</span><span class="keyword">?</span>;
+}
+
+<span class="comment"># Any restrictions on medication substitution
+</span><span class="function-name">&lt;MedicationRequest.substitution&gt;</span> <span class="keyword">CLOSED</span> {
+    <span class="type">fhir:</span><span class="constant">Element.id</span> <span class="variable-name">@&lt;string&gt;</span><span class="keyword">?</span>;             <span class="comment"># </span><span class="type">xml:</span><span class="constant">id</span><span class="comment"> (</span><span class="keyword">or</span><span class="comment"> equivalent in JSON)
+</span>    <span class="type">fhir:</span><span class="constant">Element.extension</span> <span class="variable-name">@&lt;Extension&gt;</span><span class="keyword">*</span>;   <span class="comment"># Additional Content defined by 
+</span>                                            <span class="comment"># implementations 
+</span>    <span class="type">fhir:</span><span class="constant">BackboneElement.modifierExtension</span> <span class="variable-name">@&lt;Extension&gt;</span><span class="keyword">*</span>;  <span class="comment"># Extensions that cannot be ignored
+</span>    <span class="type">:</span><span class="constant">substitution.allowed</span> <span class="variable-name">@&lt;boolean&gt;</span>;  <span class="comment"># Whether substitution is allowed </span><span class="keyword">or</span><span class="comment"> 
+</span>                                            <span class="comment"># not 
+</span>    <span class="type">:</span><span class="constant">substitution.reason</span> <span class="variable-name">@&lt;CodeableConcept&gt;</span><span class="keyword">?</span>;  <span class="comment"># Why should (not) substitution be 
+</span>                                            <span class="comment"># made 
+</span>    <span class="type">fhir:</span><span class="constant">index</span> <span class="type">xsd:</span><span class="constant">integer</span><span class="keyword">?</span>                 <span class="comment"># Relative position in </span><span class="keyword">a</span><span class="comment"> list
+</span>}
+
+<span class="comment"># Who/What requested the Request
+</span><span class="function-name">&lt;MedicationRequest.requester&gt;</span> <span class="keyword">CLOSED</span> {
+    <span class="type">fhir:</span><span class="constant">Element.id</span> <span class="variable-name">@&lt;string&gt;</span><span class="keyword">?</span>;             <span class="comment"># </span><span class="type">xml:</span><span class="constant">id</span><span class="comment"> (</span><span class="keyword">or</span><span class="comment"> equivalent in JSON)
+</span>    <span class="type">fhir:</span><span class="constant">Element.extension</span> <span class="variable-name">@&lt;Extension&gt;</span><span class="keyword">*</span>;   <span class="comment"># Additional Content defined by 
+</span>                                            <span class="comment"># implementations 
+</span>    <span class="type">fhir:</span><span class="constant">BackboneElement.modifierExtension</span> <span class="variable-name">@&lt;Extension&gt;</span><span class="keyword">*</span>;  <span class="comment"># Extensions that cannot be ignored
+</span>    <span class="type">:</span><span class="constant">requester.agent</span>  <span class="comment"># Who ordered the initial 
+</span>                                            <span class="comment"># medication(s) 
+</span>    (   <span class="variable-name">@&lt;PractitionerReference&gt;</span> <span class="keyword">OR</span>
+        <span class="variable-name">@&lt;OrganizationReference&gt;</span> <span class="keyword">OR</span>
+        <span class="variable-name">@&lt;PatientReference&gt;</span> <span class="keyword">OR</span>
+        <span class="variable-name">@&lt;RelatedPersonReference&gt;</span> <span class="keyword">OR</span>
+        <span class="variable-name">@&lt;DeviceReference&gt;</span>
+    );
+    <span class="type">:</span><span class="constant">requester.onBehalfOf</span> <span class="variable-name">@&lt;Reference&gt;</span><span class="keyword">?</span>;  <span class="comment"># Organization agent is acting for
+</span>    <span class="type">fhir:</span><span class="constant">index</span> <span class="type">xsd:</span><span class="constant">integer</span><span class="keyword">?</span>                 <span class="comment"># Relative position in </span><span class="keyword">a</span><span class="comment"> list
+</span>}</pre>
+   </div>
+
+   <div class="slide">
+      <h1>Three interchangeable concrete syntaxes</h1>
+      <ul>
+        <li><b>ShExC</b> (used in this talk)
+            <ul>
+                <li>a compact syntax meant for human eyes and fingers</li>
+            </ul></li>
+        <li><b>ShExJ</b>
+            <ul>
+                <li>a JSON-LD Javascript syntax meant for machine processing</li>
+            </ul></li>
+        <li><b>ShExR</b>
+            <ul>
+                <li>the RDF interpretation of ShExJ expressed in RDF Turtle syntax</li>
+            </ul></li>
+      </ul>
+    </div>
+
+   <div class="slide">
+      <h1>Open-source implementations</h1>
+      <ul>
+        <li>Javascript - <b>ShEx.js</b> (mature)<br/>
+        Source: <a href="https://github.com/shexSpec/shex.js">https://github.com/shexSpec/shex.js</a></li>
+        <li>Scala - <b>Shaclex</b> (mature)<br/>
+        Source: <a href="http://labra.github.io/shaclex/">http://labra.github.io/shaclex/</a></li>
+        <li>Ruby - <b>RDF.rb</b> (mature)<br/>
+        Source: <a href="https://ruby-rdf.github.io/shex/">https://ruby-rdf.github.io/shex/</a></li>
+        <li>Java - <b>Шекс</b> (incomplete)<br/>
+        Source: <a href="https://gforge.inria.fr/projects/shex-impl/">https://gforge.inria.fr/projects/shex-impl/</a></li>
+        <li>Python - <b>shexpy</b> (ShEx1)<br/>
+        Source: <a href="https://github.com/hsolbrig/shexypy">https://github.com/hsolbrig/shexypy</a></li>
+        <li>Also:
+        <ul>
+            <li>Extensive test suite (2000+)</li>
+            <li>Sublime Text plugin</li>
+            <li>Jupyter Notebook kernel (in the pipeline)</li>
+            <li>Python (ShEx2) under development</li>
+        </ul></li>
+        <li>Related work: <a href="https://www.w3.org/2001/sw/wiki/ShEx">https://www.w3.org/2001/sw/wiki/ShEx</a></li>
+      </ul>
+    </div>
+
+   <div class="slide">
+      <h1>On-line Tools</h1>
+      <ul>
+        <li><b>ShEx.js</b> - <a href="https://rawgit.com/shexSpec/shex.js/wikidata/doc/shex-simple.html">https://rawgit.com/shexSpec/shex.js/wikidata/doc/shex-simple.html</a></li>
+        <li><b>Shaclex</b> - <a href="http://shaclex.herokuapp.com/">http://shaclex.herokuapp.com/</a></li>
+        <li><b>RDF.rb</b> - <a href="rdf.greggkellogg.net/distiller?validate=true&amp;command=shex">rdf.greggkellogg.net/distiller?validate=true&amp;command=shex</a></li>
+        <li><b>ShExValidata</b> - (ShEx1) <a href="https://www.w3.org/2015/03/ShExValidata/">https://www.w3.org/2015/03/ShExValidata/</a></li>
+      </ul>
+    </div>
+
+   <div class="slide">
+     <h1>Shapes Constraint Language (SHACL)</h1>
+      <ul>
+        <li>similar to ShEx.</li>
+        <li>both have logical expressions (<em>AND</em>, <em>OR</em>, <em>NOT</em>).</li>
+        <li>uses a SPARQL rules language for constructing new tests.</li>
+        <li>implemented in a commercial IDE (TopBraid Composer).</li>
+      </ul>
+    </div>
+
+   <div class="slide">
+     <h1>ShEx and SHACL compared</h1>
+      <ul>
+        <li>ShEx is like XML Schema.  SHACL is like Schematron.</li>
+        <li>SHACL evaluates expressions individually.</li>
+        <li>ShEx examines shape expressions as a whole for:
+        <ul>
+          <li>increased expressivity - cardinality on groups.<br/>
+          <code>(<span class="type">data:</span><span class="constant">sourceURL</span> <span class="keyword">IRI</span>; <span class="type">data:</span><span class="constant">contentType</span> <span class="type">xsd:</span><span class="constant">string</span>)<span class="keyword">?</span></code></li>
+          <li>consistent interpretation of <em>OR</em>, <em>CLOSED</em>.<br/>
+          <code><span class="type">foaf:</span><span class="constant">name</span> <span class="keyword">LITERAL</span> | <span class="type">foaf:</span><span class="constant">givenName</span> <span class="keyword">LITERAL</span>; <span class="type">foaf:</span><span class="constant">familyName</span> <span class="keyword">LITERAL</span></code></li>
+          <li>support for recursive shapes and data.<br/>
+          <code><span class="function-name">&lt;Person&gt;</span> { <span class="type">foaf:</span><span class="constant">knows</span> <span class="function-name">@&lt;Person&gt;</span> }</code></li>
+          <li>simple constraints on repeated properties.<br/>
+          <code><span class="type">fhir:</span><span class="constant">component</span> { <span class="type">fhir:</span><span class="constant">code</span> [<span class="type">sct:</span><span class="constant">systolic</span>]; <span class="type">fhir:</span><span class="constant">value</span> <span class="type">xsd:</span><span class="constant">integer</span> };<br/>
+<span class="type">fhir:</span><span class="constant">component</span> { <span class="type">fhir:</span><span class="constant">code</span> [<span class="type">sct:</span><span class="constant">diastolic</span>]; <span class="type">fhir:</span><span class="constant">value</span> <span class="type">xsd:</span><span class="constant">integer</span> };</code></li>
+        </ul></li>
+        <li>detailed comparison in book "Validating RDF Data" (<a href="http://a.co/fD3UbCw">http://a.co/fD3UbCw</a>)
+        <ul>
+            <li>See examples at <a href="https://github.com/labra/validatingRDFBookExamples/">https://github.com/labra/validatingRDFBookExamples/</a></li>
+        </ul></li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <h1>expressivity</h1>
+      <p>compare to</p>
+      <ul>
+        <li>W3C XML Schema</li>
+        <li>regular expressions</li>
+        <li>RelaxNG</li>
+      </ul>
+    </div>
+
+   <div class="slide">
+      <h1>User example</h1>
+      <p>A User with a name and mbox</p>
+    <div style="float:left; opacity: 0;">
+      <pre>PREFIX <span class="type">foaf:</span><span class="constant"> </span><span class="function-name">&lt;http://xmlns.com/foaf/&gt;</span>
+
+<span class="function-name">&lt;UserShape&gt;</span> {
+    (<span class="name"><span class="type">foaf:</span><span class="constant">name</span> LITERAL</span>
+     <span class="eitherOr"><span class="eitherOr">|</span></span> <span class="gname"><span class="type">foaf:</span><span class="constant">givenName</span> LITERAL<span class="oneOrMore">+</span></span>,
+       <span class="fname"><span class="type">foaf:</span><span class="constant">familyName</span> LITERAL</span>),
+    <span class="mbox"><span class="type">foaf:</span><span class="constant">mbox</span> IRI</span>
+}</pre>
+    </div>
+    <div style="float:left;">
+      <ul>
+        <li class="name"><span class="eitherOr">either</span> a <span id="name"><span class="type">foaf:</span><span class="constant">name</span></span></li>
+        <li class="gname"><span class="eitherOr">or</span> <span class="oneOrMore" id="oneOrMore">one or more</span> <span id="gname"><span class="type">foaf:</span><span class="constant">givenName</span>s</span></li>
+        <li class="fname">and a <span id="fname"><span class="type">foaf:</span><span class="constant">familyName</span></span></li>
+        <li class="mbox">plus an <span id="mbox"><span class="type">foaf:</span><span class="constant">mbox</span></span></li>
+      </ul>
+    </div>
+    <div style="clear:both;">
+    </div>
+    <script type="text/javascript"><!-- spaces out the <li/>s for the next slide -->
+      <!--
+prepareHighlight(['oneOrMore'], "highlight2", "lowlight2");
+prepareHighlight(['eitherOr'], "highlight2", "lowlight2");
+prepareHighlight(['name', 'fname', 'gname', 'mbox'], "highlight1", "lowlight1");
+      -->
+    </script>
+  </div>
+
+
+   <div class="slide">
+      <h1>User example</h1>
+      <p>A User with a name and mbox</p>
+    <div style="float:left">
+      <pre>PREFIX <span class="type">foaf:</span><span class="constant"> </span><span class="function-name">&lt;http://xmlns.com/foaf/&gt;</span>
+
+<span class="function-name">&lt;UserShape&gt;</span> {
+    (<span class="name"><span class="type">foaf:</span><span class="constant">name</span> LITERAL</span>
+     <span class="eitherOr">|</span> <span class="gname"><span class="type">foaf:</span><span class="constant">givenName</span> LITERAL<span class="oneOrMore">+</span></span>,
+       <span class="fname"><span class="type">foaf:</span><span class="constant">familyName</span> LITERAL</span>),
+    <span class="mbox"><span class="type">foaf:</span><span class="constant">mbox</span> IRI</span>
+}</pre>
+    </div>
+    <div style="float:left;">
+      <ul>
+        <li class="name"><span class="eitherOr">either</span> a <span id="name"><span class="type">foaf:</span><span class="constant">name</span></span></li>
+        <li class="gname"><span class="eitherOr">or</span> <span class="oneOrMore" id="oneOrMore">one or more</span> <span id="gname"><span class="type">foaf:</span><span class="constant">givenName</span>s</span></li>
+        <li class="fname">and a <span id="fname"><span class="type">foaf:</span><span class="constant">familyName</span></span></li>
+        <li class="mbox">plus an <span id="mbox"><span class="type">foaf:</span><span class="constant">mbox</span></span></li>
+      </ul>
+    </div>
+    <script type="text/javascript">
+      <!--
+prepareHighlight(['oneOrMore'], "highlight2", "lowlight2");
+prepareHighlight(['eitherOr'], "highlight2", "lowlight2");
+prepareHighlight(['name', 'fname', 'gname', 'mbox'], "highlight1", "lowlight1");
+      -->
+    </script>
+  </div>
+
+
+   <div class="slide">
+      <h1>User example</h1>
+      <p>A User with a name and mbox</p>
+    <div style="float:left">
+      <pre>PREFIX <span class="type">foaf:</span><span class="constant"> </span><span class="function-name">&lt;http://xmlns.com/foaf/&gt;</span>
+
+<span class="function-name">&lt;UserShape&gt;</span> {
+    (<span class="name"><span class="type">foaf:</span><span class="constant">name</span> LITERAL</span>
+     <span class="eitherOr">|</span> <span class="gname"><span class="type">foaf:</span><span class="constant">givenName</span> LITERAL<span class="oneOrMore">+</span></span>,
+       <span class="fname"><span class="type">foaf:</span><span class="constant">familyName</span> LITERAL</span>),
+    <span class="mbox"><span class="type">foaf:</span><span class="constant">mbox</span> IRI</span>
+}</pre>
+    </div>
+    <div style="float:left;">
+      <ul>
+        <li class="name"><span class="eitherOr">either</span> a <span id="name"><span class="type">foaf:</span><span class="constant">name</span></span></li>
+        <li class="gname"><span class="eitherOr">or</span> <span class="oneOrMore" id="oneOrMore">one or more</span> <span id="gname"><span class="type">foaf:</span><span class="constant">givenName</span>s</span></li>
+        <li class="fname">and a <span id="fname"><span class="type">foaf:</span><span class="constant">familyName</span></span></li>
+        <li class="mbox">plus an <span id="mbox"><span class="type">foaf:</span><span class="constant">mbox</span></span></li>
+      </ul>
+    </div>
+    <div style="clear:both;">
+    <hr/>
+    <p>compare with other schema languages...</p>
+    <div style="float:left">
+      <h3>RelaxNG Compact Syntax</h3>
+      <pre>    (element <span class="name"><span class="type">foaf:</span><span class="constant">name</span> { <span class="type">xsd:</span><span class="constant">string</span></span> }
+     <span class="eitherOr">|</span> (element <span class="gname"><span class="type">foaf:</span><span class="constant">givenName</span> { <span class="type">xsd:</span><span class="constant">string</span> }<span class="oneOrMore">+</span></span>,
+        element <span class="fname"><span class="type">foaf:</span><span class="constant">familyName</span> { <span class="type">xsd:</span><span class="constant">string</span> }</span>)),
+    element <span class="mbox"><span class="type">foaf:</span><span class="constant">mbox</span> { <span class="type">xsd:</span><span class="constant">anyURI</span> }</span></pre>
+
+      <h3>Regex</h3>
+      <pre style="float:left">(<span class="name">N</span><span class="eitherOr">|</span>(<span class="gname">G</span><span class="oneOrMore">+</span><span class="fname">F</span>))<span class="mbox">M</span></pre>
+      <pre class="retext"><span class="name">N</span><span class="mbox">M</span></pre>
+      <pre class="retext"><span class="gname">G</span><span class="fname">F</span><span class="mbox">M</span></pre>
+      <pre class="retext"><span class="gname">G</span><span class="gname">G</span><span class="gname">G</span><span class="fname">F</span><span class="mbox">M</span></pre>
+    </div>
+    <div style="float:left;font-size:80%;">
+      <h3>W3C XML Schema</h3>
+      <pre style="">  <span class="nxml-tag-delimiter">&lt;</span><span class="nxml-element-prefix">xs</span><span class="nxml-element-colon">:</span><span class="nxml-element-local-name">complexType</span> <span class="nxml-attribute-local-name">name</span>=<span class="nxml-attribute-value-delimiter">"</span><span class="nxml-attribute-value">UserContent</span><span class="nxml-attribute-value-delimiter">"</span><span class="nxml-tag-delimiter">&gt;</span>
+    <span class="nxml-tag-delimiter">&lt;</span><span class="nxml-element-prefix">xs</span><span class="nxml-element-colon">:</span><span class="nxml-element-local-name">sequence</span><span class="nxml-tag-delimiter">&gt;</span>
+      <span class="eitherOr"><span class="nxml-tag-delimiter">&lt;</span><span class="nxml-element-prefix">xs</span><span class="nxml-element-colon">:</span><span class="nxml-element-local-name">choice</span><span class="nxml-tag-delimiter">&gt;</span></span>
+        <span class="nxml-tag-delimiter">&lt;</span><span class="nxml-element-prefix">xs</span><span class="nxml-element-colon">:</span><span class="nxml-element-local-name">element</span> <span class="name"><span class="nxml-attribute-local-name">name</span>=<span class="nxml-attribute-value-delimiter">"</span><span class="nxml-attribute-value">name</span><span class="nxml-attribute-value-delimiter">"</span> <span class="nxml-attribute-local-name">type</span>=<span class="nxml-attribute-value-delimiter">"</span><span class="nxml-attribute-value">xs:string</span><span class="nxml-attribute-value-delimiter">"</span></span><span class="nxml-tag-slash">/</span><span class="nxml-tag-delimiter">&gt;</span>
+        <span class="nxml-tag-delimiter">&lt;</span><span class="nxml-element-prefix">xs</span><span class="nxml-element-colon">:</span><span class="nxml-element-local-name">sequence</span><span class="nxml-tag-delimiter">&gt;</span>
+          <span class="nxml-tag-delimiter">&lt;</span><span class="nxml-element-prefix">xs</span><span class="nxml-element-colon">:</span><span class="nxml-element-local-name">element</span> <span class="gname"><span class="oneOrMore"><span class="nxml-attribute-local-name">maxOccurs</span>=<span class="nxml-attribute-value-delimiter">"</span><span class="nxml-attribute-value">unbounded</span><span class="nxml-attribute-value-delimiter">"</span></span> <span class="nxml-attribute-local-name">name</span>=<span class="nxml-attribute-value-delimiter">"</span><span class="nxml-attribute-value">givenName</span><span class="nxml-attribute-value-delimiter">"</span> <span class="nxml-attribute-local-name">type</span>=<span class="nxml-attribute-value-delimiter">"</span><span class="nxml-attribute-value">xs:string</span><span class="nxml-attribute-value-delimiter">"</span></span><span class="nxml-tag-slash">/</span><span class="nxml-tag-delimiter">&gt;</span>
+          <span class="nxml-tag-delimiter">&lt;</span><span class="nxml-element-prefix">xs</span><span class="nxml-element-colon">:</span><span class="nxml-element-local-name">element</span> <span class="fname"><span class="nxml-attribute-local-name">name</span>=<span class="nxml-attribute-value-delimiter">"</span><span class="nxml-attribute-value">familyName</span><span class="nxml-attribute-value-delimiter">"</span> <span class="nxml-attribute-local-name">type</span>=<span class="nxml-attribute-value-delimiter">"</span><span class="nxml-attribute-value">xs:string</span><span class="nxml-attribute-value-delimiter">"</span></span><span class="nxml-tag-slash">/</span><span class="nxml-tag-delimiter">&gt;</span>
+        <span class="nxml-tag-delimiter">&lt;</span><span class="nxml-tag-slash">/</span><span class="nxml-element-prefix">xs</span><span class="nxml-element-colon">:</span><span class="nxml-element-local-name">sequence</span><span class="nxml-tag-delimiter">&gt;</span>
+      <span class="eitherOr"><span class="nxml-tag-delimiter">&lt;</span><span class="nxml-tag-slash">/</span><span class="nxml-element-prefix">xs</span><span class="nxml-element-colon">:</span><span class="nxml-element-local-name">choice</span><span class="nxml-tag-delimiter">&gt;</span></span>
+      <span class="nxml-tag-delimiter">&lt;</span><span class="nxml-element-prefix">xs</span><span class="nxml-element-colon">:</span><span class="nxml-element-local-name">element</span> <span class="mbox"><span class="nxml-attribute-local-name">name</span>=<span class="nxml-attribute-value-delimiter">"</span><span class="nxml-attribute-value">mbox</span><span class="nxml-attribute-value-delimiter">"</span> <span class="nxml-attribute-local-name">type</span>=<span class="nxml-attribute-value-delimiter">"</span><span class="nxml-attribute-value">xs:anyURI</span><span class="nxml-attribute-value-delimiter">"</span></span><span class="nxml-tag-slash">/</span><span class="nxml-tag-delimiter">&gt;</span>
+    <span class="nxml-tag-delimiter">&lt;</span><span class="nxml-tag-slash">/</span><span class="nxml-element-prefix">xs</span><span class="nxml-element-colon">:</span><span class="nxml-element-local-name">sequence</span><span class="nxml-tag-delimiter">&gt;</span>
+  <span class="nxml-tag-delimiter">&lt;</span><span class="nxml-tag-slash">/</span><span class="nxml-element-prefix">xs</span><span class="nxml-element-colon">:</span><span class="nxml-element-local-name">complexType</span><span class="nxml-tag-delimiter">&gt;</span></pre>
+    </div>
+    </div>
+    <script type="text/javascript">
+      <!--
+prepareHighlight(['oneOrMore'], "highlight2", "lowlight2");
+prepareHighlight(['eitherOr'], "highlight2", "lowlight2");
+prepareHighlight(['name', 'fname', 'gname', 'mbox'], "highlight1", "lowlight1");
+      -->
+    </script>
+  </div>
+
+    <div class="slide">
+      <h1>Existing data</h1>
+      <ul>
+        <li>Objects sometimes strings, sometimes BNodes or IRIs.
+          <ul>
+            <li>dc:creator a string or a foaf:Person in the same data.</li>
+            <li>likewise wikipathways:complex or metacyc:…</li>
+        </ul></li>
+        <li>Value set inclusion rules vary:
+          <ul>
+            <li>enumerated set</li>
+            <li>dereferenced enumerated set</li>
+            <li>too large to dereference</li>
+            <li>inclusion by lexical constraints (e.g. IRI stem)</li>
+            <li>product of OWL union/intersection</li>
+        </ul></li>
+        <li>schema.org:
+          <ul>
+            <li>{domain,range}Includes</li>
+            <li>ObjectProperties can be literals</li>
+            <li>datatype "equivalences": "schema/true", "true"^^xsd:boolean, "True"</li>
+            <li><a href="http://schema.org/Role">Role</a> member rules</li>
+        </ul></li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <h1>future work</h1>
+      <ul>
+        <li>visualization/editing</li>
+      </ul>
+    </div>
+
+   <div class="slide">
+     <h1>User-oriented views of ShEx schemas?</h1>
+     <img src="../10-27-dcmi-tombaker/build%20-%20MedicationRequest%20-%20FHIR%20v3.0.0-large.png" alt="FHIR MedicationRequest logical table"/>
+   </div>
+
+   <div class="slide">
+     <h1>FHIR MedicationRequest (massaged)</h1>
+     <pre class="schema shexc nobefore"> <span class="variable-name">&lt;MedicationRequest&gt;</span> {
+   <span class="type">:</span><span class="constant">status</span>                                <span class="variable-name">@&lt;code&gt;</span>;
+   <span class="type">:</span><span class="constant">intent</span>                                <span class="variable-name">@&lt;code&gt;</span>;
+   (
+     <span class="type">:</span><span class="constant">medicationCodeableConcept</span>           <span class="variable-name">@&lt;CodeableConcept&gt;</span>  |
+     <span class="type">:</span><span class="constant">medicationReference</span>                 <span class="variable-name">@&lt;MedicationRef&gt;</span> );
+   <span class="type">:</span><span class="constant">subject</span>                               ( <span class="variable-name">@&lt;PatientRef&gt;</span> <span class="keyword">OR</span> <span class="variable-name">@&lt;GroupRef&gt;</span> );
+   <span class="type">:</span><span class="constant">requester</span> {
+     <span class="type">:</span><span class="constant">requester.agent</span>                     ( <span class="variable-name">@&lt;PractitionerRef&gt;</span> <span class="keyword">OR</span> <span class="variable-name">@&lt;PatientRef&gt;</span> );
+     <span class="type">:</span><span class="constant">requester.onBehalfOf</span>                <span class="variable-name">@&lt;Ref&gt;</span><span class="keyword">?</span>;
+   <span class="type">:</span><span class="constant">reasonCode</span>                            <span class="variable-name">@&lt;CodeableConcept&gt;</span><span class="keyword">*</span>;
+   <span class="type">:</span><span class="constant">reasonReference</span>                       ( { <span class="type999">fhir:</span><span class="constant">link</span> <span class="variable-name">@&lt;Condition&gt;</span> } <span class="keyword">OR</span> { <span class="type999">fhir:</span><span class="constant">link</span> <span class="variable-name">@&lt;Observation&gt;</span> } )<span class="keyword">*</span>;
+   <span class="type">:</span><span class="constant">dispenseRequest</span> {                    <span class="comment"># backbone element</span>
+     <span class="type">:</span><span class="constant">dispenseRequest.numberOfRepeatsAllowed</span> <span class="variable-name">@&lt;positiveInt&gt;</span><span class="keyword">?</span>;
+     <span class="type">:</span><span class="constant">dispenseRequest.quantity</span>           <span class="variable-name">@&lt;SimpleQuantity&gt;</span><span class="keyword">?</span>;
+     <span class="type">:</span><span class="constant">dispenseRequest.performer</span>          <span class="variable-name">@&lt;Reference&gt;</span><span class="keyword">?</span> };
+}</pre>
+   </div>
+
+   <div class="slide">
+      <h1>Join the ShEx Community!</h1>
+
+      W3C Shape Expressions Community Group
+      <ul>
+        <li>ShEx homepage — <a href="http://shex.io">http://shex.io</a></li>
+        <li>community group page — <a href="https://www.w3.org/community/shex">https://www.w3.org/community/shex</a></li>
+        <li>ShEx Primer — <a href="http://shex.io/shex-primer/">http://shex.io/shex-primer/</a></li>
+        <li>ShEx Specification — <a href="http://shex.io/shex-semantics/">http://shex.io/shex-semantics/</a></li>
+        <li>ShapeMap Specification — <a href="shex.io/shape-map/">shex.io/shape-map/</a></li>
+        <li>Gitter discussions — <a href="https://gitter.im/shapeExpressions/Lobby">https://gitter.im/shapeExpressions/Lobby</a></li>
+      </ul>
+    </div>
+
+  </body>
+</html>
