@@ -1,0 +1,12 @@
+prefix : <http://example.org/ns/38#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+prefix org: <http://www.w3.org/ns/org#>
+
+<Company> EXTRA a {
+ a [ schema:Organization ] ;
+ a [ org:Organization ]
+}
+
+
+

@@ -243,5 +243,13 @@
     "dataURL": "40-slide.ttl",
     "queryMap": "{FOCUS a _}@<Company>",
     "status": "conformant"
+  },
+  {
+    "schemaLabel": "41 - Negated property declarations",
+    "schemaURL": "41.shex",
+    "dataLabel": "slide",
+    "dataURL": "40-slide.ttl",
+    "queryMap": "{FOCUS a _}@<Company>",
+    "status": "conformant"
   }
 ]
