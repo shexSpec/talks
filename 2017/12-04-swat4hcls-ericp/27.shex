@@ -1,0 +1,14 @@
+prefix : <http://example.org/ns/26#>
+prefix schema: <http://schema.org/>
+
+<SpanishProduct> {
+ schema:country [ :Spain ]
+}
+
+<FrenchProduct> {
+ schema:country [ :France ]
+}
+
+<VideoGame> {
+ a [ :VideoGame ]
+}

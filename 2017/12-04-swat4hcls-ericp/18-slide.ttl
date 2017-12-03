@@ -1,0 +1,15 @@
+prefix : <http://example.org/instance#>
+prefix schema: <http://schema.org/>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+
+:alice schema:name  "Alice Cooper" .
+
+:bob   schema:givenName "Bob", "Robert" ;
+       schema:lastName "Smith" .
+
+:carol schema:name  "Carol King" ;
+       schema:givenName "Carol" ;
+       schema:lastName "King" .
+
+:emily foaf:name  "Emily" .
+

@@ -1,0 +1,18 @@
+prefix : <http://example.org/>
+prefix schema: <http://schema.org/>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+
+:alice      schema:name     "Alice";
+            schema:follows  :bob;
+            schema:worksFor :OurCompany .
+
+:bob        foaf:name     "Robert" ;
+            schema:worksFor :OurCompany .
+
+:carol      schema:name     "Carol" ;
+            schema:follows  :alice .
+
+:dave       schema:name      "Dave" .
+
+:OurCompany schema:founder :dave ;
+            schema:employee :alice, :bob .

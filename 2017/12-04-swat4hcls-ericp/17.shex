@@ -1,0 +1,15 @@
+prefix : <http://example.org/ns/17#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+
+:User {
+ schema:name xsd:string ;
+ schema:worksFor IRI ? ;
+ schema:follows  IRI *
+}
+
+:Company {
+ schema:founder  IRI ?;
+ schema:employee IRI {1,100}
+}
+

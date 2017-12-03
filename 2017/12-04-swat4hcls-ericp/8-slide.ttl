@@ -1,0 +1,10 @@
+PREFIX schema: <http://schema.org>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX : <http://a.example/ns/7#>
+
+:alice schema:name "Alice" .
+:bob schema:name 234 .
+:carol schema:name "Carol", "Carole" .
+:dave foaf:name "Dave" .
+:emily schema:name "Emily" ;
+       schema:email <mailto:emily@example.org> .

@@ -1,0 +1,9 @@
+prefix : <http://example.org/ns/26#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+
+:Product {
+ schema:color [ "Red" "Green" "Blue" ] ;
+ schema:manufacturer [ :OurCompany :AnotherCompany ]
+}
+

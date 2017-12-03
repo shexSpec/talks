@@ -1,0 +1,6 @@
+PREFIX schema: <http://schema.org>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+<Alice> schema:name 7 .
+<Bob> schema:name <Bob> .
+

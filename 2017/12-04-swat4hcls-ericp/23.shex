@@ -1,0 +1,10 @@
+prefix : <http://example.org/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix schema: <http://schema.org/>
+
+:User {
+ schema:name  xsd:string MaxLength 10 ;
+ foaf:age     xsd:integer MinInclusive 1 MaxInclusive 99 ;
+ schema:phone xsd:string /[0-9]{3}-[0-9]{3}-[0-9]{3}/
+}

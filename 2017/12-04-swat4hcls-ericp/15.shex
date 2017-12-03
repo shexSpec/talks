@@ -1,0 +1,11 @@
+prefix : <http://example.org/ns/15#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+
+:User {
+ schema:name  xsd:string ;
+ foaf:age     xsd:integer ;
+ schema:email xsd:string
+}
+

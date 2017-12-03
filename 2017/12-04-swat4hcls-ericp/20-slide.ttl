@@ -1,0 +1,8 @@
+prefix : <http://example.org/instance#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+
+:alice schema:name "Alice";
+ schema:affiliation [ schema:name "OurCompany" ] ;
+ schema:email <mailto:alice@example.org> ;
+ schema:birthDate "2010-08-23"^^xsd:date .
