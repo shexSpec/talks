@@ -1,0 +1,14 @@
+prefix : <http://example.org/ns/38#> 
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+
+:User {
+ schema:name xsd:string ;
+ schema:knows @:User*
+}
+
+:Solitary {
+ schema:knows .{0} ;
+ ^schema:knows .{0,0}
+}
+

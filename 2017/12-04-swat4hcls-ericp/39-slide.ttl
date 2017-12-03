@@ -1,0 +1,12 @@
+prefix : <http://example.org/instance> 
+prefix schema: <http://schema.org/>
+
+:alice schema:name "Alice" ;
+       schema:parent :bob, :carol .
+ 
+:bob   schema:name "Bob" ;
+       schema:gender schema:Male .
+	 
+:carol schema:name "Carol" ;
+       schema:gender schema:Female .
+

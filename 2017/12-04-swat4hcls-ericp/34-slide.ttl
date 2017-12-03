@@ -1,0 +1,9 @@
+PREFIX : <http://example.org/ns/34#>
+PREFIX inst: <http://example.org/instance#>
+PREFIX schema: <http://schema.org/>
+
+inst:alice schema:name "Alice" ;
+         schema:worksFor inst:OurCompany .
+
+inst:OurCompany a schema:Company.
+

@@ -1,0 +1,16 @@
+prefix : <http://example.org/> 
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+
+start=:Company
+
+:User {
+  schema:name xsd:string ;
+#  schema:worksFor @:Company 
+}
+
+:Company {
+  a [schema:Company] ;
+  ^schema:worksFor @:User
+}
+

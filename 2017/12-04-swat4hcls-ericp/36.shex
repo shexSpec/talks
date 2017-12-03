@@ -1,0 +1,21 @@
+prefix : <http://example.org/ns/36#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+
+:Constraints {
+  $:Companyconstraints
+   (
+    schema:worksFor @<CompanyShape> ;
+    schema:affiliation @<CompanyShape>
+   )
+}
+
+<User> {
+  schema:name xsd:string ;
+  &:Companyconstraints
+}
+
+<CompanyShape> IRI /^http:\/\// {
+  schema:founder xsd:string
+}
+

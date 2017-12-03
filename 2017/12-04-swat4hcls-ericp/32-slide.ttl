@@ -1,0 +1,14 @@
+PREFIX : <http://example.org/ns/31#>
+PREFIX inst: <http://example.org/instance#>
+PREFIX codes: <http://example.codes/>
+PREFIX other: <http://other.codes/>
+
+inst:x1 :status codes:resolved .
+
+inst:x2 :status other:done.
+
+inst:x3 :status <http://example.codes/pending> .
+
+inst:x4 :status codes:deleted .
+
+inst:x5 :status codes:active .

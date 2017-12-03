@@ -1,0 +1,10 @@
+prefix : <http://example.org/instance> 
+prefix schema: <http://schema.org/>
+prefix org: <http://www.w3.org/ns/org#>
+
+:OurCompany a org:Organization, schema:Organization .
+
+:OurUniversity a org:Organization,
+  schema:Organization,
+  schema:CollegeOrUniversity .
+

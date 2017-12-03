@@ -1,0 +1,10 @@
+prefix : <http://example.org/> 
+prefix schema: <http://schema.org/>
+
+:alice schema:name "Alice";
+       schema:worksFor :OurCompany .
+
+# :bob schema:worksFor :OurCompany .
+
+:OurCompany a schema:Company .
+

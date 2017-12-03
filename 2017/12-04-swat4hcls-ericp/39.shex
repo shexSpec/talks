@@ -1,0 +1,18 @@
+prefix : <http://example.org/ns/38#> 
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+
+<User> {
+ schema:name     xsd:string;
+ schema:parent @<Male>;
+ schema:parent @<Female>
+}
+
+<Male> {
+ schema:gender [schema:Male ]
+}
+
+<Female> {
+ schema:gender [schema:Female]
+}
+

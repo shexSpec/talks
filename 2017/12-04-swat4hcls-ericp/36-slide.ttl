@@ -1,0 +1,11 @@
+PREFIX : <http://example.com/inst#>
+prefix schema: <http://schema.org/>
+
+<Alice>
+  schema:name "Alice" ;
+  schema:worksFor <http://hr.example/id123> ;
+  schema:affiliation <http://hr.example/id123> .
+
+<http://hr.example/id123>
+  schema:founder "Sue" .
+

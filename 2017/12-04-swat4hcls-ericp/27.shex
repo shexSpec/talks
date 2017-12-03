@@ -1,4 +1,4 @@
-prefix : <http://example.org/ns/26#>
+prefix : <http://example.org/ns/27#>
 prefix schema: <http://schema.org/>
 
 <SpanishProduct> {

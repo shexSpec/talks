@@ -1,0 +1,9 @@
+prefix : <http://example.org/ns/31#> 
+prefix codes: <http://example.codes/>
+
+:User {
+  :status [
+      codes:~ - codes:deleted 
+  ]
+}
+

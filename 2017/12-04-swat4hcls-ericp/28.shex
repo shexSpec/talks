@@ -1,0 +1,12 @@
+prefix : <http://example.org/ns/28#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+
+:User {
+ schema:worksFor @:Company ;
+}
+
+:Company {
+ schema:name xsd:string 
+}
+

@@ -155,5 +155,93 @@
     "dataURL": "27-slide.ttl",
     "queryMap": ":product1@<VideoGame>,\n:product2@<VideoGame>,\n:product3@<VideoGame>",
     "status": "nonconformant"
+  },
+  {
+    "schemaLabel": "28 - shape references",
+    "schemaURL": "28.shex",
+    "dataLabel": "slide",
+    "dataURL": "28-slide.ttl",
+    "queryMap": "{FOCUS a :User}@:User",
+    "status": "nonconformant"
+  },
+  {
+    "schemaLabel": "29 - recursion/cycles",
+    "schemaURL": "29.shex",
+    "dataLabel": "slide",
+    "dataURL": "29-slide.ttl",
+    "queryMap": "{FOCUS a :User}@:User",
+    "status": "nonconformant"
+  },
+  {
+    "schemaLabel": "30 - composed shapes",
+    "schemaURL": "30.shex",
+    "dataLabel": "slide",
+    "dataURL": "30-slide.ttl",
+    "queryMap": "{FOCUS schema:name _}@:User",
+    "status": "conformant"
+  },
+  {
+    "schemaLabel": "31 - IRI ranges",
+    "schemaURL": "31.shex",
+    "dataLabel": "slide",
+    "dataURL": "31-slide.ttl",
+    "queryMap": "{FOCUS :status _}@:User",
+    "status": "nonconformant"
+  },
+  {
+    "schemaLabel": "32 - IRI range exclusions",
+    "schemaURL": "32.shex",
+    "dataLabel": "slide",
+    "dataURL": "32-slide.ttl",
+    "queryMap": "{FOCUS :status _}@:User",
+    "status": "nonconformant"
+  },
+  {
+    "schemaLabel": "34 - Nested shapes",
+    "schemaURL": "34.shex",
+    "dataLabel": "slide",
+    "dataURL": "34-slide.ttl",
+    "queryMap": "{FOCUS schema:name _}@:User",
+    "status": "nonconformant"
+  },
+  {
+    "schemaLabel": "36 - Labeled constraints",
+    "schemaURL": "36.shex",
+    "dataLabel": "slide",
+    "dataURL": "36-slide.ttl",
+    "queryMap": "<Alice>@<User>",
+    "status": "conformant"
+  },
+  {
+    "schemaLabel": "37 - Inverse triple constraints",
+    "schemaURL": "37.shex",
+    "dataLabel": "slide",
+    "dataURL": "37-slide.ttl",
+    "queryMap": ":alice@:User",
+    "status": "conformant"
+  },
+  {
+    "schemaLabel": "38 - Negated property declarations",
+    "schemaURL": "38.shex",
+    "dataLabel": "slide",
+    "dataURL": "38-slide.ttl",
+    "queryMap": "{FOCUS schema:name _}@:User",
+    "status": "conformant"
+  },
+  {
+    "schemaLabel": "39 - Repeated properties",
+    "schemaURL": "39.shex",
+    "dataLabel": "slide",
+    "dataURL": "39-slide.ttl",
+    "queryMap": "{FOCUS schema:name _}@<User>",
+    "status": "conformant"
+  },
+  {
+    "schemaLabel": "40 - Negated property declarations",
+    "schemaURL": "40.shex",
+    "dataLabel": "slide",
+    "dataURL": "40-slide.ttl",
+    "queryMap": "{FOCUS a _}@<Company>",
+    "status": "conformant"
   }
 ]
