@@ -1990,15 +1990,135 @@ function prepareHighlight (highlightables, onClass, offClass, slide) {
         <li>extension</li>
       </ul>
       </li>
+      <li>Severity</li>
     </ul>
   </div>
 
   <div class="slide">
     <h1>IMPORT</h1>
-    <ul>
+    <div style="margin: 0 3em;">
+      <pre style="float:left; width: 40%;">
+<span class="keyword">IMPORT</span> <span class="function-name">&lt;User.shex&gt;</span>
+
+<span class="variable-name">:Employee</span> {
+  <span class="variable-name">&amp;:name</span> ;
+  <span class="type">schema:</span><span class="constant">worksFor</span> <span class="variable-name">@:Company</span>
+}
+ 
+<span class="variable-name">:Company</span> {
+  <span class="type">schema:</span><span class="constant">employee</span> <span class="variable-name">@:Employee</span> ;
+  <span class="type">schema:</span><span class="constant">founder</span>  <span class="variable-name">@:Person</span> ;
+}</pre>
+      <pre style="float:left"><span class="keyword"><span class="region">PREFIX : &lt;<a href="http://a.example/ns#">http://a.example/ns#</a>&gt;
+PREFIX schema: &lt;<a href="http://schema.org/">http://schema.org/</a>&gt;
+
+:Person { 
+   $:name ( schema:name . 
+          | schema:givenName . ; schema:familyName .
+          ) ;
+   schema:email .               
+}
+</span></span></pre>
+    </div>
+    <ul style="clear:both">
       <li>import examples: <a href="http://rawgit.com/shexSpec/shex.js/wikidata/doc/shex-simple.html?examples=http://shex.io/examples/import/UserEmpCo-examples.json">http://rawgit.com/shexSpec/shex.js/wikidata/doc/shex-simple.html?examples=http://shex.io/examples/import/UserEmpCo-examples.json</a></li>
     </ul>
   </div>
+
+  <div class="slide">
+    <h1>Inheritance</h1>
+    <p>Start with a general rule about a structure:</p>
+    <div style="margin: 0 1em;">
+      <pre style="float:left">
+<span class="variable-name">&lt;ObservationShape&gt;</span> {
+  &#8230;
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> <span class="keyword">.</span> ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  } <span class="keyword">*</span>
+}</pre>
+    </div>
+    <p style="clear:both;">An observation contains N components, each with a code and a value.</p>
+  </div>
+
+  <div class="slide">
+    <h1>Inheritance</h1>
+    <p>Use that structure in a derivative shape:</p>
+    <div style="margin: 0 1em;">
+      <pre style="float:left">
+<span class="variable-name">&lt;ObservationShape&gt;</span> {
+  &#8230;
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> <span class="keyword">.</span> ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  } <span class="keyword">*</span>
+}</pre>
+      <pre style="float:left"><span class="function-name">&lt;BP&gt;</span> -<span class="variable-name">&lt;ObservationShape&gt;</span> {
+  &#8230;
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> [ <span class="string">"systolic"</span> ] ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  };
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> [ <span class="string">"diastolic"</span> ] ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  }
+}</pre>
+    </div>
+    <p style="clear:both;">An BP observation contains 2 components with codes for systolic and diastolic.</p>
+  </div>
+
+  <div class="slide">
+    <h1>Inheritance</h1>
+    <p>Use <em>that</em> structure in turn in an extended shape:</p>
+    <div style="margin: 0 1em;">
+      <pre style="float:left">
+<span class="variable-name">&lt;ObservationShape&gt;</span> {
+  &#8230;
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> <span class="keyword">.</span> ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  } <span class="keyword">*</span>
+}</pre>
+      <pre style="float:left"><span class="function-name">&lt;BP&gt;</span> -<span class="variable-name">&lt;ObservationShape&gt;</span> {
+  &#8230;
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> [ <span class="string">"systolic"</span> ] ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  };
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> [ <span class="string">"diastolic"</span> ] ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  }
+}</pre>
+      <pre style="float:left"><span class="function-name">&lt;PostureBP&gt;</span> <span class="variable-name">&amp;&lt;BP&gt;</span> {
+  &#8230;
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> [ <span class="string">"posture"</span> ] ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  };
+}</pre>
+    </div>
+    <p style="clear:both;">An PostureBP observation has an additional components with a code for posture.</p>
+  </div>
+
+   <div class="slide">
+     <h1>Severity</h1>
+     <div style="margin: 0 1em;">
+       <pre style="float:left">HIGH { value: 1, low: 1, high: 1 }
+LOW { value: 1, low: 0, high: 1 }
+
+<span class="variable-name">&lt;EventShape&gt;</span> {
+  HIGH <span class="type">schema:</span><span class="constant">startDate</span> <span class="variable-name">@&lt;Date&gt;</span> <span class="keyword">OR</span> <span class="variable-name">@&lt;DateTime&gt;</span> ;
+  LOW  <span class="type">schema:</span><span class="constant">endDate</span> <span class="variable-name">@&lt;Date&gt;</span> <span class="keyword">OR</span> <span class="variable-name">@&lt;DateTime&gt;</span> ;
+  LOW  <span class="type">schema:</span><span class="constant">actor</span> <span class="variable-name">@&lt;Person&gt;</span>
+}
+
+<span class="variable-name">&lt;Person&gt;</span> {
+  LOW <span class="type">schema:</span><span class="constant">name</span> <span class="type">xsd:</span><span class="constant">string</span>
+}</pre>
+     </div>
+   </div>
 
    <div class="slide">
      <h1>Diseases in Wikidata</h1>
