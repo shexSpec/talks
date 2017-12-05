@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-US">
+  <head>
+    <meta name="generator" content=
+	  "HTML Tidy for Linux/x86 (vers 1st November 2003), see www.w3.org" />
+    <title>ShEx 2.1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="copyright" content=
+	  "Copyright &#169; 2005-2010 W3C (MIT, ERCIM, Keio)" />
+    <meta name="duration" content="5" />
+    <meta name="font-size-adjustment" content="-2" />
+    <link rel="stylesheet" href="../../Slidy2/styles/slidy.css" type="text/css" />
+    <link rel="stylesheet" href="../../Slidy2/styles/w3c-blue.css" type="text/css" />
+    <script src="../../Slidy2/scripts/slidy.js" charset="utf-8" type="text/javascript">
+    </script>
+    <script src="../../js/jquery.min.js" type= "text/javascript"></script>
+  <!-- link rel="stylesheet" type="text/css" href="local.css"/ -->
+  <style type="text/css">
+/*<![CDATA[*/
+table                    { border-collapse: collapse; }
+table, td, th            { border: 1px solid black; }
+tbody tr:nth-child(odd)  { background-color:#eee; }
+tbody tr:nth-child(even) { background-color:#fff; }
+
+/* description column */
+td:nth-child(5)          { font-family: initial; font-size: 80%; }
+
+body                     { color: #000000; }
+.grey                    { color: #aaaaaa; }
+.rdft                    { color: #007fff; }
+      span.default       { color: #000000; }
+.grey span.default       { color: #aaaaaa; }
+.rdft span.default       { color: #007fff; }
+      span.function-name { color: #0000ff; }
+.grey span.function-name { color: #aaaaff; }
+.rdft span.function-name { color: #007fff; }
+      span.keyword       { color: #a020f0; }
+.grey span.keyword       { color: #dfb4ff; }
+.rdft span.keyword       { color: #007fff; }
+      span.string        { color: #bb8800; }
+.grey span.string        { color: #e8d7aa; }
+.rdft span.string        { color: #007fff; }
+      span.constant      { color: #008b8b; }
+.grey span.constant      { color: #aad8d8; }
+.rdft span.constant      { color: #007fff; }
+      span.type          { color: #228b22; }
+.grey span.type          { color: #b5d8b5; }
+.rdft span.type          { color: #007fff; }
+      span.comment       { color: #b22222; }
+.grey span.comment       { color: #e5b5b5; }
+.rdft span.comment       { color: #007fff; }
+
+em                       { font-weight: bold; font-style: normal; }
+li li, li ul li          { font-style: normal; }
+
+.passes {
+    padding-left: .1em;
+    border-left: thick solid #bfb;
+}
+.fails {
+    padding-left: .1em;
+    border-left: thick solid #fbb;
+}
+.results { font-family: initial; }
+.results div { margin: 1ex 0; }
+.results pre {
+    font-size: 80%;
+    font-weight: normal;
+    line-height: 120%;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border: none;
+    color: inherit;
+    background-color: inherit;
+}
+
+.footnote {
+    font-size: small;
+    position: absolute;
+    bottom: 3em;
+}
+
+pre { padding: 0; }
+pre {
+    margin-top: 0;
+    margin-right: 1em;
+    overflow: visible;
+}
+pre {
+    background-color: #fcfaee;
+    margin-left: 0;
+    line-height: 1.2;
+    display: inline-block;
+}
+pre.schema.shexc {
+    background-color: #ECEBF7;
+    border: thick solid #e4e3ec;
+}
+pre.schema, pre.instance {
+    vertical-align: top;
+    margin-left: 1em;
+}
+
+pre.schema.shexc:before {
+    content: "Schema (ShExC)";
+    width: 9em;
+}
+
+pre.instance {
+    border: thick solid #f8f6ea;
+}
+
+pre.instance.turtle:before {
+    content: "Data (Turtle)";
+    width: 9em;
+}
+
+pre.schema:before, pre.instance:before {
+    color: #333;
+    font-size: .6em;
+    border: 1px solid #bbb;
+    background: white;
+    display: block;
+    font-family: sans-serif;
+    padding: 0.2em 1em;
+}
+
+.example pre.shapemap {
+    background-color: #eefcfa;
+    border: thick solid #eaf8ea;
+}
+
+.shapemap.fixed:before {
+    content: "Fixed Shape Map";
+    width: 9em;
+}
+
+.shapemap:before {
+    color: #333;
+    font-size: .6em;
+    border: 1px solid #bbb;
+    background: white;
+    display: block;
+    font-family: sans-serif;
+    padding: 0.2em 1em;
+}
+
+.shapemap.query:before {
+    content: "Query Shape Map";
+    width: 9em;
+}
+
+.fail {
+    background-color: #fcc;
+}
+
+
+element.style {
+}
+base.css:525
+a[href]:focus, a[href]:hover {
+    background: #f8f8f8;
+    background: rgba(75%, 75%, 75%, .25);
+    border-bottom-width: 3px;
+    margin-bottom: -2px;
+}
+
+.tryit:link {
+    text-decoration: none;
+    font: menu;
+    display: inline-block;
+    padding: 2px 8px;
+    background: ButtonFace;
+    color: ButtonText;
+    border-style: solid;
+    border-width: 2px;
+    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+    padding: 0 .2em;
+}
+
+pre.schema.shexc.nobefore {
+    line-height: 2.07em;
+    font-size: 100%;
+    margin-top: 2ex;
+    background-color: white;
+    font-weight: normal;
+}
+
+pre.schema.nobefore:before {
+    display: none;
+}
+
+pre.schema.nobefore .type {
+    background-color: #ffffe6;
+    border: medium solid #efefd6;
+    font-size: 80%;
+}
+pre.schema.nobefore .constant,
+pre.schema.nobefore .variable-name {
+    color: #428bca;
+}
+
+.sparql { color:#58a; }
+.error { background-color: #f77; }
+
+.highlight1    { border: 5px solid #bb0; font-weight: bold; }
+.lowlight1     { border: 5px solid transparent; font-weight: normal; }
+.highlight2    { color: #b00; border: 5px solid #f00; font-weight: bold; }
+.lowlight2     { border: 5px solid transparent; font-weight: normal; }
+
+.retext       { float:left; border: thin solid #95D0AB; padding-left: .2em; padding-right: .2em; margin-left: .2em; margin-right: .2em; }
+
+/*]]>
+*/</style>
+
+    <script type="text/javascript"><!--
+function prepareHighlight (highlightables, onClass, offClass, slide) {
+  if (slide === undefined)
+    slide = $("body").find("> div").last();
+  $.each( highlightables, function( index, value ){
+    var elts = slide.find( "."+value );
+    elts
+  	.mouseenter(function() {
+  	    elts.removeClass(offClass).addClass(onClass);
+  	})
+  	.mouseleave(function() {
+  	    elts.removeClass(onClass).addClass(offClass);
+  	})
+    .addClass(offClass);
+  })
+}
+--> </script>
+  </head>
+  <body>
+    <div class="background"><img alt="" id="head-icon"
+    src="../../Slidy2/graphics/icon-blue.png" /><object id="head-logo"
+    data="../../Slidy2/graphics/w3c-logo-white.svg" type="image/svg+xml"
+    title="W3C logo"><a href="http://www.w3.org/"><img
+    alt="W3C logo" id="head-logo-fallback"
+    src="../../Slidy2/graphics/w3c-logo-white.gif" /></a></object></div>
+
+    <div class="background slanty">
+      <img src="../../Slidy2/graphics/w3c-logo-slanted.jpg" alt="slanted W3C logo" />
+    </div>
+    <div class="slide cover title">
+      <!-- hidden style graphics to ensure they are saved with other content -->
+      <img class="hidden" src="../../Slidy2/graphics/bullet.png" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/fold.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/unfold.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/fold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/nofold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/unfold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-fold.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-unfold.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-fold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-nofold-dim.gif" alt="" />
+      <img class="hidden" src="../../Slidy2/graphics/bullet-unfold-dim.gif" alt="" />
+
+      <img src="../../Slidy2/graphics/keys2.jpg" alt="Cover page images (keys)"
+	   class="cover" />
+      <h1>ShEx</h1>
+      <h2>Testing data with the <a href="http://shex.io/">Shape Expressions Language</a></h2>
+      <h2>SWAT4HCLS-2017<br/>28 October 2017</h2>
+      <h2><a href="http://shexspec.github.io/talks/2017/12-04-swat4hcls-ericp/">http://shexspec.github.io/talks/2017/12-04-swat4hcls-ericp/</a></h2>
+
+      <ul>
+	      <li>
+	        <a href="http://www.w3.org/People/Eric/">Eric Prud'hommeaux</a>, &lt;<a href="mailto:eric@w3.org">eric@w3.org</a>&gt;
+	        <ul>
+	          <li>Sanitation Engineer, W3C</li>
+	        </ul>
+	      </li>
+      </ul>
+    </div>
+
+  <div class="slide">
+    <h1>ShEx 2.1</h1>
+    <ul>
+      <li>IMPORT</li>
+      <li>Inheritance:
+      <ul>
+        <li>restriction</li>
+        <li>extension</li>
+      </ul>
+      </li>
+      <li>Severity</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>IMPORT</h1>
+    <div style="margin: 0 3em;">
+      <pre style="float:left; width: 40%;">
+<span class="keyword">IMPORT</span> <span class="function-name">&lt;User.shex&gt;</span>
+
+<span class="variable-name">:Employee</span> {
+  <span class="variable-name">&amp;:name</span> ;
+  <span class="type">schema:</span><span class="constant">worksFor</span> <span class="variable-name">@:Company</span>
+}
+ 
+<span class="variable-name">:Company</span> {
+  <span class="type">schema:</span><span class="constant">employee</span> <span class="variable-name">@:Employee</span> ;
+  <span class="type">schema:</span><span class="constant">founder</span>  <span class="variable-name">@:Person</span> ;
+}</pre>
+      <pre style="float:left"><span class="keyword"><span class="region">PREFIX : &lt;<a href="http://a.example/ns#">http://a.example/ns#</a>&gt;
+PREFIX schema: &lt;<a href="http://schema.org/">http://schema.org/</a>&gt;
+
+:Person { 
+   $:name ( schema:name . 
+          | schema:givenName . ; schema:familyName .
+          ) ;
+   schema:email .               
+}
+</span></span></pre>
+    </div>
+    <ul style="clear:both">
+      <li>import examples: <a href="http://rawgit.com/shexSpec/shex.js/wikidata/doc/shex-simple.html?examples=http://shex.io/examples/import/UserEmpCo-examples.json">http://rawgit.com/shexSpec/shex.js/wikidata/doc/shex-simple.html?examples=http://shex.io/examples/import/UserEmpCo-examples.json</a></li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>Inheritance</h1>
+    <p>Start with a general rule about a structure:</p>
+    <div style="margin: 0 1em;">
+      <pre style="float:left">
+<span class="variable-name">&lt;ObservationShape&gt;</span> {
+  &#8230;
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> <span class="keyword">.</span> ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  } <span class="keyword">*</span>
+}</pre>
+    </div>
+    <p style="clear:both;">An observation contains N components, each with a code and a value.</p>
+  </div>
+
+  <div class="slide">
+    <h1>Inheritance</h1>
+    <p>Use that structure in a derivative shape:</p>
+    <div style="margin: 0 1em;">
+      <pre style="float:left">
+<span class="variable-name">&lt;ObservationShape&gt;</span> {
+  &#8230;
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> <span class="keyword">.</span> ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  } <span class="keyword">*</span>
+}</pre>
+      <pre style="float:left"><span class="function-name">&lt;BP&gt;</span> -<span class="variable-name">&lt;ObservationShape&gt;</span> {
+  &#8230;
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> [ <span class="string">"systolic"</span> ] ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  };
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> [ <span class="string">"diastolic"</span> ] ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  }
+}</pre>
+    </div>
+    <p style="clear:both;">An BP observation contains 2 components with codes for systolic and diastolic.</p>
+  </div>
+
+  <div class="slide">
+    <h1>Inheritance</h1>
+    <p>Use <em>that</em> structure in turn in an extended shape:</p>
+    <div style="margin: 0 1em;">
+      <pre style="float:left">
+<span class="variable-name">&lt;ObservationShape&gt;</span> {
+  &#8230;
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> <span class="keyword">.</span> ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  } <span class="keyword">*</span>
+}</pre>
+      <pre style="float:left"><span class="function-name">&lt;BP&gt;</span> -<span class="variable-name">&lt;ObservationShape&gt;</span> {
+  &#8230;
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> [ <span class="string">"systolic"</span> ] ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  };
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> [ <span class="string">"diastolic"</span> ] ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  }
+}</pre>
+      <pre style="float:left"><span class="function-name">&lt;PostureBP&gt;</span> <span class="variable-name">&amp;&lt;BP&gt;</span> {
+  &#8230;
+  <span class="variable-name">:component</span> {
+    <span class="type">:</span><span class="constant">code</span> [ <span class="string">"posture"</span> ] ;
+    <span class="type">:</span><span class="constant">value</span> <span class="keyword">.</span>
+  };
+}</pre>
+    </div>
+    <p style="clear:both;">An PostureBP observation has an additional components with a code for posture.</p>
+  </div>
+
+   <div class="slide">
+     <h1>Severity</h1>
+     <div style="margin: 0 1em;">
+       <pre style="float:left"><span class="variable-name">&lt;EventShape&gt;</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="variable-name">@&lt;Date&gt;</span> ;
+    // <span class="type">sx:</span><span class="constant">severity</span> <span class="type">sx:</span><span class="constant">error</span>
+  <span class="type">schema:</span><span class="constant">endDate</span> <span class="variable-name">@&lt;Date&gt;</span> ;
+    // <span class="type">sx:</span><span class="constant">severity</span> <span class="type">sx:</span><span class="constant">warning</span>
+  <span class="type">schema:</span><span class="constant">actor</span> <span class="variable-name">@&lt;Person&gt;</span> ;
+    // <span class="type">sx:</span><span class="constant">severity</span> <span class="type">sx:</span><span class="constant">warning</span>
+}
+
+<span class="variable-name">&lt;Person&gt;</span> {
+  <span class="type">schema:</span><span class="constant">name</span> <span class="type">xsd:</span><span class="constant">string</span>
+}</pre>
+
+       <div style="float:left; display: grid;">
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">endDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">actor</span> <span class="type">:</span><span class="constant">sue</span> ;
+}
+
+<span class="variable-name">:sue</span> {
+  <span class="type">schema:</span><span class="constant">name</span> <span class="string">"Sue"</span>
+}</pre>
+
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">endDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">actor</span> <span class="type">:</span><span class="constant">sue</span> ;
+}
+
+<span class="variable-name">:sue</span> {
+  <span class="type">schema:</span><span class="constant">name999</span> <span class="string">"Sue"</span>
+}</pre>
+
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+}</pre>
+       </div>
+     </div>
+   </div>
+
+   <div class="slide">
+     <h1>Severity</h1>
+     <div style="margin: 0 1em;">
+       <pre style="float:left"><span class="variable-name">&lt;EventShape&gt;</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="variable-name">@&lt;Date&gt;</span> ;
+    // <span class="type">sx:</span><span class="constant">value</span> <span class="type">sx:</span><span class="constant">error</span>
+    // <span class="type">sx:</span><span class="constant">min</span> <span class="type">sx:</span><span class="constant">error</span>
+    // <span class="type">sx:</span><span class="constant">max</span> <span class="type">sx:</span><span class="constant">error</span>
+  <span class="type">schema:</span><span class="constant">endDate</span> <span class="variable-name">@&lt;Date&gt;</span> ;
+    // <span class="type">sx:</span><span class="constant">value</span> <span class="type">sx:</span><span class="constant">error</span>
+    // <span class="type">sx:</span><span class="constant">min</span> <span class="type">sx:</span><span class="constant">warning</span>
+    // <span class="type">sx:</span><span class="constant">max</span> <span class="type">sx:</span><span class="constant">warning</span>
+  <span class="type">schema:</span><span class="constant">actor</span> <span class="variable-name">@&lt;Person&gt;</span> ;
+    // <span class="type">sx:</span><span class="constant">value</span> <span class="type">sx:</span><span class="constant">error</span>
+    // <span class="type">sx:</span><span class="constant">min</span> <span class="type">sx:</span><span class="constant">warning</span>
+    // <span class="type">sx:</span><span class="constant">max</span> <span class="type">sx:</span><span class="constant">none</span>
+}
+
+<span class="variable-name">&lt;Person&gt;</span> {
+  <span class="type">schema:</span><span class="constant">name</span> <span class="type">xsd:</span><span class="constant">string</span>
+}</pre>
+
+       <div style="float:left; display: grid;">
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">endDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">actor</span> <span class="type">:</span><span class="constant">sue</span> ;
+}
+
+<span class="variable-name">:sue</span> {
+  <span class="type">schema:</span><span class="constant">name</span> <span class="string">"Sue"</span>
+}</pre>
+
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">endDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">actor</span> <span class="type">:</span><span class="constant">sue</span> ;
+}
+
+<span class="variable-name">:sue</span> {
+  <span class="type">schema:</span><span class="constant">name999</span> <span class="string">"Sue"</span>
+}</pre>
+
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+}</pre>
+       </div>
+     </div>
+   </div>
+
+   <div class="slide">
+     <h1>Severity</h1>
+     <div style="margin: 0 1em;">
+       <pre style="float:left">HIGH { value: 1, low: 1, high: 1 }
+LOW { value: 1, low: 0, high: 1 }
+
+<span class="variable-name">&lt;EventShape&gt;</span> {
+HIGH <span class="type">schema:</span><span class="constant">startDate</span> <span class="variable-name">@&lt;Date&gt;</span> ;
+  LOW  <span class="type">schema:</span><span class="constant">endDate</span> <span class="variable-name">@&lt;Date&gt;</span> ;
+  LOW  <span class="type">schema:</span><span class="constant">actor</span> <span class="variable-name">@&lt;Person&gt;</span> ;
+}
+
+<span class="variable-name">&lt;Person&gt;</span> {
+  LOW <span class="type">schema:</span><span class="constant">name</span> <span class="type">xsd:</span><span class="constant">string</span>
+}</pre>
+
+       <div style="float:left; display: grid;">
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">endDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">actor</span> <span class="type">:</span><span class="constant">sue</span> ;
+}
+
+<span class="variable-name">:sue</span> {
+  <span class="type">schema:</span><span class="constant">name</span> <span class="string">"Sue"</span>
+}</pre>
+
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">endDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">actor</span> <span class="type">:</span><span class="constant">sue</span> ;
+}
+
+<span class="variable-name">:sue</span> {
+  <span class="type">schema:</span><span class="constant">name999</span> <span class="string">"Sue"</span>
+}</pre>
+
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+}</pre>
+       </div>
+     </div>
+   </div>
+
+   <div class="slide">
+     <h1>Severity</h1>
+     <div style="margin: 0 1em;">
+       <pre style="float:left">HIGH { value: 1, low: 1, high: 1 }
+LOW { value: 1, low: 0, high: 1 }
+
+<span class="variable-name">&lt;EventShape&gt;</span> {
+HIGH <span class="type">schema:</span><span class="constant">startDate</span> <span class="variable-name">@&lt;Date&gt;</span> ;
+  LOW  <span class="type">schema:</span><span class="constant">endDate</span> <span class="variable-name">@&lt;Date&gt;</span> ;
+  LOW  <span class="type">schema:</span><span class="constant">actor</span> <span class="variable-name">@&lt;Person&gt;</span> ;
+}
+
+<span class="variable-name">&lt;Person&gt;</span> {
+  LOW <span class="type">schema:</span><span class="constant">name</span> <span class="type">xsd:</span><span class="constant">string</span>
+}</pre>
+
+       <div style="float:left; display: grid;">
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">endDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">actor</span> <span class="type">:</span><span class="constant">sue</span> ;
+}
+
+<span class="variable-name">:sue</span> {
+  <span class="type">schema:</span><span class="constant">name</span> <span class="string">"Sue"</span>
+}</pre>
+
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">endDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">actor</span> <span class="type">:</span><span class="constant">sue</span> ;
+}
+
+<span class="variable-name">:sue</span> {
+  <span class="type">schema:</span><span class="constant">name999</span> <span class="string">"Sue"</span>
+}</pre>
+
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+}</pre>
+       </div>
+     </div>
+     <div style="clear:both;">
+       <ul>
+         <li>dependent shape fails critically in criticial arc</li>
+         <li>dependent shape fails optionally in criticial arc</li>
+         <li>dependent shape fails critically in optional arc</li>
+         <li>dependent shape fails optionally in potional arc</li>
+       </ul>
+     </div>
+   </div>
+
+  </body>
+</html>
