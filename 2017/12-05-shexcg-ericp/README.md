@@ -1,0 +1,1 @@
+[slides for ShEx 2.1 features](https://shexspec.github.io/talks/2017/12-05-shexcg-ericp/)

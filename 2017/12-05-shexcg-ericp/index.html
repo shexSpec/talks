@@ -400,7 +400,7 @@ PREFIX schema: &lt;<a href="http://schema.org/">http://schema.org/</a>&gt;
   </div>
 
    <div class="slide">
-     <h1>Severity</h1>
+     <h1>Severity - single severity</h1>
      <div style="margin: 0 1em;">
        <pre style="float:left"><span class="variable-name">&lt;EventShape&gt;</span> {
   <span class="type">schema:</span><span class="constant">startDate</span> <span class="variable-name">@&lt;Date&gt;</span> ;
@@ -444,7 +444,7 @@ PREFIX schema: &lt;<a href="http://schema.org/">http://schema.org/</a>&gt;
    </div>
 
    <div class="slide">
-     <h1>Severity</h1>
+     <h1>Severity - multi severity</h1>
      <div style="margin: 0 1em;">
        <pre style="float:left"><span class="variable-name">&lt;EventShape&gt;</span> {
   <span class="type">schema:</span><span class="constant">startDate</span> <span class="variable-name">@&lt;Date&gt;</span> ;
@@ -494,7 +494,51 @@ PREFIX schema: &lt;<a href="http://schema.org/">http://schema.org/</a>&gt;
    </div>
 
    <div class="slide">
-     <h1>Severity</h1>
+     <h1>Severity - macros</h1>
+     <div style="margin: 0 1em;">
+       <pre style="float:left">HIGH { <span class="type">sx:</span><span class="constant">value</span> <span class="type">sx:</span><span class="constant">error</span>, <span class="type">sx:</span><span class="constant">low</span> <span class="type">sx:</span><span class="constant">error</span>, <span class="type">sx:</span><span class="constant">high</span> <span class="type">sx:</span><span class="constant">error</span> }
+LOW { <span class="type">sx:</span><span class="constant">value</span> <span class="type">sx:</span><span class="constant">error</span>, <span class="type">sx:</span><span class="constant">low</span> <span class="type">sx:</span><span class="constant">warning</span>, <span class="type">sx:</span><span class="constant">high</span> <span class="type">sx:</span><span class="constant">error</span> }
+
+<span class="variable-name">&lt;EventShape&gt;</span> {
+HIGH <span class="type">schema:</span><span class="constant">startDate</span> <span class="variable-name">@&lt;Date&gt;</span> ;
+  LOW  <span class="type">schema:</span><span class="constant">endDate</span> <span class="variable-name">@&lt;Date&gt;</span> ;
+  LOW  <span class="type">schema:</span><span class="constant">actor</span> <span class="variable-name">@&lt;Person&gt;</span> ;
+}
+
+<span class="variable-name">&lt;Person&gt;</span> {
+  LOW <span class="type">schema:</span><span class="constant">name</span> <span class="type">xsd:</span><span class="constant">string</span>
+}</pre>
+
+       <div style="float:left; display: grid;">
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">endDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">actor</span> <span class="type">:</span><span class="constant">sue</span> ;
+}
+
+<span class="variable-name">:sue</span> {
+  <span class="type">schema:</span><span class="constant">name</span> <span class="string">"Sue"</span>
+}</pre>
+
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">endDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+  <span class="type">schema:</span><span class="constant">actor</span> <span class="type">:</span><span class="constant">sue</span> ;
+}
+
+<span class="variable-name">:sue</span> {
+  <span class="type">schema:</span><span class="constant">name999</span> <span class="string">"Sue"</span>
+}</pre>
+
+        <pre><span class="variable-name">:hackathon1</span> {
+  <span class="type">schema:</span><span class="constant">startDate</span> <span class="string">"2017-01-01"</span>^^<span class="type">xsd:</span><span class="constant">date</span> ;
+}</pre>
+       </div>
+     </div>
+   </div>
+
+   <div class="slide">
+     <h1>Severity - macros</h1>
      <div style="margin: 0 1em;">
        <pre style="float:left">HIGH { value: 1, low: 1, high: 1 }
 LOW { value: 1, low: 0, high: 1 }
