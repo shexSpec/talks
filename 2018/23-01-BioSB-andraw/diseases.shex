@@ -1,0 +1,42 @@
+# Shape Expression for Diseases in Wikidata
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
+PREFIX pr:  <http://www.wikidata.org/prop/reference/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX do: <http://purl.obolibrary.org/obo/DOID_>
+
+start = @<wikidata-disease>
+
+<wikidata-disease> {
+	p:P31 { # instance of disease
+		ps:P31 [ wd:Q12136 ]; # instance of disease
+		$<has-do-reference> prov:wasDerivedFrom @<do-reference>;
+	} ;
+	p:P279 { # subclass of
+		ps:P279 @<wikidata-disease>;
+		&<has-do-reference>
+	} * ;
+	p:P2888 EXTRA prov:wasDerivedFrom { # exact match
+		ps:P2888 [ do:~ ];
+		prov:wasDerivedFrom @<do-reference> ?
+	} + ;
+}
+
+<do-reference> {
+	# stated in
+	pr:P248 @<version-disease-ontology> ;
+	# retrieved
+	pr:P813 xsd:dateTime ;
+	# Disease ontology ID
+	pr:P699 @<disease-ontology-id> ;
+}
+
+<disease-ontology-id> LITERAL /^DOID:[0-9]+$/
+
+<version-disease-ontology> {
+	# edition or translation of Disease Ontology
+	p:P629 { ps:P629 [ wd:Q5282129 ] } ;
+}
