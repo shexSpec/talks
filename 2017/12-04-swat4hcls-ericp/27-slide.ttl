@@ -1,4 +1,4 @@
-prefix : <http://example.org/ns/26#>
+prefix : <http://example.org/ns/27#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix schema: <http://schema.org/>
