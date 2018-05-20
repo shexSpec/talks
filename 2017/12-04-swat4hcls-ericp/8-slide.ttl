@@ -1,4 +1,4 @@
-PREFIX schema: <http://schema.org>
+PREFIX schema: <http://schema.org/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX : <http://a.example/ns/7#>
 

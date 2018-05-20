@@ -1,5 +1,6 @@
 [
   {
+    "presentationURL": "https://www.slideshare.net/jelabra/shex-by-example",
     "schemaLabel": "8 - First example",
     "schemaURL": "8.shex",
     "dataLabel": "simple fixed map",
@@ -28,7 +29,7 @@
     "schemaURL": "8.shex",
     "dataLabel": "slide examples",
     "dataURL": "8-slide.ttl",
-    "queryMap": ":alice@<User>,:bob@<User>,:carol@<User>,:dave@<User>,:emily@<User>",
+    "queryMap": ":alice@<User>,\n:bob@<User>,\n:carol@<User>,\n:dave@<User>,\n:emily@<User>",
     "status": "nonconformant"
   },
   {
@@ -49,8 +50,7 @@
   },
   {
     "schemaLabel": "10 - ShExJ",
-    "schemaURL": "8.shex",
-    "status": "conformant"
+    "schemaURL": "8.shex"
   },
   {
     "schemaLabel": "15 - grouping",
